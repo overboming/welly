@@ -1,0 +1,53 @@
+8
+
+dir
+667
+http://welly.googlecode.com/svn/trunk/Growl-WithInstaller.framework/Versions/A/Resources/pt_BR.lproj/GrowlInstallationPrompt.nib
+http://welly.googlecode.com/svn
+
+
+
+2008-07-14T19:52:32.487160Z
+37
+xi.wang
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+ace27a1a-5e51-0410-a197-e9aa1ca61478
+
+keyedobjects.nib
+file
+
+
+
+
+2009-07-13T07:28:49.000000Z
+cd71549bf2f195e2a6cb7ddf55fdbe43
+2008-07-14T19:52:32.487160Z
+37
+xi.wang
+has-props
+
+classes.nib
+file
+
+
+
+
+2009-07-13T07:28:50.000000Z
+886c8be2392e7ea8e026f1c1e8f49db7
+2008-07-14T19:52:32.487160Z
+37
+xi.wang
+

@@ -1,0 +1,58 @@
+8
+
+dir
+667
+http://welly.googlecode.com/svn/trunk/zh_TW.lproj
+http://welly.googlecode.com/svn
+
+
+
+2009-06-25T08:31:50.527217Z
+651
+lvli007
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+ace27a1a-5e51-0410-a197-e9aa1ca61478
+
+InfoPlist.strings
+file
+
+
+
+
+2009-07-13T07:29:11.000000Z
+98780fedcc5a0c84ab39cad9ed42d68f
+2009-02-28T03:57:07.695958Z
+493
+lvli007
+
+MainMenu.nib
+dir
+
+Preferences.nib
+dir
+
+Localizable.strings
+file
+
+
+
+
+2009-07-13T07:29:12.000000Z
+37e82c2f6d35c1dec1e77db1a1d886c1
+2009-05-15T13:50:55.237066Z
+628
+tangyang.cn
+

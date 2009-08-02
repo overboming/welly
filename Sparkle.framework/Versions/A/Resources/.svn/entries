@@ -1,0 +1,74 @@
+8
+
+dir
+667
+http://welly.googlecode.com/svn/trunk/Sparkle.framework/Versions/A/Resources
+http://welly.googlecode.com/svn
+
+
+
+2009-03-03T16:22:26.583153Z
+518
+K.O.ed99
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+ace27a1a-5e51-0410-a197-e9aa1ca61478
+
+SUModelTranslation.plist
+file
+
+
+
+
+2009-07-13T07:29:08.000000Z
+f1ea04fe15a18d331dd1cde62aee3953
+2009-03-02T17:43:56.118366Z
+511
+lvli007
+
+relaunch
+file
+
+
+
+
+2009-07-13T07:29:08.000000Z
+a50575564d38756ef5ae918002e1eca6
+2009-03-02T17:43:56.118366Z
+511
+lvli007
+has-props
+
+SUStatus.nib
+dir
+
+Info.plist
+file
+
+
+
+
+2009-07-13T07:29:08.000000Z
+7bd21f17d9d76245c6a0782d1ec6751f
+2009-03-02T17:43:56.118366Z
+511
+lvli007
+
+zh_CN.lproj
+dir
+
+en.lproj
+dir
+

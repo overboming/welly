@@ -1,0 +1,233 @@
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/511/trunk/Sparkle.framework/Versions/A/Headers
+END
+NSFileManager+Verification.h
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/511/trunk/Sparkle.framework/Versions/A/Headers/NSFileManager+Verification.h
+END
+SUAutomaticUpdateAlert.h
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/511/trunk/Sparkle.framework/Versions/A/Headers/SUAutomaticUpdateAlert.h
+END
+SUPlainInstaller.h
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/511/trunk/Sparkle.framework/Versions/A/Headers/SUPlainInstaller.h
+END
+NSBundle+SUAdditions.h
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/511/trunk/Sparkle.framework/Versions/A/Headers/NSBundle+SUAdditions.h
+END
+SUDiskImageUnarchiver.h
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/511/trunk/Sparkle.framework/Versions/A/Headers/SUDiskImageUnarchiver.h
+END
+SUPipedUnarchiver.h
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/511/trunk/Sparkle.framework/Versions/A/Headers/SUPipedUnarchiver.h
+END
+SUUpdatePermissionPrompt.h
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/511/trunk/Sparkle.framework/Versions/A/Headers/SUUpdatePermissionPrompt.h
+END
+SUUpdateDriver.h
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/511/trunk/Sparkle.framework/Versions/A/Headers/SUUpdateDriver.h
+END
+SUVersionComparisonProtocol.h
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/511/trunk/Sparkle.framework/Versions/A/Headers/SUVersionComparisonProtocol.h
+END
+SUUnarchiver.h
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/511/trunk/Sparkle.framework/Versions/A/Headers/SUUnarchiver.h
+END
+SUUserDefaults.h
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/511/trunk/Sparkle.framework/Versions/A/Headers/SUUserDefaults.h
+END
+NSWorkspace_RBAdditions.h
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/511/trunk/Sparkle.framework/Versions/A/Headers/NSWorkspace_RBAdditions.h
+END
+NSFileManager+Authentication.h
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/511/trunk/Sparkle.framework/Versions/A/Headers/NSFileManager+Authentication.h
+END
+SUScheduledUpdateDriver.h
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/511/trunk/Sparkle.framework/Versions/A/Headers/SUScheduledUpdateDriver.h
+END
+SUProbingUpdateDriver.h
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/511/trunk/Sparkle.framework/Versions/A/Headers/SUProbingUpdateDriver.h
+END
+SUVersionComparisonTest.h
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/511/trunk/Sparkle.framework/Versions/A/Headers/SUVersionComparisonTest.h
+END
+SUStatusController.h
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/511/trunk/Sparkle.framework/Versions/A/Headers/SUStatusController.h
+END
+SUSystemProfiler.h
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/511/trunk/Sparkle.framework/Versions/A/Headers/SUSystemProfiler.h
+END
+SUUserInitiatedUpdateDriver.h
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/511/trunk/Sparkle.framework/Versions/A/Headers/SUUserInitiatedUpdateDriver.h
+END
+Sparkle.h
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/511/trunk/Sparkle.framework/Versions/A/Headers/Sparkle.h
+END
+SUAppcast.h
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/511/trunk/Sparkle.framework/Versions/A/Headers/SUAppcast.h
+END
+SUUIBasedUpdateDriver.h
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/511/trunk/Sparkle.framework/Versions/A/Headers/SUUIBasedUpdateDriver.h
+END
+SUInstaller.h
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/511/trunk/Sparkle.framework/Versions/A/Headers/SUInstaller.h
+END
+SUStandardVersionComparator.h
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/511/trunk/Sparkle.framework/Versions/A/Headers/SUStandardVersionComparator.h
+END
+SUBasicUpdateDriver.h
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/511/trunk/Sparkle.framework/Versions/A/Headers/SUBasicUpdateDriver.h
+END
+SUUnarchiver_Private.h
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/511/trunk/Sparkle.framework/Versions/A/Headers/SUUnarchiver_Private.h
+END
+SUUpdater.h
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/511/trunk/Sparkle.framework/Versions/A/Headers/SUUpdater.h
+END
+SUAutomaticUpdateDriver.h
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/511/trunk/Sparkle.framework/Versions/A/Headers/SUAutomaticUpdateDriver.h
+END
+NSFileManager+ExtendedAttributes.h
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/511/trunk/Sparkle.framework/Versions/A/Headers/NSFileManager+ExtendedAttributes.h
+END
+NTSynchronousTask.h
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/511/trunk/Sparkle.framework/Versions/A/Headers/NTSynchronousTask.h
+END
+SUPackageInstaller.h
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/511/trunk/Sparkle.framework/Versions/A/Headers/SUPackageInstaller.h
+END
+SUAppcastItem.h
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/511/trunk/Sparkle.framework/Versions/A/Headers/SUAppcastItem.h
+END
+SUUpdateAlert.h
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/511/trunk/Sparkle.framework/Versions/A/Headers/SUUpdateAlert.h
+END
+SUWindowController.h
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/511/trunk/Sparkle.framework/Versions/A/Headers/SUWindowController.h
+END
+SUConstants.h
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/511/trunk/Sparkle.framework/Versions/A/Headers/SUConstants.h
+END
+NSWorkspace+SystemVersion.h
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/511/trunk/Sparkle.framework/Versions/A/Headers/NSWorkspace+SystemVersion.h
+END
+NSNumber+Units.h
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/511/trunk/Sparkle.framework/Versions/A/Headers/NSNumber+Units.h
+END
+NSFileManager+Aliases.h
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/511/trunk/Sparkle.framework/Versions/A/Headers/NSFileManager+Aliases.h
+END

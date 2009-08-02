@@ -1,0 +1,47 @@
+8
+
+dir
+667
+http://welly.googlecode.com/svn/trunk/Growl-WithInstaller.framework/Versions/A
+http://welly.googlecode.com/svn
+
+
+
+2008-07-14T19:52:32.487160Z
+37
+xi.wang
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+ace27a1a-5e51-0410-a197-e9aa1ca61478
+
+Growl-WithInstaller
+file
+
+
+
+
+2009-07-13T07:28:54.000000Z
+7a7d652f896fb9a88a228408a47a0a93
+2008-07-14T19:52:32.487160Z
+37
+xi.wang
+has-props
+
+Resources
+dir
+
+Headers
+dir
+
