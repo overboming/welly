@@ -211,6 +211,7 @@
 				<string>active-combo-popup</string>
 				<string>action</string>
 				<string>NSToolbarFlexibleSpaceItem</string>
+				<string>servicesModuledebug</string>
 				<string>build-and-go</string>
 				<string>com.apple.ide.PBXToolbarStopButton</string>
 				<string>get-info</string>
@@ -292,7 +293,7 @@
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 0}, {263, 618}}</string>
+							<string>{{0, 284}, {263, 664}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -304,14 +305,14 @@
 					<key>GeometryConfiguration</key>
 					<dict>
 						<key>Frame</key>
-						<string>{{0, 0}, {280, 636}}</string>
+						<string>{{0, 0}, {280, 682}}</string>
 						<key>GroupTreeTableConfiguration</key>
 						<array>
 							<string>MainColumn</string>
 							<real>263</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>50 101 1178 677 0 0 1280 778 </string>
+						<string>0 55 1276 723 0 0 1280 778 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -339,7 +340,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>04FF3916101E101100B84594</string>
+										<string>0401F5891027114C002D3C3A</string>
 										<key>history</key>
 										<array>
 											<string>0472639A100B905E00EDC8B6</string>
@@ -361,7 +362,7 @@
 											<string>04D6CCC51016114000E8779C</string>
 											<string>04D6CCC61016114000E8779C</string>
 											<string>04FF3913101E101100B84594</string>
-											<string>04FF3914101E101100B84594</string>
+											<string>04FF3916101E101100B84594</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -384,7 +385,6 @@
 											<string>04D6CCC11015DE1500E8779C</string>
 											<string>04D6CCC91016114000E8779C</string>
 											<string>04D6CCCA1016114000E8779C</string>
-											<string>04FF3915101E101100B84594</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -396,14 +396,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {893, 631}}</string>
+								<string>{{0, 0}, {991, 677}}</string>
 								<key>RubberWindowFrame</key>
-								<string>50 101 1178 677 0 0 1280 778 </string>
+								<string>0 55 1276 723 0 0 1280 778 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>631pt</string>
+							<string>677pt</string>
 						</dict>
 						<dict>
 							<key>ContentConfiguration</key>
@@ -416,9 +416,9 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 636}, {893, 0}}</string>
+								<string>{{0, 682}, {991, 0}}</string>
 								<key>RubberWindowFrame</key>
-								<string>50 101 1178 677 0 0 1280 778 </string>
+								<string>0 55 1276 723 0 0 1280 778 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -427,7 +427,7 @@
 						</dict>
 					</array>
 					<key>Proportion</key>
-					<string>893pt</string>
+					<string>991pt</string>
 				</dict>
 			</array>
 			<key>Name</key>
@@ -442,9 +442,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>04FF3917101E101100B84594</string>
+				<string>0401F57810270E0E002D3C3A</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>04FF3918101E101100B84594</string>
+				<string>0401F57910270E0E002D3C3A</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -578,10 +578,10 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>/Users/Malic/Documents/Code/Cocoa/welly667 2/Welly.xcodeproj</string>
+		<string>/Users/Malic/Documents/Code/Cocoa/welly/Welly.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>50 101 1178 677 0 0 1280 778 </string>
+	<string>0 55 1276 723 0 0 1280 778 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>

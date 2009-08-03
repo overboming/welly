@@ -12,6 +12,8 @@
 #import "WLMessageDelegate.h"
 #import "WLFullScreenController.h"
 #import "WLTelnetProcessor.h"
+#import "YLExifController.h"
+
 
 #define scrollTimerInterval 0.12
 #define floatWindowLevel kCGStatusWindowLevel+1
@@ -80,6 +82,9 @@
     
     // RSS feed
     NSThread *_rssThread;
+	
+	IBOutlet YLExifController *_exifController;
+
 }
 @property (readonly) YLView *telnetView;
 
@@ -110,6 +115,8 @@
 - (IBAction)openEmoticonsWindow:(id)sender;
 
 - (IBAction)closeMessageWindow:(id)sender;
+
+- (YLExifController *) exifController;
 
 /* compose actions */
 - (IBAction)openCompose:(id)sender;

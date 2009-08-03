@@ -9,6 +9,7 @@
 #import "WLPreviewController.h"
 #import "WLQuickLookBridge.h"
 #import "WLGrowlBridge.h"
+#import "YLImagePreviewer.h"
 
 @interface WLDownloadDelegate : NSObject {
     // This progress bar is restored by gtCarrera
@@ -65,8 +66,8 @@ static NSMutableDictionary *downloadedURLInfo;
     // check validity
     NSURLDownload *download;
     NSString *s = [URL absoluteString];
-    NSString *suffix = [[s componentsSeparatedByString:@"."] lastObject];
-    NSArray *suffixes = [NSArray arrayWithObjects:@"htm", @"html", @"shtml", @"com", @"net", @"org", nil];
+    NSString *suffix = [[[s componentsSeparatedByString:@"."] lastObject] lowercaseString];
+    NSArray *suffixes = [NSArray arrayWithObjects:@"htm", @"html", @"shtml", @"com", @"net", @"org",@"gif",nil];
     if ([s hasSuffix:@"/"] || [suffixes containsObject:suffix])
         download = nil;
     else {
@@ -80,8 +81,15 @@ static NSMutableDictionary *downloadedURLInfo;
         [delegate setDownload:download];
         [delegate release];
     }
-    if (download == nil)
-        [[NSWorkspace sharedWorkspace] openURL:URL];
+    if (download == nil) {
+     	//edited by overboming
+		if([suffix caseInsensitiveCompare:@"gif"] == 0){
+			[[YLImagePreviewer alloc] initWithURL: URL];
+			NSLog(@"I still...");
+		}
+		else
+			[[NSWorkspace sharedWorkspace] openURL:URL];
+	}
     return download;
 }
 
@@ -276,6 +284,7 @@ static void formatProps(NSMutableString *s, id *fmt, id *val) {
     [sURLs removeObject:[[download request] URL]];
 	[downloadedURLInfo setValue:_path forKey:[[[download request] URL] absoluteString]];
     [WLQuickLookBridge add:[NSURL fileURLWithPath:_path]];
+
     [WLGrowlBridge notifyWithTitle:_filename
                        description:NSLocalizedString(@"Completed", "Download completed; will open previewer")
                   notificationName:@"File Transfer"

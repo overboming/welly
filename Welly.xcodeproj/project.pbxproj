@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0401F5D910271230002D3C3A /* YLImagePreviewer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0401F5D810271230002D3C3A /* YLImagePreviewer.m */; };
+		0401F5DF102712E1002D3C3A /* YLImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0401F5DE102712E1002D3C3A /* YLImageView.m */; };
+		0401F5E3102712FD002D3C3A /* YLFloatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0401F5E2102712FD002D3C3A /* YLFloatingView.m */; };
+		0401F5E9102713EE002D3C3A /* YLExifController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0401F5E8102713EE002D3C3A /* YLExifController.m */; };
+		0401F63310271A84002D3C3A /* HUDSave.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 0401F63110271A84002D3C3A /* HUDSave.tiff */; };
+		0401F63410271A84002D3C3A /* HUDSaveActive.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 0401F63210271A84002D3C3A /* HUDSaveActive.tiff */; };
 		07B3707A0D6840B20035E87D /* HMBlkAppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B370790D6840B20035E87D /* HMBlkAppKit.framework */; };
 		07B3708E0D6840BB0035E87D /* HMBlkAppKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07B370790D6840B20035E87D /* HMBlkAppKit.framework */; };
 		1600D7AF0E51C2B100496E3E /* WLTerminalFeeder.m in Sources */ = {isa = PBXBuildFile; fileRef = 1600D7AE0E51C2B100496E3E /* WLTerminalFeeder.m */; };
@@ -137,6 +143,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0401F5D710271230002D3C3A /* YLImagePreviewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLImagePreviewer.h; sourceTree = "<group>"; };
+		0401F5D810271230002D3C3A /* YLImagePreviewer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLImagePreviewer.m; sourceTree = "<group>"; };
+		0401F5DD102712E1002D3C3A /* YLImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLImageView.h; sourceTree = "<group>"; };
+		0401F5DE102712E1002D3C3A /* YLImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLImageView.m; sourceTree = "<group>"; };
+		0401F5E1102712FD002D3C3A /* YLFloatingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLFloatingView.h; sourceTree = "<group>"; };
+		0401F5E2102712FD002D3C3A /* YLFloatingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLFloatingView.m; sourceTree = "<group>"; };
+		0401F5E7102713EE002D3C3A /* YLExifController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLExifController.h; sourceTree = "<group>"; };
+		0401F5E8102713EE002D3C3A /* YLExifController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLExifController.m; sourceTree = "<group>"; };
+		0401F63110271A84002D3C3A /* HUDSave.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = HUDSave.tiff; sourceTree = "<group>"; };
+		0401F63210271A84002D3C3A /* HUDSaveActive.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = HUDSaveActive.tiff; sourceTree = "<group>"; };
 		07B370790D6840B20035E87D /* HMBlkAppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HMBlkAppKit.framework; sourceTree = "<group>"; };
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
@@ -417,6 +433,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0401F63110271A84002D3C3A /* HUDSave.tiff */,
+				0401F63210271A84002D3C3A /* HUDSaveActive.tiff */,
 				185680E50F25E23B00A1F4F3 /* Passwords Small.tif */,
 				81FEAD310EFE91BD0051C867 /* waiting.pdf */,
 				81208EBD0EF8D94D005FD459 /* default_site.png */,
@@ -545,6 +563,14 @@
 		5AD4B6F90F2D8CA500BF2F87 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0401F5E7102713EE002D3C3A /* YLExifController.h */,
+				0401F5E8102713EE002D3C3A /* YLExifController.m */,
+				0401F5E1102712FD002D3C3A /* YLFloatingView.h */,
+				0401F5E2102712FD002D3C3A /* YLFloatingView.m */,
+				0401F5DD102712E1002D3C3A /* YLImageView.h */,
+				0401F5DE102712E1002D3C3A /* YLImageView.m */,
+				0401F5D710271230002D3C3A /* YLImagePreviewer.h */,
+				0401F5D810271230002D3C3A /* YLImagePreviewer.m */,
 				5A2B3CFF0EB95649007773F8 /* Portal */,
 				858A54E40CAE78C8000E1AA7 /* YLMarkedTextView.h */,
 				858A54E50CAE78C8000E1AA7 /* YLMarkedTextView.m */,
@@ -708,6 +734,8 @@
 				81FEAD320EFE91BD0051C867 /* waiting.pdf in Resources */,
 				185680E60F25E23B00A1F4F3 /* Passwords Small.tif in Resources */,
 				5AB748170F6FC69100CE5F4C /* indicator.png in Resources */,
+				0401F63310271A84002D3C3A /* HUDSave.tiff in Resources */,
+				0401F63410271A84002D3C3A /* HUDSaveActive.tiff in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -786,6 +814,10 @@
 				5A1BA6F60F6EA8BA003489CF /* WLURLManager.m in Sources */,
 				1841E73E0F7BD280002DCBA8 /* WLProxy.m in Sources */,
 				5A949D800F830C7700C00CE6 /* WLAnsiColorOperationManager.m in Sources */,
+				0401F5D910271230002D3C3A /* YLImagePreviewer.m in Sources */,
+				0401F5DF102712E1002D3C3A /* YLImageView.m in Sources */,
+				0401F5E3102712FD002D3C3A /* YLFloatingView.m in Sources */,
+				0401F5E9102713EE002D3C3A /* YLExifController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

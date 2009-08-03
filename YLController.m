@@ -1498,4 +1498,11 @@ withReplyEvent:(NSAppleEventDescriptor *)replyEvent {
 		[_telnetView addPortalPicture:source forSite:siteName];
 	}
 }
+
+
+- (YLExifController *) exifController
+{
+    return _exifController;
+}
+
 @end

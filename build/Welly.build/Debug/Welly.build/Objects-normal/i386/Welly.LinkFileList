@@ -1,52 +1,56 @@
-/Users/Malic/Documents/Code/Cocoa/welly667 2/build/Welly.build/Debug/Welly.build/Objects-normal/i386/main.o
-/Users/Malic/Documents/Code/Cocoa/welly667 2/build/Welly.build/Debug/Welly.build/Objects-normal/i386/YLView.o
-/Users/Malic/Documents/Code/Cocoa/welly667 2/build/Welly.build/Debug/Welly.build/Objects-normal/i386/YLTerminal.o
-/Users/Malic/Documents/Code/Cocoa/welly667 2/build/Welly.build/Debug/Welly.build/Objects-normal/i386/YLLGlobalConfig.o
-/Users/Malic/Documents/Code/Cocoa/welly667 2/build/Welly.build/Debug/Welly.build/Objects-normal/i386/encoding.o
-/Users/Malic/Documents/Code/Cocoa/welly667 2/build/Welly.build/Debug/Welly.build/Objects-normal/i386/YLMarkedTextView.o
-/Users/Malic/Documents/Code/Cocoa/welly667 2/build/Welly.build/Debug/Welly.build/Objects-normal/i386/YLApplication.o
-/Users/Malic/Documents/Code/Cocoa/welly667 2/build/Welly.build/Debug/Welly.build/Objects-normal/i386/YLSite.o
-/Users/Malic/Documents/Code/Cocoa/welly667 2/build/Welly.build/Debug/Welly.build/Objects-normal/i386/YLContextualMenuManager.o
-/Users/Malic/Documents/Code/Cocoa/welly667 2/build/Welly.build/Debug/Welly.build/Objects-normal/i386/DBPrefsWindowController.o
-/Users/Malic/Documents/Code/Cocoa/welly667 2/build/Welly.build/Debug/Welly.build/Objects-normal/i386/YLEmoticon.o
-/Users/Malic/Documents/Code/Cocoa/welly667 2/build/Welly.build/Debug/Welly.build/Objects-normal/i386/CommonType.o
-/Users/Malic/Documents/Code/Cocoa/welly667 2/build/Welly.build/Debug/Welly.build/Objects-normal/i386/YLConnection.o
-/Users/Malic/Documents/Code/Cocoa/welly667 2/build/Welly.build/Debug/Welly.build/Objects-normal/i386/WLGrowlBridge.o
-/Users/Malic/Documents/Code/Cocoa/welly667 2/build/Welly.build/Debug/Welly.build/Objects-normal/i386/IPSeeker.o
-/Users/Malic/Documents/Code/Cocoa/welly667 2/build/Welly.build/Debug/Welly.build/Objects-normal/i386/WLMessageDelegate.o
-/Users/Malic/Documents/Code/Cocoa/welly667 2/build/Welly.build/Debug/Welly.build/Objects-normal/i386/YLController.o
-/Users/Malic/Documents/Code/Cocoa/welly667 2/build/Welly.build/Debug/Welly.build/Objects-normal/i386/MultiClickRemoteBehavior.o
-/Users/Malic/Documents/Code/Cocoa/welly667 2/build/Welly.build/Debug/Welly.build/Objects-normal/i386/RemoteControl.o
-/Users/Malic/Documents/Code/Cocoa/welly667 2/build/Welly.build/Debug/Welly.build/Objects-normal/i386/HIDRemoteControlDevice.o
-/Users/Malic/Documents/Code/Cocoa/welly667 2/build/Welly.build/Debug/Welly.build/Objects-normal/i386/AppleRemote.o
-/Users/Malic/Documents/Code/Cocoa/welly667 2/build/Welly.build/Debug/Welly.build/Objects-normal/i386/KeyspanFrontRowControl.o
-/Users/Malic/Documents/Code/Cocoa/welly667 2/build/Welly.build/Debug/Welly.build/Objects-normal/i386/RemoteControlContainer.o
-/Users/Malic/Documents/Code/Cocoa/welly667 2/build/Welly.build/Debug/Welly.build/Objects-normal/i386/WLPTY.o
-/Users/Malic/Documents/Code/Cocoa/welly667 2/build/Welly.build/Debug/Welly.build/Objects-normal/i386/WLTabBarControl.o
-/Users/Malic/Documents/Code/Cocoa/welly667 2/build/Welly.build/Debug/Welly.build/Objects-normal/i386/WLQuickLookBridge.o
-/Users/Malic/Documents/Code/Cocoa/welly667 2/build/Welly.build/Debug/Welly.build/Objects-normal/i386/WLPreviewController.o
-/Users/Malic/Documents/Code/Cocoa/welly667 2/build/Welly.build/Debug/Welly.build/Objects-normal/i386/WLPortal.o
-/Users/Malic/Documents/Code/Cocoa/welly667 2/build/Welly.build/Debug/Welly.build/Objects-normal/i386/PortalImageLayout.o
-/Users/Malic/Documents/Code/Cocoa/welly667 2/build/Welly.build/Debug/Welly.build/Objects-normal/i386/PortalImage.o
-/Users/Malic/Documents/Code/Cocoa/welly667 2/build/Welly.build/Debug/Welly.build/Objects-normal/i386/WLPostDownloader.o
-/Users/Malic/Documents/Code/Cocoa/welly667 2/build/Welly.build/Debug/Welly.build/Objects-normal/i386/WLIntegerArray.o
-/Users/Malic/Documents/Code/Cocoa/welly667 2/build/Welly.build/Debug/Welly.build/Objects-normal/i386/WLFullScreenController.o
-/Users/Malic/Documents/Code/Cocoa/welly667 2/build/Welly.build/Debug/Welly.build/Objects-normal/i386/WLFullScreenProcessor.o
-/Users/Malic/Documents/Code/Cocoa/welly667 2/build/Welly.build/Debug/Welly.build/Objects-normal/i386/WLTelnetProcessor.o
-/Users/Malic/Documents/Code/Cocoa/welly667 2/build/Welly.build/Debug/Welly.build/Objects-normal/i386/WLTerminalFeeder.o
-/Users/Malic/Documents/Code/Cocoa/welly667 2/build/Welly.build/Debug/Welly.build/Objects-normal/i386/WLEffectView.o
-/Users/Malic/Documents/Code/Cocoa/welly667 2/build/Welly.build/Debug/Welly.build/Objects-normal/i386/WLPopUpMessage.o
-/Users/Malic/Documents/Code/Cocoa/welly667 2/build/Welly.build/Debug/Welly.build/Objects-normal/i386/WLMenuItem.o
-/Users/Malic/Documents/Code/Cocoa/welly667 2/build/Welly.build/Debug/Welly.build/Objects-normal/i386/WLComposeDelegate.o
-/Users/Malic/Documents/Code/Cocoa/welly667 2/build/Welly.build/Debug/Welly.build/Objects-normal/i386/WLClickEntryHotspotHandler.o
-/Users/Malic/Documents/Code/Cocoa/welly667 2/build/Welly.build/Debug/Welly.build/Objects-normal/i386/WLMovingAreaHotspotHandler.o
-/Users/Malic/Documents/Code/Cocoa/welly667 2/build/Welly.build/Debug/Welly.build/Objects-normal/i386/WLButtonAreaHotspotHandler.o
-/Users/Malic/Documents/Code/Cocoa/welly667 2/build/Welly.build/Debug/Welly.build/Objects-normal/i386/WLMouseHotspotHandler.o
-/Users/Malic/Documents/Code/Cocoa/welly667 2/build/Welly.build/Debug/Welly.build/Objects-normal/i386/WLIPAddrHotspotHandler.o
-/Users/Malic/Documents/Code/Cocoa/welly667 2/build/Welly.build/Debug/Welly.build/Objects-normal/i386/WLMouseBehaviorManager.o
-/Users/Malic/Documents/Code/Cocoa/welly667 2/build/Welly.build/Debug/Welly.build/Objects-normal/i386/WLEditingCursorMoveHotspotHandler.o
-/Users/Malic/Documents/Code/Cocoa/welly667 2/build/Welly.build/Debug/Welly.build/Objects-normal/i386/WLFeedGenerator.o
-/Users/Malic/Documents/Code/Cocoa/welly667 2/build/Welly.build/Debug/Welly.build/Objects-normal/i386/WLAuthorAreaHotspotHandler.o
-/Users/Malic/Documents/Code/Cocoa/welly667 2/build/Welly.build/Debug/Welly.build/Objects-normal/i386/WLURLManager.o
-/Users/Malic/Documents/Code/Cocoa/welly667 2/build/Welly.build/Debug/Welly.build/Objects-normal/i386/WLProxy.o
-/Users/Malic/Documents/Code/Cocoa/welly667 2/build/Welly.build/Debug/Welly.build/Objects-normal/i386/WLAnsiColorOperationManager.o
+/Users/Malic/Documents/Code/Cocoa/welly/build/Welly.build/Debug/Welly.build/Objects-normal/i386/main.o
+/Users/Malic/Documents/Code/Cocoa/welly/build/Welly.build/Debug/Welly.build/Objects-normal/i386/YLView.o
+/Users/Malic/Documents/Code/Cocoa/welly/build/Welly.build/Debug/Welly.build/Objects-normal/i386/YLTerminal.o
+/Users/Malic/Documents/Code/Cocoa/welly/build/Welly.build/Debug/Welly.build/Objects-normal/i386/YLLGlobalConfig.o
+/Users/Malic/Documents/Code/Cocoa/welly/build/Welly.build/Debug/Welly.build/Objects-normal/i386/encoding.o
+/Users/Malic/Documents/Code/Cocoa/welly/build/Welly.build/Debug/Welly.build/Objects-normal/i386/YLMarkedTextView.o
+/Users/Malic/Documents/Code/Cocoa/welly/build/Welly.build/Debug/Welly.build/Objects-normal/i386/YLApplication.o
+/Users/Malic/Documents/Code/Cocoa/welly/build/Welly.build/Debug/Welly.build/Objects-normal/i386/YLSite.o
+/Users/Malic/Documents/Code/Cocoa/welly/build/Welly.build/Debug/Welly.build/Objects-normal/i386/YLContextualMenuManager.o
+/Users/Malic/Documents/Code/Cocoa/welly/build/Welly.build/Debug/Welly.build/Objects-normal/i386/DBPrefsWindowController.o
+/Users/Malic/Documents/Code/Cocoa/welly/build/Welly.build/Debug/Welly.build/Objects-normal/i386/YLEmoticon.o
+/Users/Malic/Documents/Code/Cocoa/welly/build/Welly.build/Debug/Welly.build/Objects-normal/i386/CommonType.o
+/Users/Malic/Documents/Code/Cocoa/welly/build/Welly.build/Debug/Welly.build/Objects-normal/i386/YLConnection.o
+/Users/Malic/Documents/Code/Cocoa/welly/build/Welly.build/Debug/Welly.build/Objects-normal/i386/WLGrowlBridge.o
+/Users/Malic/Documents/Code/Cocoa/welly/build/Welly.build/Debug/Welly.build/Objects-normal/i386/IPSeeker.o
+/Users/Malic/Documents/Code/Cocoa/welly/build/Welly.build/Debug/Welly.build/Objects-normal/i386/WLMessageDelegate.o
+/Users/Malic/Documents/Code/Cocoa/welly/build/Welly.build/Debug/Welly.build/Objects-normal/i386/YLController.o
+/Users/Malic/Documents/Code/Cocoa/welly/build/Welly.build/Debug/Welly.build/Objects-normal/i386/MultiClickRemoteBehavior.o
+/Users/Malic/Documents/Code/Cocoa/welly/build/Welly.build/Debug/Welly.build/Objects-normal/i386/RemoteControl.o
+/Users/Malic/Documents/Code/Cocoa/welly/build/Welly.build/Debug/Welly.build/Objects-normal/i386/HIDRemoteControlDevice.o
+/Users/Malic/Documents/Code/Cocoa/welly/build/Welly.build/Debug/Welly.build/Objects-normal/i386/AppleRemote.o
+/Users/Malic/Documents/Code/Cocoa/welly/build/Welly.build/Debug/Welly.build/Objects-normal/i386/KeyspanFrontRowControl.o
+/Users/Malic/Documents/Code/Cocoa/welly/build/Welly.build/Debug/Welly.build/Objects-normal/i386/RemoteControlContainer.o
+/Users/Malic/Documents/Code/Cocoa/welly/build/Welly.build/Debug/Welly.build/Objects-normal/i386/WLPTY.o
+/Users/Malic/Documents/Code/Cocoa/welly/build/Welly.build/Debug/Welly.build/Objects-normal/i386/WLTabBarControl.o
+/Users/Malic/Documents/Code/Cocoa/welly/build/Welly.build/Debug/Welly.build/Objects-normal/i386/WLQuickLookBridge.o
+/Users/Malic/Documents/Code/Cocoa/welly/build/Welly.build/Debug/Welly.build/Objects-normal/i386/WLPreviewController.o
+/Users/Malic/Documents/Code/Cocoa/welly/build/Welly.build/Debug/Welly.build/Objects-normal/i386/WLPortal.o
+/Users/Malic/Documents/Code/Cocoa/welly/build/Welly.build/Debug/Welly.build/Objects-normal/i386/PortalImageLayout.o
+/Users/Malic/Documents/Code/Cocoa/welly/build/Welly.build/Debug/Welly.build/Objects-normal/i386/PortalImage.o
+/Users/Malic/Documents/Code/Cocoa/welly/build/Welly.build/Debug/Welly.build/Objects-normal/i386/WLPostDownloader.o
+/Users/Malic/Documents/Code/Cocoa/welly/build/Welly.build/Debug/Welly.build/Objects-normal/i386/WLIntegerArray.o
+/Users/Malic/Documents/Code/Cocoa/welly/build/Welly.build/Debug/Welly.build/Objects-normal/i386/WLFullScreenController.o
+/Users/Malic/Documents/Code/Cocoa/welly/build/Welly.build/Debug/Welly.build/Objects-normal/i386/WLFullScreenProcessor.o
+/Users/Malic/Documents/Code/Cocoa/welly/build/Welly.build/Debug/Welly.build/Objects-normal/i386/WLTelnetProcessor.o
+/Users/Malic/Documents/Code/Cocoa/welly/build/Welly.build/Debug/Welly.build/Objects-normal/i386/WLTerminalFeeder.o
+/Users/Malic/Documents/Code/Cocoa/welly/build/Welly.build/Debug/Welly.build/Objects-normal/i386/WLEffectView.o
+/Users/Malic/Documents/Code/Cocoa/welly/build/Welly.build/Debug/Welly.build/Objects-normal/i386/WLPopUpMessage.o
+/Users/Malic/Documents/Code/Cocoa/welly/build/Welly.build/Debug/Welly.build/Objects-normal/i386/WLMenuItem.o
+/Users/Malic/Documents/Code/Cocoa/welly/build/Welly.build/Debug/Welly.build/Objects-normal/i386/WLComposeDelegate.o
+/Users/Malic/Documents/Code/Cocoa/welly/build/Welly.build/Debug/Welly.build/Objects-normal/i386/WLClickEntryHotspotHandler.o
+/Users/Malic/Documents/Code/Cocoa/welly/build/Welly.build/Debug/Welly.build/Objects-normal/i386/WLMovingAreaHotspotHandler.o
+/Users/Malic/Documents/Code/Cocoa/welly/build/Welly.build/Debug/Welly.build/Objects-normal/i386/WLButtonAreaHotspotHandler.o
+/Users/Malic/Documents/Code/Cocoa/welly/build/Welly.build/Debug/Welly.build/Objects-normal/i386/WLMouseHotspotHandler.o
+/Users/Malic/Documents/Code/Cocoa/welly/build/Welly.build/Debug/Welly.build/Objects-normal/i386/WLIPAddrHotspotHandler.o
+/Users/Malic/Documents/Code/Cocoa/welly/build/Welly.build/Debug/Welly.build/Objects-normal/i386/WLMouseBehaviorManager.o
+/Users/Malic/Documents/Code/Cocoa/welly/build/Welly.build/Debug/Welly.build/Objects-normal/i386/WLEditingCursorMoveHotspotHandler.o
+/Users/Malic/Documents/Code/Cocoa/welly/build/Welly.build/Debug/Welly.build/Objects-normal/i386/WLFeedGenerator.o
+/Users/Malic/Documents/Code/Cocoa/welly/build/Welly.build/Debug/Welly.build/Objects-normal/i386/WLAuthorAreaHotspotHandler.o
+/Users/Malic/Documents/Code/Cocoa/welly/build/Welly.build/Debug/Welly.build/Objects-normal/i386/WLURLManager.o
+/Users/Malic/Documents/Code/Cocoa/welly/build/Welly.build/Debug/Welly.build/Objects-normal/i386/WLProxy.o
+/Users/Malic/Documents/Code/Cocoa/welly/build/Welly.build/Debug/Welly.build/Objects-normal/i386/WLAnsiColorOperationManager.o
+/Users/Malic/Documents/Code/Cocoa/welly/build/Welly.build/Debug/Welly.build/Objects-normal/i386/YLImagePreviewer.o
+/Users/Malic/Documents/Code/Cocoa/welly/build/Welly.build/Debug/Welly.build/Objects-normal/i386/YLImageView.o
+/Users/Malic/Documents/Code/Cocoa/welly/build/Welly.build/Debug/Welly.build/Objects-normal/i386/YLFloatingView.o
+/Users/Malic/Documents/Code/Cocoa/welly/build/Welly.build/Debug/Welly.build/Objects-normal/i386/YLExifController.o
