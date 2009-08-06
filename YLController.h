@@ -44,7 +44,9 @@
     IBOutlet id _detectDoubleByteButton;
     IBOutlet id _autoReplyButton;
     IBOutlet id _mouseButton;
-
+	/*edited by overboming*/
+	IBOutlet id _autoNotifyButton;
+	
     IBOutlet YLView *_telnetView;
     IBOutlet WLTabBarControl *_tab;
     IBOutlet NSMenuItem *_detectDoubleByteMenuItem;
@@ -83,14 +85,21 @@
     // RSS feed
     NSThread *_rssThread;
 	
-	IBOutlet YLExifController *_exifController;
-
+	// Auto Notify State
+	int _notifyOpen;
+	//hard code screen height
+	NSString  *_screenContent[24];
+	
 }
+	
+	IBOutlet YLExifController *_exifController;
+	
 @property (readonly) YLView *telnetView;
 
 - (IBAction)setEncoding:(id)sender;
 - (IBAction)setDetectDoubleByteAction:(id)sender;
 - (IBAction)setAutoReplyAction:(id)sender;
+- (IBAction)setAutoNotifyAction:(id)sender;
 - (IBAction)setMouseAction:(id)sender;
 
 - (IBAction)newTab:(id)sender;

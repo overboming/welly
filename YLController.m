@@ -15,6 +15,7 @@
 #import "YLEmoticon.h"
 #import "WLPostDownloader.h"
 #import "WLAnsiColorOperationManager.h"
+#import "WLGrowlBridge.h"
 
 // for remote control
 #import "AppleRemote.h"
@@ -58,6 +59,9 @@ const NSTimeInterval DEFAULT_CLICK_TIME_DIFFERENCE = 0.25;	// for remote control
 }
 
 - (void)awakeFromNib {
+	
+	_notifyOpen = 0;
+	
     // Register URL
     [[NSAppleEventManager sharedAppleEventManager] setEventHandler:self andSelector:@selector(getUrl:withReplyEvent:) forEventClass:kInternetEventClass andEventID:kAEGetURL];
     
@@ -97,7 +101,9 @@ const NSTimeInterval DEFAULT_CLICK_TIME_DIFFERENCE = 0.25;	// for remote control
     
     [NSTimer scheduledTimerWithTimeInterval:120 target:self selector:@selector(antiIdle:) userInfo:nil repeats:YES];
     [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateBlinkTicker:) userInfo:nil repeats:YES];
-
+	[NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(watchChange:) userInfo:nil repeats:YES];
+	NSLog(@"invoke watch change");
+	
     // post download
     [_postText setFont:[NSFont fontWithName:@"Monaco" size:12]];
 	// set remote control
@@ -205,6 +211,61 @@ const NSTimeInterval DEFAULT_CLICK_TIME_DIFFERENCE = 0.25;	// for remote control
             [connection sendBytes:msg length:6];
         }
     }
+}
+
+- (void)watchChange:(NSTimer *)timer{
+	if (_notifyOpen != 1){
+		return;
+	}
+	YLTerminal *terminal = [[[_telnetView frontMostTerminal] connection] terminal];
+	unsigned char msg[] = {'f'};
+	[[[_telnetView frontMostTerminal] connection] sendBytes:msg length:1];
+	const int linesPerPage = [[YLLGlobalConfig sharedInstance] row] - 1;
+	NSString  *newPage[linesPerPage];
+	
+	// read in the whole page, and store in 'newPage' array
+	int j = 0;
+	for (; j < linesPerPage; ++j) {
+		// read one line
+		NSString *line = [terminal stringFromIndex:j * [[YLLGlobalConfig sharedInstance] column] length:[[YLLGlobalConfig sharedInstance] column]] ?: @"";
+		newPage[j] = line;
+	}
+	
+	//no previous screen contents to compare, syncronize
+	if(_screenContent[0] == nil){
+		for(int i = 0; i < linesPerPage; i ++){
+			_screenContent[i] = [[NSString alloc] initWithString:newPage[i]];
+		}
+		return;
+	}
+	
+	NSString *notifyContent = nil;
+	//starting from first line of newPage
+	for(j = 3; j < linesPerPage - 1; j ++){
+			//find first line of newPage different from old version
+			if(![_screenContent[j] isEqualToString:newPage[j]]){
+				notifyContent = [NSString stringWithString:newPage[j]];
+				break;
+			}
+	}
+	if(notifyContent != nil){
+		NSLog(@"Found difference! %@", notifyContent);
+		//raise growl and close notification
+		_notifyOpen = 0;
+		[WLGrowlBridge notifyWithTitle:@"Board Change!"
+						   description:[NSString stringWithFormat:@"%@",notifyContent]
+					  notificationName:@"Board Change"
+							  isSticky:YES
+							identifier:_autoNotifyButton];
+		//clear and relase _screenContent
+		//release and copy
+		for(int i =0; i < linesPerPage; i ++){
+			[_screenContent[i] release];
+			_screenContent[i] = nil;
+		}
+		[_autoNotifyButton setState:NSOffState];
+		return;
+	}
 }
 
 - (void)newConnectionWithSite:(YLSite *)site {
@@ -399,6 +460,16 @@ const NSTimeInterval DEFAULT_CLICK_TIME_DIFFERENCE = 0.25;	// for remote control
 	
 	[[[_telnetView frontMostConnection] site] setShouldAutoReply:ar];
 }
+
+- (IBAction)setAutoNotifyAction:(id)sender {
+	BOOL ar = [sender state];
+	if ([sender isKindOfClass: [NSMenuItem class]]){
+		ar = !ar;
+	}	
+	_notifyOpen = 1 - _notifyOpen;
+	NSLog(@"changed status %d",_notifyOpen);
+}
+
 
 - (IBAction)setMouseAction:(id)sender {
     BOOL state = [sender state];

@@ -1,6 +1,0 @@
-/Users/Malic/Documents/Code/Cocoa/welly/YLController.m: In function '-[YLController exifController]':
-/Users/Malic/Documents/Code/Cocoa/welly/YLController.m:1505: error: '_exifController' undeclared (first use in this function)
-/Users/Malic/Documents/Code/Cocoa/welly/YLController.m:1505: error: (Each undeclared identifier is reported only once
-/Users/Malic/Documents/Code/Cocoa/welly/YLController.m:1505: error: for each function it appears in.)
-cc1obj: warnings being treated as errors
-/Users/Malic/Documents/Code/Cocoa/welly/YLController.m:1506: warning: control reaches end of non-void function
