@@ -90,7 +90,7 @@
 	int _notifyOpen;
 	//hard code screen height
 	NSString  *_screenContent[24];
-	
+	YLConnection *_watchConnection;
 }
 	
 	IBOutlet YLExifController *_exifController;

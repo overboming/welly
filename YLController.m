@@ -217,9 +217,10 @@ const NSTimeInterval DEFAULT_CLICK_TIME_DIFFERENCE = 0.25;	// for remote control
 	if (_notifyOpen != 1){
 		return;
 	}
-	YLTerminal *terminal = [[[_telnetView frontMostTerminal] connection] terminal];
 	unsigned char msg[] = {'f'};
-	[[[_telnetView frontMostTerminal] connection] sendBytes:msg length:1];
+	[_watchConnection sendBytes:msg length:1];
+	
+	YLTerminal *terminal = [_watchConnection terminal];
 	const int linesPerPage = [[YLLGlobalConfig sharedInstance] row] - 1;
 	NSString  *newPage[linesPerPage];
 	
@@ -236,11 +237,12 @@ const NSTimeInterval DEFAULT_CLICK_TIME_DIFFERENCE = 0.25;	// for remote control
 		for(int i = 0; i < linesPerPage; i ++){
 			_screenContent[i] = [[NSString alloc] initWithString:newPage[i]];
 		}
+		NSLog(@"sycronize!");
 		return;
 	}
 	
 	NSString *notifyContent = nil;
-	//starting from first line of newPage
+	
 	for(j = 3; j < linesPerPage - 1; j ++){
 			//find first line of newPage different from old version
 			if(![_screenContent[j] isEqualToString:newPage[j]]){
@@ -252,6 +254,7 @@ const NSTimeInterval DEFAULT_CLICK_TIME_DIFFERENCE = 0.25;	// for remote control
 		NSLog(@"Found difference! %@", notifyContent);
 		//raise growl and close notification
 		_notifyOpen = 0;
+		_watchConnection = nil;
 		[WLGrowlBridge notifyWithTitle:@"Board Change!"
 						   description:[NSString stringWithFormat:@"%@",notifyContent]
 					  notificationName:@"Board Change"
@@ -464,6 +467,14 @@ const NSTimeInterval DEFAULT_CLICK_TIME_DIFFERENCE = 0.25;	// for remote control
 
 - (IBAction)setAutoNotifyAction:(id)sender {	
 	_notifyOpen = 1 - _notifyOpen;
+	if(_notifyOpen == 1){
+		_watchConnection = [[_telnetView frontMostTerminal] connection];
+		//clear all read state, and start monitoring 
+		unsigned char msg[] = {'f'};
+		[_watchConnection sendBytes:msg length:1];
+	}
+	else
+		_watchConnection = nil;
 	[_autoNotifyMenuItem setState:_notifyOpen == 1 ? NSOnState : NSOffState];
 	[_autoNotifyButton setState:_notifyOpen == 1 ? NSOnState : NSOffState];
 	NSLog(@"changed status %d",_notifyOpen);
