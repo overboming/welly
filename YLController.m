@@ -264,6 +264,7 @@ const NSTimeInterval DEFAULT_CLICK_TIME_DIFFERENCE = 0.25;	// for remote control
 			_screenContent[i] = nil;
 		}
 		[_autoNotifyButton setState:NSOffState];
+		[_autoNotifyMenuItem setState:NSOffState];
 		return;
 	}
 }
@@ -461,12 +462,10 @@ const NSTimeInterval DEFAULT_CLICK_TIME_DIFFERENCE = 0.25;	// for remote control
 	[[[_telnetView frontMostConnection] site] setShouldAutoReply:ar];
 }
 
-- (IBAction)setAutoNotifyAction:(id)sender {
-	BOOL ar = [sender state];
-	if ([sender isKindOfClass: [NSMenuItem class]]){
-		ar = !ar;
-	}	
+- (IBAction)setAutoNotifyAction:(id)sender {	
 	_notifyOpen = 1 - _notifyOpen;
+	[_autoNotifyMenuItem setState:_notifyOpen == 1 ? NSOnState : NSOffState];
+	[_autoNotifyButton setState:_notifyOpen == 1 ? NSOnState : NSOffState];
 	NSLog(@"changed status %d",_notifyOpen);
 }
 

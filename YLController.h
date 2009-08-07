@@ -53,6 +53,7 @@
     IBOutlet NSMenuItem *_closeWindowMenuItem;
     IBOutlet NSMenuItem *_closeTabMenuItem;
 	IBOutlet NSMenuItem *_autoReplyMenuItem;
+	IBOutlet NSMenuItem *_autoNotifyMenuItem;
     NSMutableArray *_sites;
     NSMutableArray *_emoticons;
     IBOutlet NSArrayController *_sitesController;
