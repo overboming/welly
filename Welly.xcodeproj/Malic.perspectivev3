@@ -216,7 +216,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>04FACE1B102C7A4700C0105D</string>
+						<string>04FACE27102C7EBE00C0105D</string>
 						<key>history</key>
 						<array>
 							<string>044C8313102B1FE4009FD3EA</string>
@@ -277,6 +277,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -320,17 +322,20 @@
 								<string>5AD4B6F90F2D8CA500BF2F87</string>
 								<string>85F701440C895C8600E27A1E</string>
 								<string>29B97317FDCFA39411CA2CEA</string>
+								<string>29B97318FDCFA39411CA2CEA</string>
 								<string>1CC0EA4004350EF90041110B</string>
+								<string>29B97318FDCFA39411CA2CEA</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>105</integer>
-									<integer>103</integer>
+									<integer>110</integer>
+									<integer>108</integer>
+									<integer>106</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 0}, {164, 664}}</string>
+							<string>{{0, 1257}, {164, 664}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -375,7 +380,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>04FACE1A102C7A4700C0105D</string>
+										<string>04FACE26102C7EBE00C0105D</string>
 										<key>history</key>
 										<array>
 											<string>0401F5F4102717A2002D3C3A</string>
@@ -401,7 +406,7 @@
 											<string>04FACDD0102C6CD200C0105D</string>
 											<string>04FACDD1102C6CD200C0105D</string>
 											<string>04FACDD2102C6CD200C0105D</string>
-											<string>04FACE19102C7A3B00C0105D</string>
+											<string>04FACD88102C6A3100C0105D</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -469,7 +474,9 @@
 									<key>GeometryConfiguration</key>
 									<dict>
 										<key>Frame</key>
-										<string>{{10, 27}, {1090, 125}}</string>
+										<string>{{10, 27}, {1090, 302}}</string>
+										<key>RubberWindowFrame</key>
+										<string>-6 55 1276 723 0 0 1280 778 </string>
 									</dict>
 									<key>Module</key>
 									<string>XCDetailModule</string>
@@ -486,8 +493,6 @@
 									<dict>
 										<key>Frame</key>
 										<string>{{10, 27}, {1090, 302}}</string>
-										<key>RubberWindowFrame</key>
-										<string>-6 55 1276 723 0 0 1280 778 </string>
 									</dict>
 									<key>Module</key>
 									<string>PBXProjectFindModule</string>
