@@ -37,7 +37,7 @@
 				   [[event characters] isEqualToString:@"n"]) {
 			[_controller editSites:self];
 			event = nil;
-		}
+		} 
     }
 
     if (event)
