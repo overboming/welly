@@ -267,8 +267,6 @@ const NSTimeInterval DEFAULT_CLICK_TIME_DIFFERENCE = 0.25;	// for remote control
 	if(notifyContent != nil){
 		NSLog(@"Found difference! %@", notifyContent);
 		//raise growl and close notification
-		_notifyOpen = 0;
-		_watchConnection = nil;
 		[WLGrowlBridge notifyWithTitle:@"Board Change!"
 						   description:[NSString stringWithFormat:@"%@",notifyContent]
 					  notificationName:@"Board Change"
@@ -278,8 +276,10 @@ const NSTimeInterval DEFAULT_CLICK_TIME_DIFFERENCE = 0.25;	// for remote control
 						  clickContext:self
 						 clickSelector:@selector(didClickGrowlNewMessage:)
 							identifier:_watchConnection
-		 
 		];
+		_notifyOpen = 0;
+		_watchConnection = nil;
+		
 		//clear and relase _screenContent
 		//release and copy
 		for(int i =0; i < linesPerPage; i ++){
@@ -309,7 +309,7 @@ const NSTimeInterval DEFAULT_CLICK_TIME_DIFFERENCE = 0.25;	// for remote control
         [self tabView:_telnetView didSelectTabViewItem:tabViewItem];
     } else {
         connection = [[[YLConnection alloc] initWithSite:site] autorelease];
-        tabViewItem = [[[NSTabViewItem alloc] initWithIdentifier:connection] autorelease];
+		tabViewItem = [[[NSTabViewItem alloc] initWithIdentifier:connection] autorelease];
         // this will invoke tabView:didSelectTabViewItem for the first tab
         [_telnetView addTabViewItem:tabViewItem];
         [_telnetView selectTabViewItem:tabViewItem];
