@@ -944,7 +944,10 @@ static unsigned short gEmptyAttr;
 							_cursorX = _savedCursorX;
 							_cursorY = _savedCursorY;
 						}
-					} else {
+					} else if(c == 0x49) {
+						;//dirty fix for Guanghua
+					}
+					else {
 						NSLog(@"unsupported control sequence: 0x%X", c);
 					}
 					

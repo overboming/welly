@@ -194,4 +194,7 @@
 
 // for proxy
 - (IBAction)proxyTypeDidChange:(id)sender;
+
+//for lick
+- (void)didClickGrowlNewMessage:(id)connection;
 @end

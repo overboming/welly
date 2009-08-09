@@ -28,6 +28,10 @@
 
 // Test code by gtCarrera
 #import "WLPopUpMessage.h"
+
+// For Auto Notification
+#import "YLApplication.h"
+
 // End
 #import <Carbon/Carbon.h>
 
@@ -213,6 +217,16 @@ const NSTimeInterval DEFAULT_CLICK_TIME_DIFFERENCE = 0.25;	// for remote control
     }
 }
 
+- (void)didClickGrowlNewMessage:(id)connection {
+    // bring the window to front
+    [NSApp activateIgnoringOtherApps:YES];
+	// select our monitored tab
+	YLView *view = [[((YLApplication *)NSApp) controller] telnetView];
+    [[view window] makeKeyAndOrderFront:nil];
+    // select the tab
+    [view selectTabViewItemWithIdentifier:connection];
+		
+}
 - (void)watchChange:(NSTimer *)timer{
 	if (_notifyOpen != 1){
 		return;
@@ -258,8 +272,14 @@ const NSTimeInterval DEFAULT_CLICK_TIME_DIFFERENCE = 0.25;	// for remote control
 		[WLGrowlBridge notifyWithTitle:@"Board Change!"
 						   description:[NSString stringWithFormat:@"%@",notifyContent]
 					  notificationName:@"Board Change"
+							  iconData:nil
+							  priority:0
 							  isSticky:YES
-							identifier:_autoNotifyButton];
+						  clickContext:self
+						 clickSelector:@selector(didClickGrowlNewMessage:)
+							identifier:_watchConnection
+		 
+		];
 		//clear and relase _screenContent
 		//release and copy
 		for(int i =0; i < linesPerPage; i ++){
