@@ -107,6 +107,7 @@ const NSTimeInterval DEFAULT_CLICK_TIME_DIFFERENCE = 0.25;	// for remote control
     [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateBlinkTicker:) userInfo:nil repeats:YES];
 	NSInteger num = [[NSUserDefaults standardUserDefaults] integerForKey:WLAutoNotifyPeekIntervalKeyName]; 
 	[NSTimer scheduledTimerWithTimeInterval:num target:self selector:@selector(watchChange:) userInfo:nil repeats:YES];
+	docktile = [NSApp dockTile];
 	
     // post download
     [_postText setFont:[NSFont fontWithName:@"Monaco" size:12]];
@@ -289,6 +290,7 @@ const NSTimeInterval DEFAULT_CLICK_TIME_DIFFERENCE = 0.25;	// for remote control
 			}
 			[_autoNotifyButton setState:NSOffState];
 			[_autoNotifyMenuItem setState:NSOffState];
+			[docktile setBadgeLabel:nil];
 		}
 		else{
 			//sync for later comparsion
@@ -505,6 +507,7 @@ const NSTimeInterval DEFAULT_CLICK_TIME_DIFFERENCE = 0.25;	// for remote control
 		_watchConnection = nil;
 	[_autoNotifyMenuItem setState:_notifyOpen == 1 ? NSOnState : NSOffState];
 	[_autoNotifyButton setState:_notifyOpen == 1 ? NSOnState : NSOffState];
+	[docktile setBadgeLabel:_notifyOpen == 1 ? [NSString stringWithUTF8String:"@@ "] : nil];
 	NSLog(@"changed status %d",_notifyOpen);
 }
 

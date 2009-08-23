@@ -92,6 +92,7 @@
 	BOOL stopOnChange;
 	NSString  *_screenContent[24];
 	YLConnection *_watchConnection;
+	NSDockTile *docktile;
 }
 	
 	IBOutlet YLExifController *_exifController;
