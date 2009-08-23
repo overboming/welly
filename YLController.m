@@ -105,8 +105,8 @@ const NSTimeInterval DEFAULT_CLICK_TIME_DIFFERENCE = 0.25;	// for remote control
     
     [NSTimer scheduledTimerWithTimeInterval:120 target:self selector:@selector(antiIdle:) userInfo:nil repeats:YES];
     [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateBlinkTicker:) userInfo:nil repeats:YES];
-	[NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(watchChange:) userInfo:nil repeats:YES];
-	NSLog(@"invoke watch change");
+	NSInteger num = [[NSUserDefaults standardUserDefaults] integerForKey:WLAutoNotifyPeekIntervalKeyName]; 
+	[NSTimer scheduledTimerWithTimeInterval:num target:self selector:@selector(watchChange:) userInfo:nil repeats:YES];
 	
     // post download
     [_postText setFont:[NSFont fontWithName:@"Monaco" size:12]];
@@ -251,7 +251,6 @@ const NSTimeInterval DEFAULT_CLICK_TIME_DIFFERENCE = 0.25;	// for remote control
 		for(int i = 0; i < linesPerPage; i ++){
 			_screenContent[i] = [[NSString alloc] initWithString:newPage[i]];
 		}
-		NSLog(@"sycronize!");
 		return;
 	}
 	
@@ -265,7 +264,6 @@ const NSTimeInterval DEFAULT_CLICK_TIME_DIFFERENCE = 0.25;	// for remote control
 			}
 	}
 	if(notifyContent != nil){
-		NSLog(@"Found difference! %@", notifyContent);
 		//raise growl and close notification
 		[WLGrowlBridge notifyWithTitle:@"Board Change!"
 						   description:[NSString stringWithFormat:@"%@",notifyContent]
@@ -277,17 +275,27 @@ const NSTimeInterval DEFAULT_CLICK_TIME_DIFFERENCE = 0.25;	// for remote control
 						 clickSelector:@selector(didClickGrowlNewMessage:)
 							identifier:_watchConnection
 		];
-		_notifyOpen = 0;
-		_watchConnection = nil;
-		
-		//clear and relase _screenContent
-		//release and copy
-		for(int i =0; i < linesPerPage; i ++){
-			[_screenContent[i] release];
-			_screenContent[i] = nil;
+		//set if should stop on change
+		stopOnChange = [[NSUserDefaults standardUserDefaults] boolForKey:WLShouldStopWhenChangeKeyName];
+		if(stopOnChange){
+			_notifyOpen = 0;
+			_watchConnection = nil;
+			
+			//clear and relase _screenContent
+			//release and copy
+			for(int i =0; i < linesPerPage; i ++){
+				[_screenContent[i] release];
+				_screenContent[i] = nil;
+			}
+			[_autoNotifyButton setState:NSOffState];
+			[_autoNotifyMenuItem setState:NSOffState];
 		}
-		[_autoNotifyButton setState:NSOffState];
-		[_autoNotifyMenuItem setState:NSOffState];
+		else{
+			//sync for later comparsion
+			for(int i = 0; i < linesPerPage; i ++){
+				_screenContent[i] = [[NSString alloc] initWithString:newPage[i]];
+			}
+		}
 		return;
 	}
 }

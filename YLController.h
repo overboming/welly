@@ -89,6 +89,7 @@
 	// Auto Notify State
 	int _notifyOpen;
 	//hard code screen height
+	BOOL stopOnChange;
 	NSString  *_screenContent[24];
 	YLConnection *_watchConnection;
 }

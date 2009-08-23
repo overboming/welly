@@ -16,6 +16,8 @@ NSString *const WLCommandRHotkeyEnabledKeyName;
 NSString *const WLConfirmOnCloseEnabledKeyName;
 NSString *const WLSafePasteEnabledKeyName;
 NSString *const WLCoverFlowModeEnabledKeyName;
+NSString *const WLShouldStopWhenChangeKeyName;
+NSString *const WLAutoNotifyPeekIntervalKeyName;
 
 @interface YLLGlobalConfig : NSObject {
     int _messageCount;

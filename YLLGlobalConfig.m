@@ -15,6 +15,8 @@ NSString *const WLCommandRHotkeyEnabledKeyName = @"CommandRHotkey";
 NSString *const WLConfirmOnCloseEnabledKeyName = @"ConfirmOnClose";
 NSString *const WLSafePasteEnabledKeyName = @"SafePaste";
 NSString *const WLCoverFlowModeEnabledKeyName = @"Portal";
+NSString *const WLShouldStopWhenChangeKeyName = @"StopOnChange";
+NSString *const WLAutoNotifyPeekIntervalKeyName = @"PeekInterval";
 
 const CGFloat WLDefaultCellWidth = 12;
 const CGFloat WLDefaultCellHeight = 24;
@@ -159,6 +161,10 @@ static YLLGlobalConfig *sSharedInstance;
             [defaults setBool:YES forKey:WLSafePasteEnabledKeyName];
         if ([defaults objectForKey:WLCoverFlowModeEnabledKeyName] == nil)
             [defaults setBool:YES forKey:WLCoverFlowModeEnabledKeyName];
+		if ([defaults objectForKey:WLShouldStopWhenChangeKeyName] == nil)
+			[defaults setBool:YES forKey:WLShouldStopWhenChangeKeyName];
+		if ([defaults objectForKey:WLAutoNotifyPeekIntervalKeyName] == nil)
+			[defaults setInteger:3 forKey:WLAutoNotifyPeekIntervalKeyName];
 	}
 	return sSharedInstance;
 }
