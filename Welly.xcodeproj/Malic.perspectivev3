@@ -290,7 +290,7 @@
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 1172}, {250, 664}}</string>
+							<string>{{0, 1151}, {250, 664}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -307,7 +307,7 @@
 							<real>250</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>-1 55 1221 723 0 0 1280 778 </string>
+						<string>0 55 1221 723 0 0 1280 778 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -337,7 +337,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>04D3AC3410413B5B001C33CD</string>
+										<string>049142BE10413C7B00BFEDA4</string>
 										<key>history</key>
 										<array>
 											<string>0401F5F4102717A2002D3C3A</string>
@@ -382,7 +382,7 @@
 											<string>04D3AC1D10413795001C33CD</string>
 											<string>04D3AC1E10413795001C33CD</string>
 											<string>04D3AC1F10413795001C33CD</string>
-											<string>04D3AC2810413856001C33CD</string>
+											<string>04D3AC3410413B5B001C33CD</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -398,7 +398,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {949, 677}}</string>
 								<key>RubberWindowFrame</key>
-								<string>-1 55 1221 723 0 0 1280 778 </string>
+								<string>0 55 1221 723 0 0 1280 778 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -421,7 +421,9 @@
 									<key>GeometryConfiguration</key>
 									<dict>
 										<key>Frame</key>
-										<string>{{10, 27}, {949, 221}}</string>
+										<string>{{10, 27}, {949, -27}}</string>
+										<key>RubberWindowFrame</key>
+										<string>0 55 1221 723 0 0 1280 778 </string>
 									</dict>
 									<key>Module</key>
 									<string>XCDetailModule</string>
@@ -437,9 +439,7 @@
 									<key>GeometryConfiguration</key>
 									<dict>
 										<key>Frame</key>
-										<string>{{10, 27}, {949, -27}}</string>
-										<key>RubberWindowFrame</key>
-										<string>-1 55 1221 723 0 0 1280 778 </string>
+										<string>{{0, 0}, {614, 336}}</string>
 									</dict>
 									<key>Module</key>
 									<string>PBXProjectFindModule</string>
@@ -477,7 +477,7 @@
 									<key>GeometryConfiguration</key>
 									<dict>
 										<key>Frame</key>
-										<string>{{10, 27}, {949, -27}}</string>
+										<string>{{0, 0}, {568, 405}}</string>
 									</dict>
 									<key>Module</key>
 									<string>PBXBuildResultsModule</string>
@@ -505,11 +505,11 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>04D3ABBA1041213E001C33CD</string>
+				<string>049142BF10413C7B00BFEDA4</string>
 				<string>1CA23ED40692098700951B8B</string>
-				<string>04D3ABBB1041213E001C33CD</string>
+				<string>049142C010413C7B00BFEDA4</string>
 				<string>0401F5F2102717A2002D3C3A</string>
-				<string>04D3ABBC1041213E001C33CD</string>
+				<string>049142C110413C7B00BFEDA4</string>
 				<string>1CA23EDF0692099D00951B8B</string>
 				<string>1CA23EE00692099D00951B8B</string>
 				<string>1CA23EE10692099D00951B8B</string>
@@ -698,13 +698,10 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>04D3ABC31041213E001C33CD</string>
-		<string>04D3ABC41041213E001C33CD</string>
-		<string>047B4FE8102EFF860039C35B</string>
 		<string>/Users/Malic/Documents/Code/Cocoa/welly/Welly.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>-1 55 1221 723 0 0 1280 778 </string>
+	<string>0 55 1221 723 0 0 1280 778 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>
