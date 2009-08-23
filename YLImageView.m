@@ -67,6 +67,13 @@ enum {
         [exifController setModelName: [NSString stringWithFormat: @"%@ %@", makeName, modelName]];
         [exifController showExifPanel];
     }
+
+	if ([event keyCode] == 53)  //press esc key, hide window
+	{
+		NSLog(@"esc is pressed");
+		[[previewer getPanel] close];
+	}
+
 }
 
 - (void) mouseMoved: (NSEvent *)event

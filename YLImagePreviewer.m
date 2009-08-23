@@ -46,7 +46,7 @@
 - (void) dealloc
 {
     // NSLog(@"dealloc everything in YLImagePreviewer");
-    
+
     // if we are still connecting, should cancel now and release
     // related resource.
     if (_connection)
@@ -89,7 +89,6 @@
     _indicator = [[HMBlkProgressIndicator alloc] initWithFrame: NSMakeRect(10, 10, 380, 10)];
     [[_window contentView] addSubview: _indicator];
     // [_indicator release];
-
     [_indicator startAnimation: self];
 }
 
@@ -285,4 +284,8 @@ NSStringEncoding encodingFromYLEncoding(YLEncoding ylenc)
     return _currentFileDownloading;
 }
 
+- (NSPanel *)getPanel
+{
+	return _window;
+}
 @end

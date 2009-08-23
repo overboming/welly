@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 44;
+	objectVersion = 45;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,9 @@
 		0401F5E9102713EE002D3C3A /* YLExifController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0401F5E8102713EE002D3C3A /* YLExifController.m */; };
 		0401F63310271A84002D3C3A /* HUDSave.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 0401F63110271A84002D3C3A /* HUDSave.tiff */; };
 		0401F63410271A84002D3C3A /* HUDSaveActive.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 0401F63210271A84002D3C3A /* HUDSaveActive.tiff */; };
+		040752DF103ECF7500FE7306 /* HMBlkAppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040752DE103ECF7500FE7306 /* HMBlkAppKit.framework */; };
+		040752E1103ECF7500FE7306 /* PSMTabBarControl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040752E0103ECF7500FE7306 /* PSMTabBarControl.framework */; };
+		040752E3103ECF7500FE7306 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040752E2103ECF7500FE7306 /* Sparkle.framework */; };
 		07B3707A0D6840B20035E87D /* HMBlkAppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B370790D6840B20035E87D /* HMBlkAppKit.framework */; };
 		07B3708E0D6840BB0035E87D /* HMBlkAppKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07B370790D6840B20035E87D /* HMBlkAppKit.framework */; };
 		1600D7AF0E51C2B100496E3E /* WLTerminalFeeder.m in Sources */ = {isa = PBXBuildFile; fileRef = 1600D7AE0E51C2B100496E3E /* WLTerminalFeeder.m */; };
@@ -153,6 +156,9 @@
 		0401F5E8102713EE002D3C3A /* YLExifController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLExifController.m; sourceTree = "<group>"; };
 		0401F63110271A84002D3C3A /* HUDSave.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = HUDSave.tiff; sourceTree = "<group>"; };
 		0401F63210271A84002D3C3A /* HUDSaveActive.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = HUDSaveActive.tiff; sourceTree = "<group>"; };
+		040752DE103ECF7500FE7306 /* HMBlkAppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HMBlkAppKit.framework; path = /Users/Malic/Documents/Code/Cocoa/nally/HMBlkAppKit.framework; sourceTree = "<absolute>"; };
+		040752E0103ECF7500FE7306 /* PSMTabBarControl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSMTabBarControl.framework; path = /Users/Malic/Documents/Code/Cocoa/nally/PSMTabBarControl.framework; sourceTree = "<absolute>"; };
+		040752E2103ECF7500FE7306 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = /Users/Malic/Documents/Code/Cocoa/nally/Sparkle.framework; sourceTree = "<absolute>"; };
 		07B370790D6840B20035E87D /* HMBlkAppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HMBlkAppKit.framework; sourceTree = "<group>"; };
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
@@ -330,6 +336,9 @@
 				160D6D4B0EE2E5B900CDC416 /* Security.framework in Frameworks */,
 				5A9C07F90F5D8C2C0033B8E6 /* Sparkle.framework in Frameworks */,
 				1841E6A80F7BCFBF002DCBA8 /* SystemConfiguration.framework in Frameworks */,
+				040752DF103ECF7500FE7306 /* HMBlkAppKit.framework in Frameworks */,
+				040752E1103ECF7500FE7306 /* PSMTabBarControl.framework in Frameworks */,
+				040752E3103ECF7500FE7306 /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,6 +426,9 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				040752DE103ECF7500FE7306 /* HMBlkAppKit.framework */,
+				040752E0103ECF7500FE7306 /* PSMTabBarControl.framework */,
+				040752E2103ECF7500FE7306 /* Sparkle.framework */,
 			);
 			name = MacBlueTelnet;
 			sourceTree = "<group>";
@@ -691,7 +703,7 @@
 				BuildIndependentTargetsInParallel = YES;
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Welly" */;
-			compatibilityVersion = "Xcode 3.0";
+			compatibilityVersion = "Xcode 3.1";
 			hasScannedForEncodings = 1;
 			knownRegions = (
 				English,
@@ -879,6 +891,7 @@
 					"\"$(DEVELOPER_DIR)/SDKs/MacOSX10.5.sdk/System/Library/Frameworks\"",
 					"\"$(DEVELOPER_DIR)/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/Quartz.framework/Frameworks\"",
 					"\"$(SYSTEM_LIBRARY_DIR)/Frameworks/ApplicationServices.framework/Frameworks\"",
+					"\"$(SRCROOT)/../nally\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -888,7 +901,7 @@
 				INSTALL_PATH = /Applications;
 				OTHER_CFLAGS = "-D__DUMPPACKET__";
 				PRODUCT_NAME = Welly;
-				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk";
+				SDKROOT = macosx10.5;
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = YES;
 			};
@@ -909,6 +922,7 @@
 					"\"$(DEVELOPER_DIR)/SDKs/MacOSX10.5.sdk/System/Library/Frameworks\"",
 					"\"$(DEVELOPER_DIR)/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/Quartz.framework/Frameworks\"",
 					"\"$(SYSTEM_LIBRARY_DIR)/Frameworks/ApplicationServices.framework/Frameworks\"",
+					"\"$(SRCROOT)/../nally\"",
 				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G5;
@@ -916,7 +930,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				PRODUCT_NAME = Welly;
-				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk";
+				SDKROOT = macosx10.5;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -934,7 +948,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk";
+				SDKROOT = macosx10.5;
 			};
 			name = Debug;
 		};
@@ -950,7 +964,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk";
+				SDKROOT = macosx10.5;
 			};
 			name = Release;
 		};

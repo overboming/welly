@@ -22,5 +22,5 @@
 - (void) releaseConnection;
 - (NSMutableData *) receivedData;
 - (NSString *) filename;
-
+- (NSPanel *)getPanel;
 @end
