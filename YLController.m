@@ -496,8 +496,7 @@ const NSTimeInterval DEFAULT_CLICK_TIME_DIFFERENCE = 0.25;	// for remote control
 }
 
 - (IBAction)setAutoNotifyAction:(id)sender {	
-	_notifyOpen = 1 - _notifyOpen;
-	if(_notifyOpen == 1){
+	if(_notifyOpen == 0){  //be ready
 		_watchConnection = [[_telnetView frontMostTerminal] connection];
 		//clear all read state, and start monitoring 
 		unsigned char msg[] = {'f'};
@@ -505,6 +504,7 @@ const NSTimeInterval DEFAULT_CLICK_TIME_DIFFERENCE = 0.25;	// for remote control
 	}
 	else
 		_watchConnection = nil;
+	_notifyOpen = 1 - _notifyOpen;
 	[_autoNotifyMenuItem setState:_notifyOpen == 1 ? NSOnState : NSOffState];
 	[_autoNotifyButton setState:_notifyOpen == 1 ? NSOnState : NSOffState];
 	[docktile setBadgeLabel:_notifyOpen == 1 ? [NSString stringWithUTF8String:"@@ "] : nil];
