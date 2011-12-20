@@ -2,10 +2,10 @@
  * MultiClickRemoteBehavior.h
  * RemoteControlWrapper
  *
- * Created by Martin Kahr on 11.03.06 under a MIT-style license. 
+ * Created by Martin Kahr on 11.03.06 under a MIT-style license.
  * Copyright (c) 2006 martinkahr.com. All rights reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a 
+ * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
  * to deal in the Software without restriction, including without limitation
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
@@ -17,7 +17,7 @@
  *
  * THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL 
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
  * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
@@ -35,19 +35,19 @@
  */
 @interface MultiClickRemoteBehavior : NSObject {
 	id delegate;
-	
+
 	// state for simulating plus/minus hold
-	BOOL simulateHoldEvents;	
+	BOOL simulateHoldEvents;
 	BOOL lastEventSimulatedHold;
 	RemoteControlEventIdentifier lastHoldEvent;
-	NSTimeInterval lastHoldEventTime;	
-	
+	NSTimeInterval lastHoldEventTime;
+
 	// state for multi click
 	unsigned int clickCountEnabledButtons;
 	NSTimeInterval maxClickTimeDifference;
-	NSTimeInterval lastClickCountEventTime;	
+	NSTimeInterval lastClickCountEventTime;
 	RemoteControlEventIdentifier lastClickCountEvent;
-	unsigned int eventClickCount;	
+	unsigned int eventClickCount;
 }
 
 - (id) init;
@@ -80,7 +80,7 @@
 
 @end
 
-/* 
+/*
  * Method definitions for the delegate of the MultiClickRemoteBehavior class
  */
 @interface NSObject(MultiClickRemoteBehaviorDelegate)

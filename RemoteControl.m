@@ -2,10 +2,10 @@
  * RemoteControl.m
  * RemoteControlWrapper
  *
- * Created by Martin Kahr on 11.03.06 under a MIT-style license. 
+ * Created by Martin Kahr on 11.03.06 under a MIT-style license.
  * Copyright (c) 2006 martinkahr.com. All rights reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a 
+ * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
  * to deal in the Software without restriction, including without limitation
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
@@ -17,17 +17,17 @@
  *
  * THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL 
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
  * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  *
  *****************************************************************************/
- 
+
 #import "RemoteControl.h"
 
-// notifaction names that are being used to signal that an application wants to 
+// notifaction names that are being used to signal that an application wants to
 // have access to the remote control device or if the application has finished
 // using the remote control device
 NSString* REQUEST_FOR_REMOTE_CONTROL_NOTIFCATION     = @"mac.remotecontrols.RequestForRemoteControl";
@@ -44,7 +44,7 @@ NSString* kTargetApplicationIdentifier = @"TargetBundleIdentifier";
 @implementation RemoteControl
 
 // returns nil if the remote control device is not available
-- (id) initWithDelegate: (id) _remoteControlDelegate {	
+- (id) initWithDelegate: (id) _remoteControlDelegate {
 	if (self = [super init]) {
 		delegate = [_remoteControlDelegate retain];
 	}
@@ -65,7 +65,7 @@ NSString* kTargetApplicationIdentifier = @"TargetBundleIdentifier";
 - (IBAction) startListening: (id) sender {
 }
 - (IBAction) stopListening: (id) sender {
-	
+
 }
 
 - (BOOL) isOpenInExclusiveMode {
@@ -80,13 +80,13 @@ NSString* kTargetApplicationIdentifier = @"TargetBundleIdentifier";
 
 + (void) sendDistributedNotification: (NSString*) notificationName targetBundleIdentifier: (NSString*) targetIdentifier {
 	NSDictionary* userInfo = [NSDictionary dictionaryWithObjectsAndKeys: [NSString stringWithCString:[self remoteControlDeviceName] encoding:NSASCIIStringEncoding],
-		kRemoteControlDeviceName, [[NSBundle mainBundle] bundleIdentifier], kApplicationIdentifier, 
+		kRemoteControlDeviceName, [[NSBundle mainBundle] bundleIdentifier], kApplicationIdentifier,
 		targetIdentifier, kTargetApplicationIdentifier, nil];
-	
+
 	[[NSDistributedNotificationCenter defaultCenter] postNotificationName:notificationName
 																   object:nil
 																 userInfo:userInfo
-													   deliverImmediately:YES];	
+													   deliverImmediately:YES];
 }
 
 + (void) sendFinishedNotifcationForAppIdentifier: (NSString*) identifier {

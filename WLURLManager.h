@@ -12,7 +12,7 @@
 @interface WLURLManager : WLMouseHotspotHandler <WLUpdatable, WLMouseUpHandler, WLContextualMenuHandler> {
 	NSMutableArray *_currentURLList;
 	int _currentSelectedURLIndex;
-	
+
 	NSMutableString *_currentURLStringBuffer;
 }
 - (NSPoint)currentSelectedURLPos;

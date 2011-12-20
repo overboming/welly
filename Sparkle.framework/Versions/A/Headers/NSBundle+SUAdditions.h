@@ -13,7 +13,7 @@
 
 @interface NSBundle (SUAdditions)
 /*!
-	@method     
+	@method
 	@abstract   Returns a name for the bundle suitable for display to the user.
 	@discussion This is performed by asking NSFileManager for the display name of the bundle.
 */

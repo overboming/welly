@@ -23,7 +23,7 @@ typedef enum
 	SUAppcastItem *updateItem;
 	NSBundle *hostBundle;
 	id delegate;
-	
+
 	IBOutlet WebView *releaseNotesView;
 	IBOutlet NSTextField *description;
 	NSProgressIndicator *releaseNotesSpinner;

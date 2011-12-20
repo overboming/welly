@@ -42,7 +42,7 @@
 		}
 		_dirty = (char *)malloc(sizeof(char) * (_maxRow * _maxColumn));
 		_textBuf = (unichar *)malloc(sizeof(unichar) * (_maxRow * _maxColumn + 1));
-		
+
         [self clearAll];
 	}
 	return self;
@@ -62,11 +62,11 @@
 	for (int i = 0; i < _maxRow; i++) {
 		memcpy(_grid[i], grid[i], sizeof(cell) * (_maxColumn + 1));
 	}
-	
+
 	for (int i = 0; i < _maxRow; i++) {
         [self updateDoubleByteStateForRow:i];
     }
-	
+
 	[self updateBBSState];
     [_view performSelector:@selector(tick:)
 				withObject:nil
@@ -97,7 +97,7 @@
 
 - (void)clearAll {
     _cursorColumn = _cursorRow = 0;
-	
+
     attribute t;
     t.f.fgColor = [YLLGlobalConfig sharedInstance]->_fgColorIndex;
     t.f.bgColor = [YLLGlobalConfig sharedInstance]->_bgColorIndex;
@@ -113,7 +113,7 @@
 			_grid[i][j].attr.v = t.v;
 		}
 	}
-	
+
 	[self setAllDirty];
 }
 
@@ -132,7 +132,7 @@
 		_dirty[i] = YES;
 }
 
-- (BOOL)isDirtyAtRow:(int)r 
+- (BOOL)isDirtyAtRow:(int)r
 			  column:(int)c {
 	return _dirty[(r) * _maxColumn + (c)];
 }
@@ -146,12 +146,12 @@
 # pragma mark -
 # pragma mark Access Data
 
-- (attribute)attrAtRow:(int)r 
+- (attribute)attrAtRow:(int)r
 				column:(int)c {
 	return _grid[r][c].attr;
 }
 
-- (NSString *)stringFromIndex:(int)begin 
+- (NSString *)stringFromIndex:(int)begin
 					   length:(int)length {
     int i, j;
     //unichar textBuf[length + 1];
@@ -185,7 +185,7 @@
             for (j = 0; j < spacebuf; j++)
                 _textBuf[bufLength++] = ' ';
             _textBuf[bufLength++] = ([[[self connection] site] encoding] == YLBig5Encoding) ? B2U[index] : G2U[index];
-			
+
             spacebuf = 0;
         }
     }
@@ -225,7 +225,7 @@ static NSString *extractString(NSString *row, NSString *start, NSString *end) {
     NSRange rs = [row rangeOfString:start], re = [row rangeOfString:end];
     if (rs.length == 0 || re.length == 0 || re.location <= rs.location)
         return nil;
-    return [row substringWithRange:NSMakeRange(rs.location + 1, re.location - rs.location - 1)];    
+    return [row substringWithRange:NSMakeRange(rs.location + 1, re.location - rs.location - 1)];
 }
 
 inline static BOOL hasAnyString(NSString *row, NSArray *array) {
@@ -242,7 +242,7 @@ inline static BOOL hasAnyString(NSString *row, NSArray *array) {
 //
 // added by K.O.ed
 // WARNING: bunch of hard code
-// 
+//
 - (void)updateBBSState {
     NSString *topLine = [self stringAtRow:0];	// get the first line from the screen
     NSString *secondLine = [self stringAtRow:1];

@@ -39,13 +39,13 @@
 
 	/* comment: why not just using the url recognition? */
     YLView *view = [[((YLApplication *)NSApp) controller] telnetView];
-	
+
 	NSString *shortURL = [self extractShortURL:s];
 	// Remove all '\n' '\r' ' ' from the URL string
 	NSString *longURL = [s stringByReplacingOccurrencesOfString:@"\n" withString:@""];
 	longURL = [longURL stringByReplacingOccurrencesOfString:@"　" withString:@""];
 	longURL = [longURL stringByReplacingOccurrencesOfString:@"\r" withString:@""];
-	
+
 	if ([[longURL componentsSeparatedByString:@"."] count] > 1) {
 		if (![longURL hasPrefix:@"http://"])
 			longURL = [@"http://" stringByAppendingString:longURL];
@@ -64,14 +64,14 @@
 		}
 	}
 #endif
-	
+
 	if ([[view frontMostTerminal] bbsType] == WLMaple) {
-		// Firebird BBS seldom use these	
+		// Firebird BBS seldom use these
 		if ([shortURL length] > 0 && [shortURL length] < 8) {
 			[menu addItemWithTitle:[@"0rz.tw/" stringByAppendingString:shortURL]
 							action:@selector(openURL:)
 					 keyEquivalent:@""];
-			
+
 			[menu addItemWithTitle:[@"tinyurl.com/" stringByAppendingString:shortURL]
 							action:@selector(openURL:)
 					 keyEquivalent:@""];
@@ -79,7 +79,7 @@
 	}
 /* */
     if ([s length] > 0) {
-    
+
         [menu addItemWithTitle:@"Search in Spotlight"
                         action:@selector(spotlight:)
                  keyEquivalent:@""];
@@ -87,9 +87,9 @@
         [menu addItemWithTitle:@"Search in Google"
                         action:@selector(google:)
                  keyEquivalent:@""];
-        
+
         [menu addItem:[NSMenuItem separatorItem]];
-        
+
         [menu addItemWithTitle:NSLocalizedString(@"Look Up in Dictionary", @"Menu")
                         action:@selector(lookupDictionary:)
                  keyEquivalent:@""];
@@ -97,7 +97,7 @@
         [menu addItem:[NSMenuItem separatorItem]];
 
         [menu addItemWithTitle:NSLocalizedString(@"Copy", @"Menu")
-                        action:@selector(copy:) 
+                        action:@selector(copy:)
                  keyEquivalent:@""];
     }
 

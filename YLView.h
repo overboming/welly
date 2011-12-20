@@ -19,38 +19,38 @@
 
 #define disableMouseByKeyingTimerInterval 0.3
 
-@interface YLView : NSTabView <NSTextInput> {	
+@interface YLView : NSTabView <NSTextInput> {
 	CGFloat _fontWidth;
 	CGFloat _fontHeight;
-	
+
 	NSImage *_backedImage;
-	
+
 	NSTimer *_timer;
 	int _x;
 	int _y;
-	
+
 	id _markedText;
 	NSRange _selectedRange;
 	NSRange _markedRange;
-	
+
 	IBOutlet YLMarkedTextView *_textField;
 	IBOutlet WLEffectView *_effectView;
-    
+
     int _selectionLocation;
     int _selectionLength;
 	BOOL _wantsRectangleSelection;
 	BOOL _hasRectangleSelected;
-    
+
     WLPortal *_portal;
-	
+
 	BOOL _isInPortalMode;
 	BOOL _isInUrlMode;
 	BOOL _isNotCancelingSelection;
 	BOOL _isKeying;
 	BOOL _isMouseActive;
-	
+
 	NSTimer *_activityCheckingTimer;
-	
+
 	WLMouseBehaviorManager *_mouseBehaviorDelegate;
 	WLURLManager *_urlManager;
 }
@@ -81,23 +81,23 @@
 - (YLConnection *)frontMostConnection;
 - (BOOL)isConnected;
 
-- (void)extendBottomFrom:(int)start 
+- (void)extendBottomFrom:(int)start
 					  to:(int)end;
-- (void)extendTopFrom:(int)start 
+- (void)extendTopFrom:(int)start
 				   to:(int)end ;
 
-- (void)drawStringForRow:(int)r 
+- (void)drawStringForRow:(int)r
 				 context:(CGContextRef)myCGContext;
-- (void)drawURLUnderlineAtRow:(int)r 
-				   fromColumn:(int)start 
+- (void)drawURLUnderlineAtRow:(int)r
+				   fromColumn:(int)start
 					 toColumn:(int)end;
-- (void)updateBackgroundForRow:(int)r 
-						  from:(int)start 
+- (void)updateBackgroundForRow:(int)r
+						  from:(int)start
 							to:(int)end;
 
-- (NSRect)rectAtRow:(int)r 
-			 column:(int)c 
-			 height:(int)h 
+- (NSRect)rectAtRow:(int)r
+			 column:(int)c
+			 height:(int)h
 			  width:(int)w;
 
 - (BOOL)shouldEnableMouse;

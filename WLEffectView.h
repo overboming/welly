@@ -16,14 +16,14 @@
 
 @interface WLEffectView : NSView {
     CALayer *_mainLayer;
-	
+
 	IBOutlet YLView *_mainView;
-	
+
 	CALayer *_ipAddrLayer;
 	CALayer *_clickEntryLayer;
 	CALayer *_popUpLayer;
 	CALayer *_buttonLayer;
-	
+
 	CALayer *_menuLayer;
 	CALayer *_selectionLayer;
 	CALayer *_urlLineLayer;
@@ -41,12 +41,12 @@
 - (void)clearClickEntry;
 
 // for button
-- (void)drawButton:(NSRect)rect 
+- (void)drawButton:(NSRect)rect
 	   withMessage:(NSString *)message;
 - (void)clearButton;
 
 // for menu
-- (void)showMenuAtPoint:(NSPoint)pt 
+- (void)showMenuAtPoint:(NSPoint)pt
 			  withItems:(NSArray *)items;
 - (void)hideMenu;
 - (void)selectMenuItemAtIndex:(int)index;
@@ -55,7 +55,7 @@
 
 // for URL
 - (void)drawURLUnderlineAtRow:(int)r
-				   fromColumn:(int)start 
+				   fromColumn:(int)start
 					 toColumn:(int)end;
 - (void)showIndicatorAtPoint:(NSPoint)point;
 - (void)removeIndicator;

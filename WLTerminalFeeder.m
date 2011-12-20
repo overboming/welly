@@ -106,7 +106,7 @@
 #define CSI_DL      0x4D // M, DELETE LINE
 #define CSI_EF      0x4E // N, Erase in Field, not implemented
 #define CSI_EA      0x4F // O, Erase in Area, not implemented
-#define CSI_DCH     0x50 // P, DELETE CHARACTER 
+#define CSI_DCH     0x50 // P, DELETE CHARACTER
 #define CSI_SSE     0x51 // Q, ?
 #define CSI_CPR     0x52 // R, ACTIVE POSITION REPORT, this is for responding
 #define CSI_SU      0x53 // S, ?
@@ -146,8 +146,8 @@
 @interface WLTerminalFeeder ()
 /* Clear */
 - (void)clearRow:(int)r;
-- (void)clearRow:(int)r 
-	   fromStart:(int)s 
+- (void)clearRow:(int)r
+	   fromStart:(int)s
 		   toEnd:(int)e;
 - (void)reverseAll;
 @end
@@ -245,30 +245,30 @@ static unsigned short gEmptyAttr;
 
 # pragma mark -
 # pragma mark Input Interface
-- (void)feedData:(NSData *)data 
+- (void)feedData:(NSData *)data
 	  connection:(id)connection {
-	[self feedBytes:[data bytes] 
-			 length:[data length] 
+	[self feedBytes:[data bytes]
+			 length:[data length]
 		 connection:connection];
 }
 
-- (void)feedBytes:(const unsigned char*)bytes 
-		   length:(NSUInteger)len 
+- (void)feedBytes:(const unsigned char*)bytes
+		   length:(NSUInteger)len
 	   connection:(id)connection {
     NSAutoreleasePool *pool = [NSAutoreleasePool new];
-	
+
 	int i, x;
 	unsigned char c;
-	
+
 	if ([_terminal bbsType] == WLFirebird) {
 		_hasNewMessage = NO;
 	}
-	
+
 	//    NSLog(@"length: %d", len);
 	for (i = 0; i < len; i++) {
 		c = ((const char *)bytes)[i];
 		//        if (c == 0x00) continue;
-        
+
 		switch (_state)
         {
 			case TP_NORMAL:
@@ -281,7 +281,7 @@ static unsigned short gEmptyAttr;
 					unsigned int cmdLength = 1;
 					cmd[1] = ASC_NUL;
 					[connection sendBytes:cmd length:cmdLength];
-				} else if (c == ASC_ACK) { // FLOW CONTROL? do nothing					
+				} else if (c == ASC_ACK) { // FLOW CONTROL? do nothing
 				} else if (c == ASC_BEL) { // Beep
 					[[NSSound soundNamed: @"Whit.aiff"] play];
 					_hasNewMessage = YES;
@@ -299,8 +299,8 @@ static unsigned short gEmptyAttr;
 					if (_cursorY == _scrollEndRow) {
 						cell *emptyLine = _grid[_scrollBeginRow];
 						[self clearRow: _scrollBeginRow];
-						
-						for (x = _scrollBeginRow; x < _scrollEndRow; x++) 
+
+						for (x = _scrollBeginRow; x < _scrollEndRow; x++)
 							_grid[x] = _grid[x + 1];
 						_grid[_scrollEndRow] = emptyLine;
 						[_terminal setAllDirty];
@@ -320,21 +320,21 @@ static unsigned short gEmptyAttr;
 					//However we drop it for now
 				} else if (c == ASC_DLE) { // Normally for MODEM
 				} else if (c == ASC_DC1) { // XON
-				} else if (c == ASC_DC2) { // 
+				} else if (c == ASC_DC2) { //
 				} else if (c == ASC_DC3) { // XOFF
-				} else if (c == ASC_DC4) { 
-				} else if (c == ASC_NAK) { 
+				} else if (c == ASC_DC4) {
+				} else if (c == ASC_NAK) {
 				} else if (c == ASC_SYN) {
 				} else if (c == ASC_ETB) {
 				} else if (c == ASC_CAN || c == ASC_SUB) {
-					//If received during an escape or control sequence, 
+					//If received during an escape or control sequence,
 					//cancels the sequence and displays substitution character ().
 					//SUB is processed as CAN
 					//This is not implemented here
 				} else if (c == ASC_EM ) { // ^Y
 				} else if (c == ASC_ESC) { // ESC
 					_state = TP_ESCAPE;
-				} else if (c == ASC_FS ) { // ^\ 
+				} else if (c == ASC_FS ) { // ^\
 				} else if (c == ASC_GS ) { // ^]
 				} else if (c == ASC_RS ) { // ^^
 				} else if (c == ASC_US ) { // ^_
@@ -343,9 +343,9 @@ static unsigned short gEmptyAttr;
 				} else {
 					SET_GRID_BYTE(c);
 				}
-				
+
 				break;
-				
+
 			case TP_ESCAPE:
 				if (NO) {	// Code alignment
 				} else if (c == ASC_ESC) { // ESCESC according to zterm this happens
@@ -361,8 +361,8 @@ static unsigned short gEmptyAttr;
 						//[_view extendTopFrom: _scrollBeginRow to: _scrollEndRow];
 						cell *emptyLine = _grid[_scrollEndRow];
 						[self clearRow: _scrollEndRow];
-						
-						for (x = _scrollEndRow; x > _scrollBeginRow; x--) 
+
+						for (x = _scrollEndRow; x > _scrollBeginRow; x--)
 							_grid[x] = _grid[x - 1];
 						_grid[_scrollBeginRow] = emptyLine;
 						[_terminal setAllDirty];
@@ -377,8 +377,8 @@ static unsigned short gEmptyAttr;
 						//[_view extendBottomFrom: _scrollBeginRow to: _scrollEndRow];
 						cell *emptyLine = _grid[_scrollBeginRow];
 						[self clearRow:_scrollBeginRow];
-						
-						for (x = _scrollBeginRow; x < _scrollEndRow; x++) 
+
+						for (x = _scrollBeginRow; x < _scrollEndRow; x++)
 							_grid[x] = _grid[x + 1];
 						_grid[_scrollEndRow] = emptyLine;
 						[_terminal setAllDirty];
@@ -429,8 +429,8 @@ static unsigned short gEmptyAttr;
 						//[_delegate extendBottomFrom: _scrollBeginRow to: _scrollEndRow];
 						cell *emptyLine = _grid[_scrollBeginRow];
 						[self clearRow: _scrollBeginRow];
-						
-						for (x = _scrollBeginRow; x < _scrollEndRow; x++) 
+
+						for (x = _scrollBeginRow; x < _scrollEndRow; x++)
 							_grid[x] = _grid[x + 1];
 						_grid[_scrollEndRow] = emptyLine;
 						[_terminal setAllDirty];
@@ -451,7 +451,7 @@ static unsigned short gEmptyAttr;
 					_state = TP_NORMAL;
 				}
 				break;
-				
+
 			case TP_SCS:
 				/*
 				 if (NO) {
@@ -471,7 +471,7 @@ static unsigned short gEmptyAttr;
 				 */
 				_state = TP_NORMAL;
 				break;
-				
+
 			case TP_CONTROL:
 				if (isParameter(c)) {
 					[_csBuf push_back:c];
@@ -495,8 +495,8 @@ static unsigned short gEmptyAttr;
 					if (_cursorY == _scrollEndRow) {
 						cell *emptyLine = _grid[_scrollBeginRow];
 						[self clearRow:_scrollBeginRow];
-						
-						for (x = _scrollBeginRow; x < _scrollEndRow; x++) 
+
+						for (x = _scrollBeginRow; x < _scrollEndRow; x++)
 							_grid[x] = _grid[x + 1];
 						_grid[_scrollEndRow] = emptyLine;
 						[_terminal setAllDirty]; // We might not need to set everything dirty.
@@ -512,7 +512,7 @@ static unsigned short gEmptyAttr;
 						_csTemp = 0;
 						[_csBuf clear];
 					}
-					
+
 					if (NO) {
 						// just for code alignment...
 					} else if (c == CSI_ICH) {
@@ -536,7 +536,7 @@ static unsigned short gEmptyAttr;
 								_cursorY -= p;
 						} else
 							_cursorY--;
-						
+
 						if (_modeOriginRelative && _cursorY < _scrollBeginRow) {
 							_cursorY = _scrollBeginRow;
 						} else if (_cursorY < 0) {
@@ -634,12 +634,12 @@ static unsigned short gEmptyAttr;
 						}
 					}else if (c == CSI_IL ) { // Insert Line
 						int lineNumber = 0;
-						if ([_csArg size] == 0) 
+						if ([_csArg size] == 0)
 							lineNumber = 1;
 						else if ([_csArg size] > 0)
 							lineNumber = [_csArg front];
 						if (lineNumber < 1) lineNumber = 1; //mjhsieh is paranoid
-						
+
 						int j;
 						for (j = 0; j < lineNumber; j++) {
 							[self clearRow: _scrollEndRow];
@@ -653,12 +653,12 @@ static unsigned short gEmptyAttr;
 							[_terminal setDirtyForRow:j];
 					} else if (c == CSI_DL ) { // Delete Line
 						int lineNumber = 0;
-						if ([_csArg size] == 0) 
+						if ([_csArg size] == 0)
 							lineNumber = 1;
 						else if ([_csArg size] > 0)
 							lineNumber = [_csArg front];
 						if (lineNumber < 1) lineNumber = 1; //mjhsieh is paranoid
-						
+
 						int j;
 						for (j = 0; j < lineNumber; j++) {
 							[self clearRow: _cursorY];
@@ -700,7 +700,7 @@ static unsigned short gEmptyAttr;
 							p = [_csArg front];
 							if (p < 1) p = 1;
 						}
-						CURSOR_MOVETO(_cursorX+p,_cursorY);					
+						CURSOR_MOVETO(_cursorX+p,_cursorY);
 						//				} else if (c == CSI_REP) { // REPEAT, not going to implement for now.
 					} else if (c == CSI_DA ) { // Computer requests terminal identify itself.
 						unsigned char cmd[10]; // 10 should be enough for now
@@ -788,7 +788,7 @@ static unsigned short gEmptyAttr;
 						}
 						if (doClear == 1) {
 							if (_modeOriginRelative) {
-								
+
 							} else {
 								[self clearAll];
 								_cursorX = 0;
@@ -801,7 +801,7 @@ static unsigned short gEmptyAttr;
 							p = [_csArg front];
 							if (p < 1) p = 1;
 						}
-						CURSOR_MOVETO(_cursorX-p,_cursorY);										
+						CURSOR_MOVETO(_cursorX-p,_cursorY);
 					} else if (c == CSI_VPB) { // move to Pn Line in backward direction
 						int p = 1;
 						if ([_csArg size] > 0) {
@@ -950,11 +950,11 @@ static unsigned short gEmptyAttr;
 					else {
 						NSLog(@"unsupported control sequence: 0x%X", c);
 					}
-					
+
 					[_csArg clear];
 					_state = TP_NORMAL;
 				}
-				
+
 				break;
 		}
 	}/*
@@ -970,7 +970,7 @@ static unsigned short gEmptyAttr;
 	}*/
 	[_terminal setCursorX:_cursorX Y:_cursorY];
 	[_terminal feedGrid:_grid];
-	
+
 	if (_hasNewMessage) {
 		// new incoming message
 		if ([_terminal bbsType] == WLMaple && _grid[_row - 1][0].attr.f.bgColor != 9 && _grid[_row - 1][_column - 2].attr.f.bgColor == 9) {
@@ -980,7 +980,7 @@ static unsigned short gEmptyAttr;
 			for (; i < _column && _grid[_row - 1][i].attr.f.bgColor == _grid[_row - 1][i - 1].attr.f.bgColor; ++i); // determine the end of the message
 			NSString *callerName = [_terminal stringFromIndex:((_row - 1) * _column + 2) length:(splitPoint - 2)];
 			NSString *messageString = [_terminal stringFromIndex:((_row - 1) * _column + splitPoint + 1) length:(i - splitPoint - 2)];
-			
+
 			[connection didReceiveNewMessage:messageString fromCaller:callerName];
 			_hasNewMessage = NO;
 		} else if ([_terminal bbsType] == WLFirebird && _grid[0][0].attr.f.bgColor != 9) {
@@ -988,11 +988,11 @@ static unsigned short gEmptyAttr;
 			for (i = 2; i < _row && _grid[i][0].attr.f.bgColor != 9; ++i);	// determine the end of the message
 			NSString *callerName = [_terminal stringFromIndex:0 length:_column];
 			NSString *messageString = [_terminal stringFromIndex:_column length:(i - 1) * _column];
-			
+
 			[connection didReceiveNewMessage:messageString fromCaller:callerName];
 		}
     }
-	
+
     [pool release];
 }
 
@@ -1007,7 +1007,7 @@ static unsigned short gEmptyAttr;
 
 - (void)clearAll {
     _cursorX = _cursorY = 0;
-	
+
     attribute t;
     t.f.fgColor = [YLLGlobalConfig sharedInstance]->_fgColorIndex;
     t.f.bgColor = [YLLGlobalConfig sharedInstance]->_bgColorIndex;
@@ -1018,7 +1018,7 @@ static unsigned short gEmptyAttr;
     t.f.url = 0;
     t.f.nothing = 0;
     gEmptyAttr = t.v;
-	
+
     _fgColor = [YLLGlobalConfig sharedInstance]->_fgColorIndex;
     _bgColor = [YLLGlobalConfig sharedInstance]->_bgColorIndex;
     _csTemp = 0;
@@ -1027,11 +1027,11 @@ static unsigned short gEmptyAttr;
 	_underline = NO;
 	_blink = NO;
 	_reverse = NO;
-	
+
     int i;
-    for (i = 0; i < _row; i++) 
+    for (i = 0; i < _row; i++)
         [self clearRow: i];
-    
+
     if (_csBuf)
         [_csBuf clear];
     else
@@ -1046,8 +1046,8 @@ static unsigned short gEmptyAttr;
     [self clearRow: r fromStart: 0 toEnd: _column - 1];
 }
 
-- (void)clearRow:(int)r 
-	   fromStart:(int)s 
+- (void)clearRow:(int)r
+	   fromStart:(int)s
 		   toEnd:(int)e {
     for (int i = s; i <= e; i++) {
         _grid[r][i].byte = '\0';

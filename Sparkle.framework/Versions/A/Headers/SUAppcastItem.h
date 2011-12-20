@@ -14,16 +14,16 @@
 	NSString *title;
 	NSDate *date;
 	NSString *description;
-	
+
 	NSURL *releaseNotesURL;
-	
-	NSString *DSASignature;	
+
+	NSString *DSASignature;
 	NSString *minimumSystemVersion;
-	
+
 	NSURL *fileURL;
 	NSString *versionString;
 	NSString *displayVersionString;
-	
+
 	NSDictionary *propertiesDictionary;
 }
 

@@ -17,8 +17,8 @@
 #pragma mark -
 #pragma mark Init
 // Initiallize the controller with a given processor
-- (id)initWithProcessor:(WLFullScreenProcessor*)pro 
-			 targetView:(NSView*)tview 
+- (id)initWithProcessor:(WLFullScreenProcessor*)pro
+			 targetView:(NSView*)tview
 			  superView:(NSView*)sview
 		 originalWindow:(NSWindow*)owin {
 	if (self = [super init]) {
@@ -34,7 +34,7 @@
 // Initiallize the controller with non-processor
 // This function ONLY makes the target view showed in full
 // screen but cannot resize it
-- (id)initWithTargetView:(NSView*)tview 
+- (id)initWithTargetView:(NSView*)tview
 			   superView:(NSView*)sview
 		  originalWindow:(NSWindow*)owin {
 	if (self = [super init]) {
@@ -77,7 +77,7 @@
 		[anim setDuration:0.8];
 		// Set the animation to full screen window
 		[_fullScreenWindow setAnimations:[NSDictionary dictionaryWithObject:anim forKey:@"alphaValue"]];
-		[_fullScreenWindow.animator setAlphaValue:1.0];	
+		[_fullScreenWindow.animator setAlphaValue:1.0];
 		// Change UI mode by carbon
 		SetSystemUIMode(kUIModeAllHidden, kUIOptionAutoShowMenuBar);
 		// Then, let the delegate function do it...
@@ -108,9 +108,9 @@
 
 #pragma mark -
 #pragma mark Delegate function
-- (void)animationDidStop:(CAAnimation *)animation 
+- (void)animationDidStop:(CAAnimation *)animation
 				finished:(BOOL)flag {
-	if(!_isInFullScreen) { 
+	if(!_isInFullScreen) {
 		// Close the window!
 		[_fullScreenWindow close];
 		// Show the main window

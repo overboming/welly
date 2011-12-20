@@ -25,7 +25,7 @@ NSString *const WLAutoNotifyPeekIntervalKeyName;
 	int _column;
 	CGFloat _cellWidth;
 	CGFloat _cellHeight;
-    
+
     BOOL _showsHiddenText;
 	BOOL _blinkTicker;
     BOOL _shouldSmoothFonts;
@@ -35,7 +35,7 @@ NSString *const WLAutoNotifyPeekIntervalKeyName;
     BOOL _shouldRepeatBounce;
     YLEncoding _defaultEncoding;
     YLANSIColorKey _defaultANSIColorKey;
-    
+
     CGFloat _chineseFontSize;
     CGFloat _englishFontSize;
     CGFloat _chineseFontPaddingLeft;
@@ -44,11 +44,11 @@ NSString *const WLAutoNotifyPeekIntervalKeyName;
     CGFloat _englishFontPaddingBottom;
     NSString *_chineseFontName;
     NSString *_englishFontName;
-	
-@public   
+
+@public
     int _bgColorIndex;
     int _fgColorIndex;
-	
+
 	CTFontRef _cCTFont;
 	CTFontRef _eCTFont;
 	CGFontRef _cCGFont;
@@ -85,10 +85,10 @@ NSString *const WLAutoNotifyPeekIntervalKeyName;
 
 - (void)refreshFont;
 
-- (NSColor *)colorAtIndex:(int)i 
+- (NSColor *)colorAtIndex:(int)i
 				   hilite:(BOOL)h;
-- (void)setColor:(NSColor *)c 
-		  hilite:(BOOL)h 
+- (void)setColor:(NSColor *)c
+		  hilite:(BOOL)h
 		 atIndex:(int)i;
 
 - (void)updateBlinkTicker;

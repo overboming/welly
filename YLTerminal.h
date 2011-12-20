@@ -11,24 +11,24 @@
 
 @class YLView, YLConnection, WLMessageDelegate, WLIntegerArray;
 
-@interface YLTerminal : NSObject {	
+@interface YLTerminal : NSObject {
 	WLBBSType _bbsType;
-	
+
     unsigned int _maxRow;
     unsigned int _maxColumn;
     unsigned int _cursorColumn;
     unsigned int _cursorRow;
     unsigned int _offset;
-	
+
     cell **_grid;
     char *_dirty;
 
     YLView *_view;
 
     YLConnection *_connection;
-	
+
 	BBSState _bbsState;
-	
+
 	unichar *_textBuf;
 }
 @property unsigned int maxRow;
@@ -50,18 +50,18 @@
 - (void)clearAll;
 
 /* Dirty */
-- (BOOL)isDirtyAtRow:(int)r 
+- (BOOL)isDirtyAtRow:(int)r
 			  column:(int)c;
 - (void)setAllDirty;
-- (void)setDirty:(BOOL)d 
-		   atRow:(int)r 
+- (void)setDirty:(BOOL)d
+		   atRow:(int)r
 		  column:(int)c;
 - (void)setDirtyForRow:(int)r;
 
 /* Access Data */
-- (attribute)attrAtRow:(int)r 
+- (attribute)attrAtRow:(int)r
 				column:(int)c ;
-- (NSString *)stringFromIndex:(int)begin 
+- (NSString *)stringFromIndex:(int)begin
 					   length:(int)length;
 - (cell *)cellsOfRow:(int)r;
 - (cell)cellAtIndex:(int)index;

@@ -15,7 +15,7 @@
  software constitutes acceptance of these terms.  If you do not agree with
  these terms, please do not use, install, modify or redistribute this Apple
  software.
- 
+
  In consideration of your agreement to abide by the following terms, and
  subject to these terms, Apple grants you a personal, non-exclusive
  license, under Apple's copyrights in this original Apple software (the
@@ -31,13 +31,13 @@
  implied, are granted by Apple herein, including but not limited to any
  patent rights that may be infringed by your derivative works or by other
  works in which the Apple Software may be incorporated.
- 
+
  The Apple Software is provided by Apple on an "AS IS" basis.  APPLE MAKES
  NO WARRANTIES, EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION THE
  IMPLIED WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY AND FITNESS FOR A
  PARTICULAR PURPOSE, REGARDING THE APPLE SOFTWARE OR ITS USE AND OPERATION
  ALONE OR IN COMBINATION WITH YOUR PRODUCTS.
- 
+
  IN NO EVENT SHALL APPLE BE LIABLE FOR ANY SPECIAL, INDIRECT, INCIDENTAL OR
  CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
  SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
@@ -92,14 +92,14 @@ static PortalImageLayout *sharedLayoutManager;
     cellSize = cellSize ? cellSize : 100.;
     float count = [[layer valueForKey:desktopImageCount] intValue];
     float spacing = [[layer valueForKey:@"spacing"] sizeValue].width;
-    
+
     // this is the same math used in layoutSublayersOfLayer:, before tweaking
     float x = floor(margin + .5*(bounds - cellSize * count - spacing * (count - 1))) + selected * (cellSize + spacing) - .5 * bounds + .5 * cellSize;
-    
+
     return x;
 }
 
-- (NSPointerArray *)imageIndicesOfLayer:(CALayer *)layer 
+- (NSPointerArray *)imageIndicesOfLayer:(CALayer *)layer
 								 inRect:(CGRect)r {
     CGSize size = [layer bounds].size;
     NSSize margin = [[layer valueForKey:@"margin"] sizeValue];
@@ -156,19 +156,19 @@ static PortalImageLayout *sharedLayoutManager;
     for (size_t i = 0; i < count; i++) {
         CALayer *sublayer = [array objectAtIndex:i];
         CALayer *desktopImageLayer = [[sublayer sublayers] objectAtIndex:0];
-        
+
         NSNumber *index = [desktopImageLayer valueForKey:desktopImageIndex];
         if (index == nil)
             continue;
-        
+
         int x = [index intValue];
-        
+
         CGRect rect = {CGPointZero, *(CGSize *)&cellSize};
         CGRect desktopImageRect = rect;
         // base position - this would be correct without perspective
         rect.origin.y = size.height / 2 - cellSize.height / 2;
         rect.origin.x = margin.width + x * (cellSize.width + spacing.width);
-        
+
         // perspective and according position tweaks
         if (x < selected) {         // left
             rect.origin.x += cellSize.width * _sideSpacingFactor * (float)(selected - x - _rowScaleFactor);

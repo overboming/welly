@@ -14,8 +14,8 @@ WLEffectView * _effectView;
 @interface WLPopUpMessage:NSObject {
 }
 
-+ (void)showPopUpMessage:(NSString*)message 
-				duration:(CGFloat)duration 
++ (void)showPopUpMessage:(NSString*)message
+				duration:(CGFloat)duration
 			  effectView:(WLEffectView *)effectView;
 
 + (void)hidePopUpMessage;

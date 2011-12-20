@@ -28,12 +28,12 @@ static char *templateString = "我達達的馬蹄是美麗的錯誤。我不是�
 
 - (int) fgColorIndexAtRow: (int) r column: (int) c {
 	if (r == 5) {
-		if (c == 2 || c== 3) 
+		if (c == 2 || c== 3)
 			return 3;
 	}
-	
+
 	if (r == 3) {
-		if (c == 2 || c== 4 || c == 7 || c == 10) 
+		if (c == 2 || c== 4 || c == 7 || c == 10)
 			return 4;
 		if (c == 3)
 			return 6;
@@ -43,7 +43,7 @@ static char *templateString = "我達達的馬蹄是美麗的錯誤。我不是�
 
 - (int) bgColorIndexAtRow: (int) r column: (int) c {
 	if (r == 6) {
-		if (c >= 2 && c <= 10) 
+		if (c >= 2 && c <= 10)
 			return 1;
 	}
 	return 9;
@@ -56,7 +56,7 @@ static char *templateString = "我達達的馬蹄是美麗的錯誤。我不是�
 - (unichar) charAtRow: (int) r column: (int) c {
 	NSString *s = [NSString stringWithUTF8String: templateString];
 	if (c/2 >= [s length]) return 0;
-	
+
 	if (c & 1) return 0;
 	return [s characterAtIndex: (c / 2)];
 }

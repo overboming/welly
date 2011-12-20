@@ -24,21 +24,21 @@
     {
         if (radius > 0.0) {
             // Clamp radius to be no larger than half the rect's width or height.
-            float clampedRadius = MIN(radius, 0.5 * MIN(rect.size.width,  
+            float clampedRadius = MIN(radius, 0.5 * MIN(rect.size.width,
                                                         rect.size.height));
-            
+
             NSPoint topLeft = NSMakePoint(NSMinX(rect), NSMaxY(rect));
             NSPoint topRight = NSMakePoint(NSMaxX(rect), NSMaxY(rect));
             NSPoint bottomRight = NSMakePoint(NSMaxX(rect), NSMinY(rect));
-            
+
             [self moveToPoint:NSMakePoint(NSMidX(rect), NSMaxY(rect))];
-            [self appendBezierPathWithArcFromPoint:topLeft      
+            [self appendBezierPathWithArcFromPoint:topLeft
                                            toPoint:rect.origin radius:clampedRadius];
-            [self appendBezierPathWithArcFromPoint:rect.origin  
+            [self appendBezierPathWithArcFromPoint:rect.origin
                                            toPoint:bottomRight radius:clampedRadius];
-            [self appendBezierPathWithArcFromPoint:bottomRight  
+            [self appendBezierPathWithArcFromPoint:bottomRight
                                            toPoint:topRight    radius:clampedRadius];
-            [self appendBezierPathWithArcFromPoint:topRight    
+            [self appendBezierPathWithArcFromPoint:topRight
                                            toPoint:topLeft    radius:clampedRadius];
             [self closePath];
         } else {
@@ -48,7 +48,7 @@
     }
 }
 
-+ (NSBezierPath *) bezierPathWithRoundedRect:(NSRect)rect cornerRadius: (float)radius 
++ (NSBezierPath *) bezierPathWithRoundedRect:(NSRect)rect cornerRadius: (float)radius
 {
     NSBezierPath *result = [NSBezierPath bezierPath];
     [result appendBezierPathWithRoundedRect:rect cornerRadius:radius];
@@ -61,21 +61,21 @@
 
 - (void) drawRect: (NSRect)rect
 {
-    NSColor *color = [NSColor colorWithCalibratedRed: 0 
-                                               green: 0 
-                                                blue: 0 
+    NSColor *color = [NSColor colorWithCalibratedRed: 0
+                                               green: 0
+                                                blue: 0
                                                alpha: 1];
     [color set];
     NSBezierPath *path = [NSBezierPath bezierPathWithRoundedRect: rect
                                                     cornerRadius: 10.0];
     [path fill];
-    
+
     NSString *imageFile = @"HUDSave";
     if (mouseDown)
         imageFile = @"HUDSaveActive";
-    NSImage *img = [[NSImage alloc] initWithContentsOfFile: [[NSBundle mainBundle] pathForResource: imageFile 
+    NSImage *img = [[NSImage alloc] initWithContentsOfFile: [[NSBundle mainBundle] pathForResource: imageFile
                                                                                             ofType: @"tiff"]];
-    [img compositeToPoint: NSMakePoint((rect.size.width - [img size].width) / 2, 
+    [img compositeToPoint: NSMakePoint((rect.size.width - [img size].width) / 2,
                                        (rect.size.height - [img size].height) / 2)
                 operation: NSCompositeCopy];
     [img release];
@@ -92,14 +92,14 @@
     NSSavePanel *panel = [NSSavePanel savePanel];
     YLImagePreviewer *previewer = [(YLImageView *)[self superview] previewer];
 
-    if ([panel runModalForDirectory: nil 
+    if ([panel runModalForDirectory: nil
                                file: [previewer filename]] == NSFileHandlingPanelOKButton)
     {
-        /* BOOL ret = */ [[previewer receivedData] writeToFile: [panel filename] 
+        /* BOOL ret = */ [[previewer receivedData] writeToFile: [panel filename]
                                                     atomically: YES];
         // NSLog(@"save as %@: %s", [panel filename], ret == YES ? "done" : "failed");
     }
-    
+
     mouseDown = NO;
     [self setNeedsDisplay: YES];
 }

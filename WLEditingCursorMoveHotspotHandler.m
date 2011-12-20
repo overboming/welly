@@ -62,7 +62,7 @@ static NSCursor *gMoveCursor = nil;
 	// click to move cursor
 	NSPoint p = [_view convertPoint:[theEvent locationInWindow] fromView:nil];
 	int _selectionLocation = [_view convertIndexFromPoint: p];
-	
+
 	unsigned char cmd[_maxRow * _maxColumn * 3];
 	unsigned int cmdLength = 0;
 	id ds = [_view frontMostTerminal];
@@ -80,7 +80,7 @@ static NSCursor *gMoveCursor = nil;
 				cmd[cmdLength++] = 0x1B;
 				cmd[cmdLength++] = 0x4F;
 				cmd[cmdLength++] = 0x42;
-			} 
+			}
 		} else if (moveToRow < [ds cursorRow]) {
 			cmd[cmdLength++] = 0x01;
 			home = YES;
@@ -88,16 +88,16 @@ static NSCursor *gMoveCursor = nil;
 				cmd[cmdLength++] = 0x1B;
 				cmd[cmdLength++] = 0x4F;
 				cmd[cmdLength++] = 0x41;
-			} 			
-		} 
-		
+			}
+		}
+
 		cell *currRow = [[_view frontMostTerminal] cellsOfRow:moveToRow];
 		if (home) {
 			for (int i = 0; i < moveToCol; i++) {
 				if (currRow[i].attr.f.doubleByte != 2 || [[[_view frontMostConnection] site] shouldDetectDoubleByte]) {
 					cmd[cmdLength++] = 0x1B;
 					cmd[cmdLength++] = 0x4F;
-					cmd[cmdLength++] = 0x43;                    
+					cmd[cmdLength++] = 0x43;
 				}
 			}
 		} else if (moveToCol > [ds cursorColumn]) {
@@ -138,7 +138,7 @@ static NSCursor *gMoveCursor = nil;
 						|| [[[_view frontMostConnection] site] shouldDetectDoubleByte])) {
 					cmd[cmdLength++] = 0x1B;
 					cmd[cmdLength++] = 0x4F;
-					cmd[cmdLength++] = 0x43;                    
+					cmd[cmdLength++] = 0x43;
 				}
 			}
 		} else {
@@ -157,10 +157,10 @@ static NSCursor *gMoveCursor = nil;
 						|| [[[_view frontMostConnection] site] shouldDetectDoubleByte])) {
 					cmd[cmdLength++] = 0x1B;
 					cmd[cmdLength++] = 0x4F;
-					cmd[cmdLength++] = 0x44;                    
-				}					
+					cmd[cmdLength++] = 0x44;
+				}
 			}
-		}				
+		}
 	}
 	if (cmdLength > 0)
 		[[_view frontMostConnection] sendBytes:cmd length:cmdLength];
@@ -203,7 +203,7 @@ static NSCursor *gMoveCursor = nil;
 	BBSState bbsState = [[_view frontMostTerminal] bbsState];
 	if (bbsState.state == BBSComposePost) {
 		[_trackingAreas addObject:[_manager addTrackingAreaWithRect:[_view frame]
-														   userInfo:[NSDictionary dictionaryWithObject:self forKey:WLMouseHandlerUserInfoName] 
+														   userInfo:[NSDictionary dictionaryWithObject:self forKey:WLMouseHandlerUserInfoName]
 															 cursor:gMoveCursor]];
 	}
 }

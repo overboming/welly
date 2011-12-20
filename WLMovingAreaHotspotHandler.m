@@ -33,7 +33,7 @@ NSString *const WLMenuTitleQuitMode = @"Quit Mode";
 }
 
 - (BOOL)shouldEnablePageUpDownForState:(BBSState)bbsState {
-	return (bbsState.state == BBSBoardList 
+	return (bbsState.state == BBSBoardList
 			|| bbsState.state == BBSBrowseBoard
 			|| bbsState.state == BBSFriendList
 			|| bbsState.state == BBSMailList
@@ -98,14 +98,14 @@ NSString *const WLMenuTitleQuitMode = @"Quit Mode";
 		[menu addItemWithTitle:NSLocalizedString(WLMenuTitlePressHome, @"Contextual Menu")
 						action:@selector(pressHome:)
 				 keyEquivalent:@""];
-		[menu addItemWithTitle:NSLocalizedString(WLMenuTitlePressEnd, @"Contextual Menu") 
-						action:@selector(pressEnd:) 
+		[menu addItemWithTitle:NSLocalizedString(WLMenuTitlePressEnd, @"Contextual Menu")
+						action:@selector(pressEnd:)
 				 keyEquivalent:@""];
 	}
-	
+
 	if ([[_view frontMostTerminal] bbsState].state == BBSBrowseBoard) {
-		[menu addItemWithTitle:NSLocalizedString(WLMenuTitleQuitMode, @"Contextual Menu") 
-						action:@selector(pressQ:) 
+		[menu addItemWithTitle:NSLocalizedString(WLMenuTitleQuitMode, @"Contextual Menu")
+						action:@selector(pressQ:)
 				 keyEquivalent:@""];
 	}
 
@@ -122,9 +122,9 @@ NSString *const WLMenuTitleQuitMode = @"Quit Mode";
 #pragma mark Update State
 
 #pragma mark Exit Area
-- (void)addExitAreaAtRow:(int)r 
-				  column:(int)c 
-				  height:(int)h 
+- (void)addExitAreaAtRow:(int)r
+				  column:(int)c
+				  height:(int)h
 				   width:(int)w {
 	NSRect rect = [_view rectAtRow:r column:c height:h width:w];
 	// Generate User Info
@@ -138,17 +138,17 @@ NSString *const WLMenuTitleQuitMode = @"Quit Mode";
 	if (![self shouldEnableExitArea]) {
 		return;
 	} else {
-		[self addExitAreaAtRow:3 
-						column:0 
+		[self addExitAreaAtRow:3
+						column:0
 						height:20
 						 width:20];
 	}
 }
 
 #pragma mark pgUp/Down Area
-- (void)addPageUpAreaAtRow:(int)r 
-					column:(int)c 
-					height:(int)h 
+- (void)addPageUpAreaAtRow:(int)r
+					column:(int)c
+					height:(int)h
 					 width:(int)w {
 	NSRect rect = [_view rectAtRow:r column:c height:h width:w];
 	NSArray *keys = [NSArray arrayWithObjects:WLMouseHandlerUserInfoName, WLMouseCommandSequenceUserInfoName, WLMouseCursorUserInfoName, nil];
@@ -166,9 +166,9 @@ NSString *const WLMenuTitleQuitMode = @"Quit Mode";
 	}
 }
 
-- (void)addPageDownAreaAtRow:(int)r 
-					  column:(int)c 
-					  height:(int)h 
+- (void)addPageDownAreaAtRow:(int)r
+					  column:(int)c
+					  height:(int)h
 					   width:(int)w {
 	NSRect rect = [_view rectAtRow:r column:c height:h width:w];
 	// Generate User Info
@@ -195,26 +195,26 @@ NSString *const WLMenuTitleQuitMode = @"Quit Mode";
 
 - (BOOL)shouldUpdate {
 	if (![_view shouldEnableMouse] || ![_view isConnected]) {
-		return YES;	
+		return YES;
 	}
 	BBSState bbsState = [[_view frontMostTerminal] bbsState];
 	BBSState lastBBSState = [_manager lastBBSState];
 	if (bbsState.state == lastBBSState.state) {
 		return NO;
 	}
-	
+
 	if (([self shouldEnablePageUpDownForState:bbsState] == [self shouldEnablePageUpDownForState:lastBBSState]) &&
 		([self shouldEnableExitAreaForState:bbsState] == [self shouldEnableExitAreaForState:lastBBSState])) {
 		return NO;
 	}
-	
+
 	return YES;
 }
 
 - (void)update {
 	[self clear];
 	if (![_view shouldEnableMouse] || ![_view isConnected]) {
-		return;	
+		return;
 	}
 	[self updateExitArea];
 	[self updatePageUpArea];

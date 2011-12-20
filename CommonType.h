@@ -31,12 +31,12 @@ typedef struct {
 typedef enum {C0, INTERMEDIATE, ALPHABETIC, DELETE, C1, G1, SPECIAL, ERROR} ASCII_CODE;
 
 typedef enum YLEncoding {
-    YLBig5Encoding = 1, 
+    YLBig5Encoding = 1,
     YLGBKEncoding = 0
 } YLEncoding;
 
 typedef enum YLANSIColorKey {
-    YLCtrlUANSIColorKey = 1, 
+    YLCtrlUANSIColorKey = 1,
     YLEscEscANSIColorKey = 0
 } YLANSIColorKey;
 
@@ -48,7 +48,7 @@ typedef enum {
 
 typedef struct {
 	/*!
-	 @enum 
+	 @enum
 	 @abstract   This enumeration describes main state of BBS.
 	 @discussion States reconition is carried out in <code>[YLTerminal updateBBSState]</code>. Please refer to <code>YLTerminal.h</code> for detailed information about state recognition.
 	 @constant   BBSUnknown			Unknown state that cannot be recognized by Welly.
@@ -67,13 +67,13 @@ typedef struct {
 	*/
 	enum {
 		BBSUnknown,
-		BBSMainMenu, 
-		BBSMailMenu, 
-		BBSMailList, 
-		BBSBoardList, 
-		BBSFriendList, 
+		BBSMainMenu,
+		BBSMailMenu,
+		BBSMailList,
+		BBSBoardList,
+		BBSFriendList,
 		BBSBrowseBoard,
-		BBSViewPost, 
+		BBSViewPost,
 		BBSComposePost,
 		BBSWaitingEnter,
 		BBSUserInfo,
@@ -82,7 +82,7 @@ typedef struct {
 		BBSWaitingConfirm,
 	} state;
 	/*!
-	 @enum 
+	 @enum
 	 @abstract   This enumeration is a supplement for the main state. Some main state have some variants which have common behaviors. Some variants have delicate differences, so we use substate to tell them apart for future implementation.
 	 @discussion Currently, the <code>substate</code> is mainly used for <code>BBSBrowseBoard</code> main state.
 	 @constant   BBSSubStateNone	The main state has no substate.
@@ -146,5 +146,5 @@ enum {
 	WLEscapeCharacter = 27,
 	WLReturnCharacter = '\r',
 	WLNewlineCharacter = '\n',
-	WLNullTerminator = '\0',	
+	WLNullTerminator = '\0',
 };

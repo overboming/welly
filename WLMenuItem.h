@@ -10,7 +10,7 @@
 
 
 @interface WLMenuItem : NSObject {
-	NSString *_name;	
+	NSString *_name;
 }
 @property (readonly) NSString *name;
 

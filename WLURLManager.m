@@ -72,7 +72,7 @@ NSString *const WLMenuTitleOpenWithBrowser = @"Open With Browser";
 	NSPasteboard *pb = [NSPasteboard generalPasteboard];
     NSMutableArray *types = [NSMutableArray arrayWithObjects: NSStringPboardType, NSURLPboardType, nil];
     [pb declareTypes:types owner:self];
-	
+
 	NSDictionary *userInfo = [sender representedObject];
 	NSString *urlString = [userInfo objectForKey:WLURLUserInfoName];
     [pb setString:urlString forType:NSStringPboardType];
@@ -82,7 +82,7 @@ NSString *const WLMenuTitleOpenWithBrowser = @"Open With Browser";
 - (IBAction)openWithBrower:(id)sender {
 	NSDictionary *userInfo = [sender representedObject];
 	NSString *urlString = [userInfo objectForKey:WLURLUserInfoName];
-	
+
 	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:urlString]];
 }
 
@@ -94,7 +94,7 @@ NSString *const WLMenuTitleOpenWithBrowser = @"Open With Browser";
 	[menu addItemWithTitle:NSLocalizedString(WLMenuTitleOpenWithBrowser, @"Contextual Menu")
 					action:@selector(openWithBrower:)
 			 keyEquivalent:@""];
-	
+
 	for (NSMenuItem *item in [menu itemArray]) {
 		if ([item isSeparatorItem])
 			continue;
@@ -169,8 +169,8 @@ NSString *const WLMenuTitleOpenWithBrowser = @"Open With Browser";
 
 #pragma mark -
 #pragma mark Update State
-- (void)addURL:(NSString *)urlString 
-	   AtIndex:(int)index 
+- (void)addURL:(NSString *)urlString
+	   AtIndex:(int)index
 		length:(int)length {
 	//NSLog(@"[LLURLManager addURL:%@ AtIndex:%d length:%d]", urlString, index, length);
 	// If there's no url before, make the pointer point to the first URL element
@@ -186,7 +186,7 @@ NSString *const WLMenuTitleOpenWithBrowser = @"Open With Browser";
 	NSArray *objects = [NSArray arrayWithObjects:self, [[urlString copy] autorelease], [NSNumber numberWithInt:index], [NSNumber numberWithInt:length], nil];
 	NSDictionary *userInfo = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
 	[_currentURLList addObject:userInfo];
-	
+
 	// Calculate rects to add, notice that we might have multiline url
 	while (length > 0) {
 		int column = index % _maxColumn;
@@ -210,7 +210,7 @@ NSString *const WLMenuTitleOpenWithBrowser = @"Open With Browser";
 	for (NSDictionary *urlInfo in _currentURLList) {
 		int index = [[urlInfo objectForKey:WLRangeLocationUserInfoName] intValue];
 		int length = [[urlInfo objectForKey:WLRangeLengthUserInfoName] intValue];
-		
+
 		YLTerminal *ds = [_view frontMostTerminal];
 		// Set all involved row to be dirty. Reduce the number of [ds setDirty] call.
 		while (length > 0) {
@@ -225,7 +225,7 @@ NSString *const WLMenuTitleOpenWithBrowser = @"Open With Browser";
 
 - (void)clear {
 	[self clearAllURL];
-	
+
 	[self removeAllTrackingAreas];
 }
 
@@ -236,11 +236,11 @@ NSString *const WLMenuTitleOpenWithBrowser = @"Open With Browser";
 - (void)update {
 	[self clear];
 	if (![_view isConnected]) {
-		return;	
+		return;
 	}
 	// Resotre the url list pointer
 	_currentSelectedURLIndex = 0;
-	
+
 	YLTerminal *ds = [_view frontMostTerminal];
 	cell **grid = [ds grid];
 	BOOL isReadingURL = NO;
@@ -250,9 +250,9 @@ NSString *const WLMenuTitleOpenWithBrowser = @"Open With Browser";
 	int startIndex = 0;
 	int par = 0;
 	int urlLength = 0;
-	
+
 	[_currentURLStringBuffer setString:@""];
-	
+
 	for (int index = 0; index < _maxRow * _maxColumn; ++index) {
 		if (isReadingURL) {
 			// Push current char in!
@@ -297,7 +297,7 @@ NSString *const WLMenuTitleOpenWithBrowser = @"Open With Browser";
                         isMatched = NO;
                         break;
                     }
-                
+
                 if (isMatched) {
 					// Push current prefix into current url
                     if (p >= realProtocalNum) [_currentURLStringBuffer appendString:@"http://"];

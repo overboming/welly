@@ -17,7 +17,7 @@
 #pragma mark Functions
 inline int isHiddenAttribute(attribute a) {
     return (!a.f.bold && ((a.f.fgColor == a.f.bgColor) ||
-                          (a.f.fgColor == 0 && a.f.bgColor == 9))); 
+                          (a.f.fgColor == 0 && a.f.bgColor == 9)));
 }
 
 inline int isBlinkCell(cell c) {
@@ -26,12 +26,12 @@ inline int isBlinkCell(cell c) {
     return 0;
 }
 
-inline BOOL isLetter(unsigned char c) { 
-	return (c >= 'a' && c <= 'z') || (c >= 'A' && c<= 'Z'); 
+inline BOOL isLetter(unsigned char c) {
+	return (c >= 'a' && c <= 'z') || (c >= 'A' && c<= 'Z');
 }
 
 inline BOOL isNumber(unsigned char c) {
-	return (c >= '0' && c <= '9'); 
+	return (c >= '0' && c <= '9');
 }
 
 inline int bgColorIndexOfAttribute(attribute a) {

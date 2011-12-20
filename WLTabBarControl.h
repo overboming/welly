@@ -22,7 +22,7 @@
 - (void)selectPreviousTabViewItem:(id)sender;
 
 // close
-- (void)removeTabViewItem:(NSTabViewItem *)tabViewItem;	
+- (void)removeTabViewItem:(NSTabViewItem *)tabViewItem;
 
 // Set main controller
 - (void)setMainController:(YLController *)controller;

@@ -14,7 +14,7 @@
  software constitutes acceptance of these terms.  If you do not agree with
  these terms, please do not use, install, modify or redistribute this Apple
  software.
- 
+
  In consideration of your agreement to abide by the following terms, and
  subject to these terms, Apple grants you a personal, non-exclusive
  license, under Apple's copyrights in this original Apple software (the
@@ -30,13 +30,13 @@
  implied, are granted by Apple herein, including but not limited to any
  patent rights that may be infringed by your derivative works or by other
  works in which the Apple Software may be incorporated.
- 
+
  The Apple Software is provided by Apple on an "AS IS" basis.  APPLE MAKES
  NO WARRANTIES, EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION THE
  IMPLIED WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY AND FITNESS FOR A
  PARTICULAR PURPOSE, REGARDING THE APPLE SOFTWARE OR ITS USE AND OPERATION
  ALONE OR IN COMBINATION WITH YOUR PRODUCTS.
- 
+
  IN NO EVENT SHALL APPLE BE LIABLE FOR ANY SPECIAL, INDIRECT, INCIDENTAL OR
  CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
  SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
@@ -105,7 +105,7 @@ static void * imageThread (void *arg) {
         [imageQueue removeObjectAtIndex:0];
 
         pthread_mutex_unlock(&imageMutex);
-        
+
         // load in the next image
         NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
         NSString *path = [desktopImage path];
@@ -158,13 +158,13 @@ static void * imageThread (void *arg) {
         CGContextFlush(ctx);
         CGImageRef scaledImage = CGBitmapContextCreateImage(ctx);
         CGContextRelease(ctx);
-            
+
         @synchronized (desktopImage) {
             CGImageRelease(desktopImage->_image);
             desktopImage->_image = scaledImage;
             desktopImage->_requestedImage = false;
         }
-        
+
         // let the controller know we've got a new image loaded
         [desktopImage performSelectorOnMainThread:@selector(postNotificationName:)
         withObject:desktopImageImageDidLoadNotification waitUntilDone:NO];
@@ -172,7 +172,7 @@ static void * imageThread (void *arg) {
         [desktopImage release];
         [pool release];
     }
-    
+
     pthread_mutex_unlock (&imageMutex);
 
     thread = 0;
@@ -186,21 +186,21 @@ static void * imageThread (void *arg) {
 - (bool)requestImageOfSize:(CGSize)size; {
     if (_imageFailed)
     return false;
-    
+
     @synchronized (self) {
         _markedImage = true;
-        
+
         if (_image != nil && CGSizeEqualToSize(size, _imageSize)) {
             [self postNotificationName:desktopImageImageDidLoadNotification];
         } else {
             _imageSize = size;
-            
+
             if (!_requestedImage) {
                 pthread_mutex_lock(&imageMutex);
-                
+
                 if (imageQueue == nil)
                     imageQueue = [[NSMutableArray alloc] init];
-                
+
                 if (thread == 0) {
                     pthread_attr_t attr;
                     pthread_attr_init(&attr);
@@ -209,15 +209,15 @@ static void * imageThread (void *arg) {
                     pthread_create(&thread, &attr, imageThread, NULL);
                     pthread_attr_destroy(&attr);
                 }
-                
+
                 [imageQueue addObject:self];
-                
+
                 pthread_cond_signal(&imageCond);
                 pthread_mutex_unlock(&imageMutex);
             }
         }
     }
-    
+
     return true;
 }
 

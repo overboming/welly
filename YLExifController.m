@@ -22,7 +22,7 @@
     if (isoArray && [isoArray count])
         isoNumber = [isoArray objectAtIndex: 0];
     [self setIsoSpeed: [isoNumber stringValue]];
-    
+
     NSNumber *eTime = [exifData objectForKey: (NSString *) kCGImagePropertyExifExposureTime];
     // readable exposure time
     NSString *eTimeStr = nil;

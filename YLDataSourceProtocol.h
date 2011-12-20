@@ -9,7 +9,7 @@
 
 
 
-@interface NSObject (YLDataSourceProtocol) 
+@interface NSObject (YLDataSourceProtocol)
 - (int) row;
 - (int) column;
 - (BOOL) isDirtyAtRow: (int) r column:(int) c;

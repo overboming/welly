@@ -17,7 +17,7 @@
     YLEmoticon *e = [[YLEmoticon alloc] init];
 //    [e setName: [d valueForKey: @"name"]];
     [e setContent:[d valueForKey:@"content"]];
-    return [e autorelease];    
+    return [e autorelease];
 }
 
 + (void)initialize {
@@ -27,8 +27,8 @@
 - (NSDictionary *)dictionaryOfEmoticon {
     return [NSDictionary dictionaryWithObjectsAndKeys:[self content], @"content", nil];
 }
-     
-+ (YLEmoticon *)emoticonWithName:(NSString *)n 
+
++ (YLEmoticon *)emoticonWithName:(NSString *)n
 						 content:(NSString *)c {
     YLEmoticon *e = [[YLEmoticon alloc] init];
 //    [e setName: n];

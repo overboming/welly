@@ -73,8 +73,8 @@ NSString *const WLDefaultSiteName = @"DefaultSiteName";
 
 - (NSDictionary *)dictionaryOfSite {
     return [NSDictionary dictionaryWithObjectsAndKeys:[self name] ?: @"",YLSiteNameAttributeName, [self address], YLSiteAddressAttributeName,
-            [NSNumber numberWithUnsignedShort:[self encoding]], YLSiteEncodingAttributeName, 
-            [NSNumber numberWithUnsignedShort:[self ansiColorKey]], YLSiteAnsiColorKeyAttributeName, 
+            [NSNumber numberWithUnsignedShort:[self encoding]], YLSiteEncodingAttributeName,
+            [NSNumber numberWithUnsignedShort:[self ansiColorKey]], YLSiteAnsiColorKeyAttributeName,
             [NSNumber numberWithBool:[self shouldDetectDoubleByte]], YLSiteDetectDoubleByteAttributeName,
 			[NSNumber numberWithBool:[self shouldEnableMouse]], YLSiteEnableMouseAttributeName,
 			[self autoReplyString] ?: @"", YLSiteAutoReplyStringAttributeName,

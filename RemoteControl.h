@@ -2,10 +2,10 @@
  * RemoteControl.h
  * RemoteControlWrapper
  *
- * Created by Martin Kahr on 11.03.06 under a MIT-style license. 
+ * Created by Martin Kahr on 11.03.06 under a MIT-style license.
  * Copyright (c) 2006 martinkahr.com. All rights reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a 
+ * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
  * to deal in the Software without restriction, including without limitation
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
@@ -17,17 +17,17 @@
  *
  * THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL 
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
  * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  *
  *****************************************************************************/
- 
+
 #import <Cocoa/Cocoa.h>
 
-// notifaction names that are being used to signal that an application wants to 
+// notifaction names that are being used to signal that an application wants to
 // have access to the remote control device or if the application has finished
 // using the remote control device
 extern NSString* REQUEST_FOR_REMOTE_CONTROL_NOTIFCATION;
@@ -39,7 +39,7 @@ extern NSString* kApplicationIdentifier;
 extern NSString* kTargetApplicationIdentifier;
 
 // we have a 6 bit offset to make a hold event out of a normal event
-#define EVENT_TO_HOLD_EVENT_OFFSET 6 
+#define EVENT_TO_HOLD_EVENT_OFFSET 6
 
 @class RemoteControl;
 
@@ -51,16 +51,16 @@ typedef enum _RemoteControlEventIdentifier {
 	kRemoteButtonPlay				=1<<4,
 	kRemoteButtonRight				=1<<5,
 	kRemoteButtonLeft				=1<<6,
-	
+
 	// hold events
 	kRemoteButtonPlus_Hold			=1<<7,
-	kRemoteButtonMinus_Hold			=1<<8,	
-	kRemoteButtonMenu_Hold			=1<<9,	
-	kRemoteButtonPlay_Hold			=1<<10,	
+	kRemoteButtonMinus_Hold			=1<<8,
+	kRemoteButtonMenu_Hold			=1<<9,
+	kRemoteButtonPlay_Hold			=1<<10,
 	kRemoteButtonRight_Hold			=1<<11,
 	kRemoteButtonLeft_Hold			=1<<12,
-	
-	// special events (not supported by all devices)	
+
+	// special events (not supported by all devices)
 	kRemoteControl_Switched			=1<<13,
 } RemoteControlEventIdentifier;
 

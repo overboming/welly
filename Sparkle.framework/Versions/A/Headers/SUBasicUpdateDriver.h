@@ -16,10 +16,10 @@
 @interface SUBasicUpdateDriver : SUUpdateDriver {
 	NSBundle *hostBundle;
 	SUAppcastItem *updateItem;
-	
+
 	NSURLDownload *download;
 	NSString *downloadPath;
-	
+
 	NSString *relaunchPath;
 }
 

@@ -39,9 +39,9 @@
     [super dealloc];
 }
 
-- (void)addItemWithTitle:(NSString *)aTitle 
-			 description:(NSString *)aDescription 
-				  author:(NSString *)anAuthor 
+- (void)addItemWithTitle:(NSString *)aTitle
+			 description:(NSString *)aDescription
+				  author:(NSString *)anAuthor
 				 pubDate:(NSString *)aPubDate {
     NSXMLElement *item = (NSXMLElement *)[NSXMLNode elementWithName:@"item"];
     [item addChild:[NSXMLNode elementWithName:@"title" stringValue:aTitle]];
