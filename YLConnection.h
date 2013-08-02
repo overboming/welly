@@ -21,12 +21,12 @@
     BOOL _connected;
 
     NSDate *_lastTouchDate;
-    
+
     YLTerminal *_terminal;
 	WLTerminalFeeder *_feeder;
     NSObject <WLProtocol> *_protocol;
     YLSite * _site;
-	
+
 	WLMessageDelegate *_messageDelegate;
 	int _messageCount;
 }

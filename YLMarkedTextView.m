@@ -27,12 +27,12 @@
 - (void)drawRect:(NSRect)rect {
 	CGContextRef context = (CGContextRef) [[NSGraphicsContext currentContext] graphicsPort];
 	CGContextSaveGState(context);
-	
+
 	CGFloat half = ([self frame].size.height / 2.0);
 	BOOL fromTop = _destination.y > half;
-	
+
 	CGContextTranslateCTM(context, 1.0,  1.0);
-	if (!fromTop) 
+	if (!fromTop)
 		CGContextTranslateCTM(context, 0.0,  5.0);
 
 	CGPoint dest = NSPointToCGPoint(_destination);
@@ -40,7 +40,7 @@
 	dest.y -= 1.0;
 	if (!fromTop)
 		dest.y -= 5.0;
-	
+
 	CGContextSaveGState(context);
 	CGFloat ovalSize = 6.0;
 	CGContextTranslateCTM(context, 1.0,  1.0);
@@ -49,7 +49,7 @@
     CGFloat fh = ([self bounds].size.height - 3 - 5);
 
 	CGContextBeginPath(context);
-    CGContextMoveToPoint(context, 0, fh - ovalSize); 
+    CGContextMoveToPoint(context, 0, fh - ovalSize);
     CGContextAddArcToPoint(context, 0, fh, ovalSize, fh, ovalSize);
 	if (fromTop) {
 		CGFloat left, right;
@@ -66,10 +66,10 @@
 		CGContextAddLineToPoint(context, dest.x, dest.y);
 		CGContextAddLineToPoint(context, right, fh);
 	}
-//    CGContextMoveToPoint(context, fw - ovalSize, fh); 
+//    CGContextMoveToPoint(context, fw - ovalSize, fh);
     CGContextAddArcToPoint(context, fw, fh, fw, fh - ovalSize, ovalSize);
 
-//	CGContextMoveToPoint(context, fw, ovalSize); 
+//	CGContextMoveToPoint(context, fw, ovalSize);
 	CGContextAddArcToPoint(context, fw, 0, fw - ovalSize, 0, ovalSize);
 	if (!fromTop) {
 		CGFloat left, right;
@@ -84,11 +84,11 @@
 		}
 		CGContextAddLineToPoint(context, right, 0);
 		CGContextAddLineToPoint(context, dest.x, dest.y);
-		CGContextAddLineToPoint(context, left, 0);		
+		CGContextAddLineToPoint(context, left, 0);
 	}
-//	CGContextMoveToPoint(context, ovalSize, 0); 
-    CGContextAddArcToPoint(context, 0, 0, 0, ovalSize, ovalSize); 
-    CGContextClosePath(context);	
+//	CGContextMoveToPoint(context, ovalSize, 0);
+    CGContextAddArcToPoint(context, 0, 0, 0, ovalSize, ovalSize);
+    CGContextClosePath(context);
 
 	CGContextSetRGBFillColor(context, 0.15, 0.15, 0.15, 1.0);
 	CGContextSetLineWidth(context, 2.0);
@@ -99,7 +99,7 @@
 	CGContextRestoreGState(context);
 
     // fixed by boost @ 9#
-    // _string/line may be nil, and CFRelease(line) may crash 
+    // _string/line may be nil, and CFRelease(line) may crash
     if (_string != nil) {
         CGContextTranslateCTM(context, 4.0, 3.0);
         [_string drawAtPoint:NSZeroPoint];
@@ -109,16 +109,16 @@
         [NSBezierPath strokeLineFromPoint:NSMakePoint(offset, 0) toPoint:NSMakePoint(offset, _lineHeight)];
         CFRelease(line);
     }
-    
+
 	CGContextRestoreGState(context);
 }
 
 - (void)setString:(NSAttributedString *)value {
 	NSMutableAttributedString *as = [[NSMutableAttributedString alloc] initWithAttributedString: value];
-	[as addAttribute:NSFontAttributeName 
+	[as addAttribute:NSFontAttributeName
 			   value:_defaultFont
 			   range:NSMakeRange(0, [value length])];
-	[as addAttribute:NSForegroundColorAttributeName 
+	[as addAttribute:NSForegroundColorAttributeName
 			   value:[NSColor whiteColor]
 			   range:NSMakeRange(0, [value length])];
 	[_string release];

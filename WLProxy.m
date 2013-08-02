@@ -14,8 +14,8 @@
 
 // source code adapted from http://developer.apple.com/qa/qa2001/qa1234.html
 Boolean GetProxySetting(const char *protocol, char *host, size_t hostSize, UInt16 *port)
-// Returns the current HTTP proxy settings as a C string 
-// (in the buffer specified by host and hostSize) and 
+// Returns the current HTTP proxy settings as a C string
+// (in the buffer specified by host and hostSize) and
 // a port number.
 {
     Boolean             result;
@@ -25,22 +25,22 @@ Boolean GetProxySetting(const char *protocol, char *host, size_t hostSize, UInt1
     CFStringRef         hostStr;
     CFNumberRef         portNum;
     int                 portInt;
-    
+
     assert(host != NULL);
     assert(port != NULL);
-    
+
     // Get the dictionary.
-    
+
     proxyDict = SCDynamicStoreCopyProxies(NULL);
     result = (proxyDict != NULL);
-    
+
     // Get the enable flag.  This isn't a CFBoolean, but a CFNumber.
-    
+
     if (result) {
         // kSCPropNetProxiesHTTPEnable
         enableNum = (CFNumberRef) CFDictionaryGetValue(proxyDict,
                                                        [NSString stringWithFormat:@"%sEnable", protocol]);
-        
+
         result = (enableNum != NULL)
         && (CFGetTypeID(enableNum) == CFNumberGetTypeID());
     }
@@ -48,17 +48,17 @@ Boolean GetProxySetting(const char *protocol, char *host, size_t hostSize, UInt1
         result = CFNumberGetValue(enableNum, kCFNumberIntType,
                                   &enable) && (enable != 0);
     }
-    
-    // Get the proxy host.  DNS names must be in ASCII.  If you 
+
+    // Get the proxy host.  DNS names must be in ASCII.  If you
     // put a non-ASCII character  in the "Secure Web Proxy"
     // field in the Network preferences panel, the CFStringGetCString
     // function will fail and this function will return false.
-    
+
     if (result) {
         // kSCPropNetProxiesHTTPProxy
         hostStr = (CFStringRef) CFDictionaryGetValue(proxyDict,
                                                      [NSString stringWithFormat:@"%sProxy", protocol]);
-        
+
         result = (hostStr != NULL)
         && (CFGetTypeID(hostStr) == CFStringGetTypeID());
     }
@@ -66,14 +66,14 @@ Boolean GetProxySetting(const char *protocol, char *host, size_t hostSize, UInt1
         result = CFStringGetCString(hostStr, host,
                                     (CFIndex) hostSize, kCFStringEncodingASCII);
     }
-    
+
     // Get the proxy port.
-    
+
     if (result) {
         // kSCPropNetProxiesHTTPPort
         portNum = (CFNumberRef) CFDictionaryGetValue(proxyDict,
                                                      [NSString stringWithFormat:@"%sPort", protocol]);
-        
+
         result = (portNum != NULL)
         && (CFGetTypeID(portNum) == CFNumberGetTypeID());
     }
@@ -83,9 +83,9 @@ Boolean GetProxySetting(const char *protocol, char *host, size_t hostSize, UInt1
     if (result) {
         *port = (UInt16) portInt;
     }
-    
+
     // Clean up.
-    
+
     if (proxyDict != NULL) {
         CFRelease(proxyDict);
     }
@@ -130,7 +130,7 @@ Boolean GetProxySetting(const char *protocol, char *host, size_t hostSize, UInt1
             hostString = @"localhost";
         switch (proxyType) {
             case WLSocksProxy:
-                portString = @"1080";                
+                portString = @"1080";
                 break;
             case WLHttpProxy:
                 portString = @"80";

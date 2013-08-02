@@ -13,13 +13,13 @@
 @interface WLAnsiColorOperationManager : NSObject {
 
 }
-+ (NSData *)ansiColorDataFromTerminal:(YLTerminal *)terminal 
-						   atLocation:(int)location 
++ (NSData *)ansiColorDataFromTerminal:(YLTerminal *)terminal
+						   atLocation:(int)location
 							   length:(int)length;
-+ (NSData *)ansiColorDataFromTerminal:(YLTerminal *)terminal 
++ (NSData *)ansiColorDataFromTerminal:(YLTerminal *)terminal
 							   inRect:(NSRect)rect;
-+ (NSData *)ansiCodeFromANSIColorData:(NSData *)ansiColorData 
-					  forANSIColorKey:(YLANSIColorKey)ansiColorKey 
++ (NSData *)ansiCodeFromANSIColorData:(NSData *)ansiColorData
+					  forANSIColorKey:(YLANSIColorKey)ansiColorKey
 							 encoding:(YLEncoding)encoding;
 + (NSString *)ansiCodeStringFromAttributedString:(NSAttributedString *)storage
 								 forANSIColorKey:(YLANSIColorKey)ansiColorKey;

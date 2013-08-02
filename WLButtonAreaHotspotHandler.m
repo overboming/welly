@@ -105,9 +105,9 @@ NSString *const FBCommandSequenceEnterExcerption = @"x";
 #pragma mark -
 #pragma mark Update State
 - (void)addButtonArea:(NSString *)buttonName
-	  commandSequence:(NSString *)cmd 
-				atRow:(int)r 
-			   column:(int)c 
+	  commandSequence:(NSString *)cmd
+				atRow:(int)r
+			   column:(int)c
 			   length:(int)len {
 	NSRect rect = [_view rectAtRow:r column:c height:1 width:len];
 	// Generate User Info
@@ -151,13 +151,13 @@ NSString *const FBCommandSequenceEnterExcerption = @"x";
 		{BBSUserInfo, @"选择使用", 8, WLButtonNamePreviousUser, FBCommandSequencePreviousUser},
 		{BBSUserInfo, @"者[↑,↓]", 9, WLButtonNameNextUser, FBCommandSequenceNextUser},
 	};
-	
+
 	if (r > 3 && r < _maxRow-1)
 		return;
-	
+
 	YLTerminal *ds = [_view frontMostTerminal];
 	BBSState bbsState = [ds bbsState];
-	
+
 	for (int x = 0; x < _maxColumn; ++x) {
 		for (int i = 0; i < sizeof(buttonsDefinition) / sizeof(WLButtonDescription); ++i) {
 			WLButtonDescription buttonDescription  = buttonsDefinition[i];
@@ -166,10 +166,10 @@ NSString *const FBCommandSequenceEnterExcerption = @"x";
 			int length = buttonDescription.signatureLengthOfBytes;
 			if (x < _maxColumn - length) {
 				if ([[ds stringFromIndex:(x + r * _maxColumn) length:length] isEqualToString:buttonDescription.signature]) {
-					[self addButtonArea:buttonDescription.buttonName 
-						commandSequence:buttonDescription.commandSequence 
-								  atRow:r 
-								 column:x 
+					[self addButtonArea:buttonDescription.buttonName
+						commandSequence:buttonDescription.commandSequence
+								  atRow:r
+								 column:x
 								 length:length];
 					x += length - 1;
 					break;
@@ -183,14 +183,14 @@ NSString *const FBCommandSequenceEnterExcerption = @"x";
 	if (![_view shouldEnableMouse] || ![_view isConnected]) {
 		return YES;
 	}
-	
+
 	// Only update when BBS state has been changed
 	BBSState bbsState = [[_view frontMostTerminal] bbsState];
 	BBSState lastBbsState = [_manager lastBBSState];
 	if (bbsState.state == lastBbsState.state &&
 		bbsState.subState == lastBbsState.subState)
 		return NO;
-	
+
 	return YES;
 }
 
@@ -198,7 +198,7 @@ NSString *const FBCommandSequenceEnterExcerption = @"x";
 	// Clear & Update
 	[self clear];
 	if (![_view shouldEnableMouse] || ![_view isConnected]) {
-		return;	
+		return;
 	}
 	for (int r = 0; r < _maxRow; ++r) {
 		[self updateButtonAreaForRow:r];

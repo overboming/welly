@@ -18,13 +18,13 @@
 	}
 }
 
-+ (void)showPopUpMessage:(NSString*)message 
-				duration:(CGFloat)duration 
++ (void)showPopUpMessage:(NSString*)message
+				duration:(CGFloat)duration
 			  effectView:(WLEffectView *)effectView {
 	[effectView drawPopUpMessage:message];
 	_effectView = [effectView retain];
-	[NSTimer scheduledTimerWithTimeInterval:duration 
-									  target:self 
+	[NSTimer scheduledTimerWithTimeInterval:duration
+									  target:self
 									selector:@selector(hidePopUpMessage)
 									userInfo:nil
 									 repeats:NO];

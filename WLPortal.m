@@ -37,13 +37,13 @@ static const CGFloat colorValues[C_COUNT][4] = {
 + (CGColorRef)color:(int)name {
     static CGColorRef colors[C_COUNT];
     static CGColorSpaceRef space;
-    
+
     if (colors[name] == NULL) {
         if (space == NULL)
             space = CGColorSpaceCreateWithName(kCGColorSpaceGenericRGB);
         colors[name] = CGColorCreate(space, colorValues[name]);
     }
-    
+
     return colors[name];
 }
 
@@ -63,15 +63,15 @@ static const CGFloat colorValues[C_COUNT][4] = {
                                              selector:@selector(imageDidLoadNotification:)
                                                  name:desktopImageImageDidLoadNotification
                                                object:nil];
-    
+
     _layerDictionary = [[NSMapTable mapTableWithStrongToStrongObjects] retain];
-    
+
     // this enables a perspective transform.
     // The value of zDistance affects the sharpness of the transform
     float zDistance = 300.;
-    _sublayerTransform = CATransform3DIdentity; 
+    _sublayerTransform = CATransform3DIdentity;
     _sublayerTransform.m34 = 1. / -zDistance;
-    
+
     NSDictionary *textStyle = [NSDictionary dictionaryWithObjectsAndKeys:
         [NSNumber numberWithInteger:12], @"cornerRadius",
        // [NSValue valueWithSize:NSMakeSize(10, 0)], @"margin",
@@ -85,7 +85,7 @@ static const CGFloat colorValues[C_COUNT][4] = {
 							   [NSNumber numberWithFloat:12], @"fontSize",
 							   kCAAlignmentCenter, @"alignmentMode",
 							   nil];
-    
+
     // here we set up the hierarchy of layers.
     //   This means child/parent relationships as well as
     //   constraint (position) relationships.
@@ -103,15 +103,15 @@ static const CGFloat colorValues[C_COUNT][4] = {
     [_headerTextLayer addConstraint:[CAConstraint constraintWithAttribute:kCAConstraintMinX relativeTo:@"superlayer" attribute:kCAConstraintMinX]];
     [_headerTextLayer addConstraint:[CAConstraint constraintWithAttribute:kCAConstraintMaxX relativeTo:@"superlayer" attribute:kCAConstraintMaxX]];
     [_headerTextLayer addConstraint:[CAConstraint constraintWithAttribute:kCAConstraintMaxY relativeTo:@"superlayer" attribute:kCAConstraintMaxY offset:-20]];
-    [_headerTextLayer addConstraint:[CAConstraint constraintWithAttribute:kCAConstraintMinY relativeTo:@"header" attribute:kCAConstraintMaxY offset:-60]];	
+    [_headerTextLayer addConstraint:[CAConstraint constraintWithAttribute:kCAConstraintMinY relativeTo:@"header" attribute:kCAConstraintMaxY offset:-60]];
 	//[_headerTextLayer setBackgroundColor:CGColorCreateGenericRGB(1.0, 0, 0, 1.0f)];
 	_headerTextLayer.contentsGravity = @"kCAGravityCenter";
-	
+
 	_headerTextLayer.string = @"Loading...";
     _headerTextLayer.style = textStyle;
-    _headerTextLayer.wrapped = YES;	
+    _headerTextLayer.wrapped = YES;
 	[rootLayer addSublayer: _headerTextLayer];
-    
+
     // the background canvas on which we'll arrange the other layers
     CALayer *containerLayer = [CALayer layer];
     containerLayer.name = @"body";
@@ -121,7 +121,7 @@ static const CGFloat colorValues[C_COUNT][4] = {
     [containerLayer addConstraint:[CAConstraint constraintWithAttribute:kCAConstraintMaxY relativeTo:@"header" attribute:kCAConstraintMinY offset:-5]];
 	   // [containerLayer setBackgroundColor:CGColorCreateGenericRGB(1.0, 1.0, 1.0, 1.0f)];
 	[rootLayer addSublayer:containerLayer];
-    
+
     // the central scrolling layer; this will contain the images
     _bodyLayer = [CAScrollLayer layer];
     _bodyLayer.scrollMode = kCAScrollHorizontally;
@@ -132,7 +132,7 @@ static const CGFloat colorValues[C_COUNT][4] = {
     [_bodyLayer setValue:[NSValue valueWithSize:cellSize] forKey:@"desktopImageCellSize"];
 	//[_bodyLayer setBackgroundColor:CGColorCreateGenericRGB(1.0, 1.0, 1.0, 1.0f)];
     [containerLayer addSublayer:_bodyLayer];
-    
+
     // the footer containing status info...
     CALayer *statusLayer = [CALayer layer];
     statusLayer.name = @"status";
@@ -143,7 +143,7 @@ static const CGFloat colorValues[C_COUNT][4] = {
     [statusLayer addConstraint:[CAConstraint constraintWithAttribute:kCAConstraintMinY relativeTo:@"superlayer" attribute:kCAConstraintMinY offset:10]];
     [statusLayer addConstraint:[CAConstraint constraintWithAttribute:kCAConstraintMaxY relativeTo:@"status" attribute:kCAConstraintMinY offset:30]];
     [rootLayer addSublayer:statusLayer];
-    
+
     //...such as the image count
     _footerTextLayer = [CATextLayer layer];
     _footerTextLayer.name = @"footer";
@@ -160,7 +160,7 @@ static const CGFloat colorValues[C_COUNT][4] = {
     _imageSize = *(CGSize *)&cellSize;
     [self setLayer:rootLayer];
     [_bodyLayer setDelegate:self];
-    
+
     // create a gradient image to use for our image shadows
     CGRect r;
     r.origin = CGPointZero;
@@ -168,7 +168,7 @@ static const CGFloat colorValues[C_COUNT][4] = {
     size_t bytesPerRow = 4*r.size.width;
     void* bitmapData = malloc(bytesPerRow * r.size.height);
     CGContextRef context = CGBitmapContextCreate(bitmapData, r.size.width,
-                r.size.height, 8,  bytesPerRow, 
+                r.size.height, 8,  bytesPerRow,
                 CGColorSpaceCreateWithName(kCGColorSpaceGenericRGB), kCGImageAlphaPremultipliedFirst);
     NSGradient *gradient = [[NSGradient alloc] initWithStartingColor:[NSColor colorWithDeviceWhite:0 alpha:.2] endingColor:[NSColor colorWithDeviceWhite:0 alpha:1.]];
     NSGraphicsContext *nsContext = [NSGraphicsContext graphicsContextWithGraphicsPort:context flipped:YES];
@@ -180,7 +180,7 @@ static const CGFloat colorValues[C_COUNT][4] = {
     CGContextRelease(context);
     free(bitmapData);
     [gradient release];
-    
+
     // create a pleasant gradient mask around our central layer.
     // We don't have to worry about re-creating these when the window
     // size changes because the images will be automatically interpolated
@@ -194,7 +194,7 @@ static const CGFloat colorValues[C_COUNT][4] = {
     rightGradientLayer.name = @"rightGradient";
     CALayer *bottomGradientLayer = [CALayer layer];
     bottomGradientLayer.name = @"bottomGradient";
-    
+
     // left
     r.origin = CGPointZero;
     r.size.width = (int)([view frame].size.width + 0.5f);
@@ -203,7 +203,7 @@ static const CGFloat colorValues[C_COUNT][4] = {
     bytesPerRow = 4*r.size.width;
     bitmapData = malloc(bytesPerRow * r.size.height);
     context = CGBitmapContextCreate(bitmapData, r.size.width,
-                r.size.height, 8,  bytesPerRow, 
+                r.size.height, 8,  bytesPerRow,
                 CGColorSpaceCreateWithName(kCGColorSpaceGenericRGB), kCGImageAlphaPremultipliedFirst);
     gradient = [[NSGradient alloc] initWithStartingColor:[NSColor colorWithDeviceWhite:0. alpha:0.9] endingColor:[NSColor colorWithDeviceWhite:0. alpha:0]];
     nsContext = [NSGraphicsContext graphicsContextWithGraphicsPort:context flipped:YES];
@@ -216,11 +216,11 @@ static const CGFloat colorValues[C_COUNT][4] = {
     CGContextRelease(context);
     CGImageRelease(gradientImage);
     free(bitmapData);
-    
+
     // right
     bitmapData = malloc(bytesPerRow * r.size.height);
     context = CGBitmapContextCreate(bitmapData, r.size.width,
-                r.size.height, 8,  bytesPerRow, 
+                r.size.height, 8,  bytesPerRow,
                 CGColorSpaceCreateWithName(kCGColorSpaceGenericRGB), kCGImageAlphaPremultipliedFirst);
     nsContext = [NSGraphicsContext graphicsContextWithGraphicsPort:context flipped:YES];
     [NSGraphicsContext saveGraphicsState];
@@ -232,14 +232,14 @@ static const CGFloat colorValues[C_COUNT][4] = {
     CGContextRelease(context);
     CGImageRelease(gradientImage);
     free(bitmapData);
-    
+
     // bottom
     r.size.width = (int)([view frame].size.width + 0.5f);
     r.size.height = 10;
     bytesPerRow = 4*r.size.width;
     bitmapData = malloc(bytesPerRow * r.size.height);
     context = CGBitmapContextCreate(bitmapData, r.size.width,
-                r.size.height, 8,  bytesPerRow, 
+                r.size.height, 8,  bytesPerRow,
                 CGColorSpaceCreateWithName(kCGColorSpaceGenericRGB), kCGImageAlphaPremultipliedFirst);
     nsContext = [NSGraphicsContext graphicsContextWithGraphicsPort:context flipped:YES];
     [NSGraphicsContext saveGraphicsState];
@@ -252,7 +252,7 @@ static const CGFloat colorValues[C_COUNT][4] = {
     CGImageRelease(gradientImage);
     free(bitmapData);
     [gradient release];
-    
+
     // the autoresizing mask allows it to change shape with the parent layer
     maskLayer.autoresizingMask = kCALayerWidthSizable | kCALayerHeightSizable;
     maskLayer.layoutManager = [CAConstraintLayoutManager layoutManager];
@@ -268,9 +268,9 @@ static const CGFloat colorValues[C_COUNT][4] = {
     [bottomGradientLayer addConstraint:[CAConstraint constraintWithAttribute:kCAConstraintMinY relativeTo:@"superlayer" attribute:kCAConstraintMinY]];
     [bottomGradientLayer addConstraint:[CAConstraint constraintWithAttribute:kCAConstraintMinX relativeTo:@"superlayer" attribute:kCAConstraintMinX]];
     [bottomGradientLayer addConstraint:[CAConstraint constraintWithAttribute:kCAConstraintMaxY relativeTo:@"superlayer" attribute:kCAConstraintMinY offset:32]];
-    
+
     bottomGradientLayer.masksToBounds = YES;
-    
+
     [maskLayer addSublayer:rightGradientLayer];
     [maskLayer addSublayer:leftGradientLayer];
     [maskLayer addSublayer:bottomGradientLayer];
@@ -282,7 +282,7 @@ static const CGFloat colorValues[C_COUNT][4] = {
     [self performSelectorOnMainThread:@selector(loadCovers) withObject:nil waitUntilDone:NO];
     // restore last selection
     [self performSelectorOnMainThread:@selector(restoreSelection) withObject:nil waitUntilDone:NO];
-	
+
 	// register for dragged types
 	[self registerForDraggedTypes:[NSArray arrayWithObjects:NSFilenamesPboardType, nil]];
 	[pool release];
@@ -327,11 +327,11 @@ static const CGFloat colorValues[C_COUNT][4] = {
         [portalImage requestImageOfSize:size];
 }
 
-- (void)updateImage { 
+- (void)updateImage {
     CGRect visRect = [_bodyLayer visibleRect];
     PortalImageLayout *layout = [_bodyLayer layoutManager];
     NSPointerArray *indices = [layout imageIndicesOfLayer:_bodyLayer inRect:visRect];
-    
+
     if (indices != NULL) {
         for (NSUInteger i = 0; i < [indices count]; ++i) {
             NSUInteger idx = (NSUInteger)[indices pointerAtIndex:i];
@@ -355,7 +355,7 @@ static const CGFloat colorValues[C_COUNT][4] = {
     CALayer *layer = [self layerForImage:portalImage];
     if (layer == nil)
         return;
-    
+
     CGRect r = [layer frame];
     // we scroll so the selected image is centered, but the layout manager
     //   doesn't know about this--as far as it is concerned everything takes
@@ -363,7 +363,7 @@ static const CGFloat colorValues[C_COUNT][4] = {
     [CATransaction begin];
     [CATransaction setValue:[NSNumber numberWithFloat:0.275f]
                      forKey:kCATransactionAnimationDuration];
-    // TODO: It might be possible to change the timing function. 
+    // TODO: It might be possible to change the timing function.
     // Linear timing's effect is not quite satisfying.
     [_bodyLayer scrollToPoint:CGPointMake([layout positionOfSelectedImageInLayer:_bodyLayer], r.origin.y)];
     [CATransaction commit];
@@ -399,7 +399,7 @@ static const CGFloat colorValues[C_COUNT][4] = {
 
 - (YLSite *)siteAtIndex:(NSUInteger)index {
 	YLController *controller = [((YLApplication *)NSApp) controller];
-	return [controller objectInSitesAtIndex:index];	
+	return [controller objectInSitesAtIndex:index];
 }
 
 - (YLSite *)selectedSite {
@@ -438,22 +438,22 @@ static const CGFloat colorValues[C_COUNT][4] = {
         [_images addObject:image];
         [image release];
     }
-    
+
     size_t count = [_images count];
     id *values = malloc(count * sizeof (values[0]));
     [_images getObjects:values];
-    
+
     for (size_t i = 0; i < count; i++) {
         PortalImage *desktopImage = values[i];
         CALayer *desktopImageLayer = [self layerForImage:desktopImage];
-        
+
         if (desktopImageLayer == nil) {
             CALayer *layer = [CALayer layer];
 			desktopImageLayer = [CALayer layer];
             [_layerDictionary setObject:layer forKey:desktopImage];
-            
+
             [desktopImageLayer setDelegate:desktopImage];
-            
+
 			float gap = 30.0f;
             // default appearance - will persist until image loads
             CGRect r;
@@ -468,7 +468,7 @@ static const CGFloat colorValues[C_COUNT][4] = {
             [layer setSublayers:[NSArray arrayWithObject:desktopImageLayer]];
             [layer setSublayerTransform:_sublayerTransform];
             layer.name = @"desktopImageContainer";
-            
+
             // and the desktop image's reflection layer
             CALayer *sublayer = [CALayer layer];
             r.origin = CGPointMake(0, -r.size.height - gap + 1);
@@ -493,14 +493,14 @@ static const CGFloat colorValues[C_COUNT][4] = {
             [gradientLayer setContents:(id)_shadowImage];
             [gradientLayer setOpaque:NO];
             [sublayer addSublayer:gradientLayer];
-        }     
+        }
         [desktopImageLayer setValue:[NSNumber numberWithInt:i] forKey:desktopImageIndex];
         values[i] = [desktopImageLayer superlayer];
     }
-    
+
     _totalImages = count;
     [_bodyLayer setValue:[NSNumber numberWithInt:_totalImages] forKey:desktopImageCount];
-    
+
     [_bodyLayer setSublayers:[NSArray arrayWithObjects:values count:count]];
     free(values);
     //[_footerTextLayer setString:[NSString stringWithFormat:@"%d sites", _totalImages]];
@@ -545,7 +545,7 @@ static const CGFloat colorValues[C_COUNT][4] = {
 - (NSUInteger)indexAtPoint:(NSPoint)aPoint {
     CALayer *layer = [self layerAtPoint:aPoint];
     id image = [layer delegate];
-	
+
     // something weird; see below
     BOOL patch = NO;
     // image container
@@ -555,15 +555,15 @@ static const CGFloat colorValues[C_COUNT][4] = {
         patch = YES;
     }
     NSUInteger index = [_images indexOfObject:image];
-	
+
 	if (index == NSNotFound)
 		return NSNotFound;
-	
+
 	// ugly patch
 	if (patch) {
-		if (index > _selectedImageIndex) 
+		if (index > _selectedImageIndex)
 			--index;
-		else if (index < _selectedImageIndex) 
+		else if (index < _selectedImageIndex)
 			++index;
 	}
 	return index;
@@ -623,24 +623,24 @@ static const CGFloat colorValues[C_COUNT][4] = {
 	if (site == NULL)
 		return;
 	NSString *siteName = [site name];
-	
+
 	// Do not allow to drag & drop default image
 	if ([self portalImageFilePathForSite:siteName withExtention:YES] == nil)
 		return;
-	
+
     NSPoint p = [theEvent locationInWindow];
     p = [self convertPoint:p toView:nil];
-	
+
 	NSPasteboard *pboard = [NSPasteboard pasteboardWithName:NSDragPboard];
-	
+
 	[pboard declareTypes:[NSArray arrayWithObject: NSStringPboardType] owner:nil];
 	[pboard setString:siteName forType:NSStringPboardType];
 	NSImage *dragImage = [self imageForDraggingAtIndex:_clickedIndex];
 	[self dragImage:dragImage
 				 at:p
-			 offset:NSZeroSize 
-			  event:theEvent 
-		 pasteboard:pboard 
+			 offset:NSZeroSize
+			  event:theEvent
+		 pasteboard:pboard
 			 source:self
 		  slideBack:YES];
 	return;
@@ -649,27 +649,27 @@ static const CGFloat colorValues[C_COUNT][4] = {
 - (void)mouseUp:(NSEvent *)theEvent {
 	// Click on a cover
 	[[self window] makeFirstResponder:self];
-	
+
     NSPoint p = [theEvent locationInWindow];
     p = [self convertPoint:p toView:nil];
-	
+
 	[self clickAtPoint:p count:[theEvent clickCount]];
 }
 
 #pragma mark -
 #pragma mark Manage Portal Images
-- (NSString *)portalImageFilePathForSite:(NSString *)siteName 
+- (NSString *)portalImageFilePathForSite:(NSString *)siteName
 						   withExtention:(BOOL)withExtention {
 	NSFileManager *fileManager = [NSFileManager defaultManager];
 	// Create the dir if necessary
 	// by gtCarrera
-	NSString *destDir = [[[NSHomeDirectory() stringByAppendingPathComponent:@"Library"] 
-						  stringByAppendingPathComponent:@"Application Support"] 
+	NSString *destDir = [[[NSHomeDirectory() stringByAppendingPathComponent:@"Library"]
+						  stringByAppendingPathComponent:@"Application Support"]
 						 stringByAppendingPathComponent:@"Welly"];
 	[fileManager createDirectoryAtPath:destDir attributes:nil];
 	destDir = [destDir stringByAppendingPathComponent:@"Covers"];
 	[fileManager createDirectoryAtPath:destDir attributes:nil];
-	
+
 	NSString *destination = [destDir stringByAppendingPathComponent:siteName];
 	if (!withExtention)
 		return destination;
@@ -684,7 +684,7 @@ static const CGFloat colorValues[C_COUNT][4] = {
 
 - (void)removePortalPictureForSite:(NSString *)siteName {
 	NSFileManager *fileManager = [NSFileManager defaultManager];
-	
+
 	// Remove all existing picture for this site
 	NSArray *allowedTypes = supportedCoverExtensions;
 	for (NSString *ext in allowedTypes) {
@@ -698,10 +698,10 @@ static const CGFloat colorValues[C_COUNT][4] = {
 	[self removePortalPictureForSite:siteName];
 }
 
-- (void)addPortalPicture:(NSString *)source 
+- (void)addPortalPicture:(NSString *)source
 				 forSite:(NSString *)siteName {
 	NSFileManager *fileManager = [NSFileManager defaultManager];
-	
+
 	[self removePortalPictureForSite:siteName];
 	[fileManager copyItemAtPath:source toPath:[[self portalImageFilePathForSite:siteName withExtention:NO] stringByAppendingPathExtension:[source pathExtension]] error:NULL];
 	[(YLView *)_mainView resetPortal];
@@ -713,27 +713,27 @@ static const CGFloat colorValues[C_COUNT][4] = {
 	// Check if site is available
 	if ([self selectedSite] == NULL)
 		return NSDragOperationNone;
-	
-	// Need the delegate hooked up to accept the dragged item(s) into the model	
+
+	// Need the delegate hooked up to accept the dragged item(s) into the model
 	// Check pboard type
 	NSPasteboard *pboard = [sender draggingPasteboard];
-	
+
 	if (![[pboard types] containsObject:NSFilenamesPboardType])
 		return NSDragOperationNone;
-	
+
 	// Check file number. We only support drag one image file in.
 	NSArray *files = [pboard propertyListForType:NSFilenamesPboardType];
 	int numberOfFiles = [files count];
 	if (numberOfFiles != 1)
 		return NSDragOperationNone;
-	
+
 	// Check the file type
 	NSString *filename = [files objectAtIndex: 0];
 	NSString *suffix = [[filename componentsSeparatedByString:@"."] lastObject];
 	NSArray *suffixes = supportedCoverExtensions;
 	if ([filename hasSuffix: @"/"] || ![suffixes containsObject:[suffix lowercaseString]])
 		return NSDragOperationNone;;
-	
+
 	// Passed all check points
 	return NSDragOperationCopy;
 }
@@ -750,7 +750,7 @@ static const CGFloat colorValues[C_COUNT][4] = {
 
 //
 // drag a picture file into the portal view to change the cover picture
-// 
+//
 - (BOOL)performDragOperation:(id <NSDraggingInfo>)sender {
 	YLSite *site = [self selectedSite];
 	if (site == NULL)
@@ -758,18 +758,18 @@ static const CGFloat colorValues[C_COUNT][4] = {
 
 	NSPasteboard *pboard = [sender draggingPasteboard];
 
-	assert([[pboard types] containsObject:NSFilenamesPboardType]); 
-	
+	assert([[pboard types] containsObject:NSFilenamesPboardType]);
+
 	NSArray *files = [pboard propertyListForType:NSFilenamesPboardType];
 	assert([files count] == 1);
-	
+
 	// Copy the image file into the cover folder
 	NSString *filename = [files objectAtIndex: 0];
 	NSString *suffix = [[filename componentsSeparatedByString:@"."] lastObject];
 	NSArray *suffixes = supportedCoverExtensions;
 	assert(![filename hasSuffix: @"/"] && [suffixes containsObject:[suffix lowercaseString]]);
 	[self addPortalPicture:filename forSite:[site name]];
-	
+
     return YES;
 }
 
@@ -786,14 +786,14 @@ static const CGFloat colorValues[C_COUNT][4] = {
 		// If the cursor is inside the cover, we do not change the cursor
 		[[NSCursor arrowCursor] set];
 	} else {
-		// If the cursor get outside the cover, 
+		// If the cursor get outside the cover,
 		// we use the disappearing item cursor to represent the deleting operation
 		[[NSCursor disappearingItemCursor] set];
 	}
 }
 
-- (void)draggedImage:(NSImage *)image 
-			 endedAt:(NSPoint)screenPoint 
+- (void)draggedImage:(NSImage *)image
+			 endedAt:(NSPoint)screenPoint
 		   operation:(NSDragOperation)operation {
 	// Convert screen point to the coordination in '_clickedLayer'
 	screenPoint = [[self window] convertScreenToBase:screenPoint];

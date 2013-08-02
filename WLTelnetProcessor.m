@@ -10,8 +10,8 @@
 
 @implementation WLTelnetProcessor
 // Constructor
-- (id)initWithView:(YLView*)view 
-		 myTabView:(NSView*)tView 
+- (id)initWithView:(YLView*)view
+		 myTabView:(NSView*)tView
 		effectView:(WLEffectView*)eView {
 	if (self = [super init]) {
 		needResetPortal = NO;
@@ -31,13 +31,13 @@
 	// Decide whether to set or to reset the font size
 	CGFloat currRatio = (isEnteringFullScreen ? _screenRatio : (1.0f / _screenRatio));
 	// And do it..
-	[[YLLGlobalConfig sharedInstance] setEnglishFontSize: 
+	[[YLLGlobalConfig sharedInstance] setEnglishFontSize:
 	 [[YLLGlobalConfig sharedInstance] englishFontSize] * currRatio];
-	[[YLLGlobalConfig sharedInstance] setChineseFontSize: 
+	[[YLLGlobalConfig sharedInstance] setChineseFontSize:
 	 [[YLLGlobalConfig sharedInstance] chineseFontSize] * currRatio];
-	[[YLLGlobalConfig sharedInstance] setCellWidth: 
+	[[YLLGlobalConfig sharedInstance] setCellWidth:
 	 [[YLLGlobalConfig sharedInstance] cellWidth] * currRatio];
-	[[YLLGlobalConfig sharedInstance] setCellHeight: 
+	[[YLLGlobalConfig sharedInstance] setCellHeight:
 	 [[YLLGlobalConfig sharedInstance] cellHeight] * currRatio];
 }
 
@@ -48,13 +48,13 @@
 	CGFloat ratioH = screenRect.size.height / [_myView frame].size.height;
 	CGFloat ratioW = screenRect.size.width / [_myView frame].size.width;
 	_screenRatio = (ratioH > ratioW) ? ratioW : ratioH;
-	
+
 	// Set the effect view to screen size
 	_viewRect = [_effectView frame];
 
 	// Then, do the expansion
 	[self setFont:YES];
-	
+
 	// And reset portal if necessary...
 	if([_myView isInPortalMode]) {
 		[_myView resetPortal];
@@ -66,10 +66,10 @@
 	// Set the tab view back...
 	[[_myView superview] addSubview:_tabView];
 	//[[_myView superview] addSubview:_effectView];
-	
+
 	// And reset the font...
 	[self setFont:NO];
-	
+
 	// ...
 	if(needResetPortal || [_myView isInPortalMode]) {
 		[_myView resetPortal];

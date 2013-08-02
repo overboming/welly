@@ -27,15 +27,15 @@
     /* composeWindow */
     IBOutlet NSTextView *_composeText;
     IBOutlet NSPanel *_composeWindow;
-	
+
 	/* post download window */
 	IBOutlet NSPanel *_postWindow;
 	IBOutlet NSTextView *_postText;
-    
+
     /* password window */
     IBOutlet NSPanel *_passwordWindow;
     IBOutlet NSSecureTextField *_passwordField;
-	
+
     IBOutlet NSPanel *_sitesWindow;
     IBOutlet NSPanel *_emoticonsWindow;
     IBOutlet NSWindow *_mainWindow;
@@ -46,7 +46,7 @@
     IBOutlet id _mouseButton;
 	/*edited by overboming*/
 	IBOutlet id _autoNotifyButton;
-	
+
     IBOutlet YLView *_telnetView;
     IBOutlet WLTabBarControl *_tab;
     IBOutlet NSMenuItem *_detectDoubleByteMenuItem;
@@ -66,7 +66,7 @@
     IBOutlet NSMenuItem *_showHiddenTextMenuItem;
     IBOutlet NSMenuItem *_encodingMenuItem;
 	IBOutlet NSMenuItem *_fullScreenMenuItem;
-	
+
 	IBOutlet NSTextView *_unreadMessageTextView;
 
 	// Proxy
@@ -76,16 +76,16 @@
 	// Remote Control
 	RemoteControl *remoteControl;
 	MultiClickRemoteBehavior *remoteControlBehavior;
-	
+
 	// Full Screen
 	WLFullScreenController* _fullScreenController;
-	
+
 	// Timer test
 	NSTimer* _scrollTimer;
-    
+
     // RSS feed
     NSThread *_rssThread;
-	
+
 	// Auto Notify State
 	int _notifyOpen;
 	//hard code screen height
@@ -94,9 +94,9 @@
 	YLConnection *_watchConnection;
 	NSDockTile *docktile;
 }
-	
+
 	IBOutlet YLExifController *_exifController;
-	
+
 @property (readonly) YLView *telnetView;
 
 - (IBAction)setEncoding:(id)sender;
@@ -146,21 +146,21 @@
 - (NSArray *)sites;
 - (unsigned)countOfSites;
 - (id)objectInSitesAtIndex:(unsigned)index;
-- (void)getSites:(id *)objects 
+- (void)getSites:(id *)objects
 		   range:(NSRange)range;
-- (void)insertObject:(id)anObject 
+- (void)insertObject:(id)anObject
 	  inSitesAtIndex:(unsigned)index;
 - (void)removeObjectFromSitesAtIndex:(unsigned)index;
-- (void)replaceObjectInSitesAtIndex:(unsigned)index 
+- (void)replaceObjectInSitesAtIndex:(unsigned)index
 						 withObject:(id)anObject;
 
 // emoticons accessors
 - (NSArray *)emoticons;
 - (unsigned)countOfEmoticons;
 - (id)objectInEmoticonsAtIndex:(unsigned)theIndex;
-- (void)getEmoticons:(id *)objsPtr 
+- (void)getEmoticons:(id *)objsPtr
 			   range:(NSRange)range;
-- (void)insertObject:(id)obj 
+- (void)insertObject:(id)obj
   inEmoticonsAtIndex:(unsigned)theIndex;
 - (void)removeObjectFromEmoticonsAtIndex:(unsigned)theIndex;
 - (void)replaceObjectInEmoticonsAtIndex:(unsigned)theIndex withObject:(id)obj;
@@ -184,8 +184,8 @@
 // for portal
 - (IBAction)browseImage:(id)sender;
 - (IBAction)removeSiteImage:(id)sender;
-- (void)openPanelDidEnd:(NSOpenPanel *)sheet 
-			 returnCode:(int)returnCode 
+- (void)openPanelDidEnd:(NSOpenPanel *)sheet
+			 returnCode:(int)returnCode
 			contextInfo:(void *)contextInfo;
 
 // for resotre

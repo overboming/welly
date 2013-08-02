@@ -13,7 +13,7 @@
 // suppress warnings
 @interface PSMTabBarControl ()
 - (NSArray *)cells;
-- (id)cellForPoint:(NSPoint)mousePt 
+- (id)cellForPoint:(NSPoint)mousePt
 		 cellFrame:(NSRect *)cellFrame;
 - (void)closeTabClick:(id)sender;
 @end
@@ -37,38 +37,38 @@
     [super mouseDown:theEvent];
 }
 
-// Respond to key equivalent: 
+// Respond to key equivalent:
 // Cmd+[0-9], Ctrl+Tab, Cmd+Shift+Left/Right (I don't know if we should keep this)
 // Added by K.O.ed, 2009.02.02
 - (BOOL)performKeyEquivalent:(NSEvent *)event {
 	//NSLog(@"XITabBarControl performKeyEquivalent:");
-	if ((([event modifierFlags] & NSCommandKeyMask) == NSCommandKeyMask) && 
+	if ((([event modifierFlags] & NSCommandKeyMask) == NSCommandKeyMask) &&
 		(([event modifierFlags] & NSShiftKeyMask) == NSShiftKeyMask) &&
 		[[event charactersIgnoringModifiers] isEqualToString:keyStringLeft] ) {
 		[self selectPreviousTabViewItem:self];
 		return YES;
-	} else if ((([event modifierFlags] & NSCommandKeyMask) == NSCommandKeyMask) && 
+	} else if ((([event modifierFlags] & NSCommandKeyMask) == NSCommandKeyMask) &&
 			   (([event modifierFlags] & NSShiftKeyMask) == NSShiftKeyMask) &&
 			   [[event charactersIgnoringModifiers] isEqualToString:keyStringRight] ) {
 		[self selectNextTabViewItem:self];
 		return YES;
-	} else if (([event modifierFlags] & NSCommandKeyMask) == NSCommandKeyMask && 
-			   ([event modifierFlags] & NSAlternateKeyMask) == 0 && 
-			   ([event modifierFlags] & NSControlKeyMask) == 0 && 
-			   ([event modifierFlags] & NSShiftKeyMask) == 0 && 
-			   [[event characters] intValue] > 0 && 
+	} else if (([event modifierFlags] & NSCommandKeyMask) == NSCommandKeyMask &&
+			   ([event modifierFlags] & NSAlternateKeyMask) == 0 &&
+			   ([event modifierFlags] & NSControlKeyMask) == 0 &&
+			   ([event modifierFlags] & NSShiftKeyMask) == 0 &&
+			   [[event characters] intValue] > 0 &&
 			   [[event characters] intValue] < 10) {
 		[self selectTabViewItemAtIndex:([[event characters] intValue]-1)];
 		return YES;
-	} else if (([event modifierFlags] & NSCommandKeyMask) == 0 && 
-			   ([event modifierFlags] & NSAlternateKeyMask) == 0 && 
-			   ([event modifierFlags] & NSControlKeyMask) == NSControlKeyMask && 
-			   ([event modifierFlags] & NSShiftKeyMask) == 0 && 
+	} else if (([event modifierFlags] & NSCommandKeyMask) == 0 &&
+			   ([event modifierFlags] & NSAlternateKeyMask) == 0 &&
+			   ([event modifierFlags] & NSControlKeyMask) == NSControlKeyMask &&
+			   ([event modifierFlags] & NSShiftKeyMask) == 0 &&
 			   [[event characters] characterAtIndex:0] == '\t') {
 		[self selectNextTabViewItem:self];
 		return YES;
 	}
-    
+
 	return NO;
 }
 

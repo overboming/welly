@@ -23,10 +23,10 @@
     NSInteger _totalImages, _selectedImageIndex;
 
     NSMapTable *_layerDictionary;
-	
+
 	// test...
 	NSView *_mainView;
-	
+
 	NSUInteger _clickedIndex;
 	CALayer *_clickedLayer;
 }
@@ -38,12 +38,12 @@
 - (void)moveSelection:(int)dx;
 - (void)select;
 - (YLSite *)selectedSite;
-- (void)clickAtPoint:(NSPoint)aPoint 
+- (void)clickAtPoint:(NSPoint)aPoint
 			   count:(NSUInteger)count;
 
-- (void)addPortalPicture:(NSString *)source 
+- (void)addPortalPicture:(NSString *)source
 				 forSite:(NSString *)siteName;
 
-- (NSString *)portalImageFilePathForSite:(NSString *)siteName 
+- (NSString *)portalImageFilePathForSite:(NSString *)siteName
 						   withExtention:(BOOL)withExtention;
 @end

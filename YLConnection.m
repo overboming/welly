@@ -69,7 +69,7 @@
 
 - (void)setConnected:(BOOL)value {
     _connected = value;
-    if (_connected) 
+    if (_connected)
         [self setIcon:[NSImage imageNamed:@"online.pdf"]];
     else {
         [self resetMessageCount];
@@ -98,12 +98,12 @@
     //[self login];
 }
 
-- (void)protocolDidRecv:(id)protocol 
+- (void)protocolDidRecv:(id)protocol
 				   data:(NSData*)data {
 	[_feeder feedData:data connection:self];
 }
 
-- (void)protocolWillSend:(id)protocol 
+- (void)protocolWillSend:(id)protocol
 					data:(NSData*)data {
     [self setLastTouchDate];
 }
@@ -131,7 +131,7 @@
     [_protocol send:msg];
 }
 
-- (void)sendBytes:(const void *)buf 
+- (void)sendBytes:(const void *)buf
 		   length:(NSInteger)length {
     NSData *data = [[NSData alloc] initWithBytes:buf length:length];
     [self sendMessage:data];
@@ -142,11 +142,11 @@
     [self sendText:s withDelay:0];
 }
 
-- (void)sendText:(NSString *)text 
+- (void)sendText:(NSString *)text
 	   withDelay:(int)microsecond {
     NSAutoreleasePool *pool = [NSAutoreleasePool new];
 
-    // replace all '\n' with '\r' 
+    // replace all '\n' with '\r'
     NSString *s = [text stringByReplacingOccurrencesOfString:@"\n" withString:@"\r"];
 
     // translate into proper encoding of the site
@@ -191,7 +191,7 @@
 
 - (void)login {
 	NSAutoreleasePool *pool = [NSAutoreleasePool new];
-	
+
     NSString *addr = [_site address];
     const char *account = [addr UTF8String];
     // telnet; send username
@@ -217,7 +217,7 @@
     const char *service = "Welly";
     UInt32 len = 0;
     void *pass = 0;
-	
+
     SecKeychainFindGenericPassword(nil,
         strlen(service), service,
         strlen(account), account,
@@ -228,7 +228,7 @@
         [self sendBytes:"\r" length:1];
         SecKeychainItemFreeContent(nil, pass);
     }
-	
+
 	[pool release];
 }
 
@@ -238,9 +238,9 @@
 	// increase the '_messageCount' by 'value'
 	if (value <= 0)
 		return;
-	
+
 	YLLGlobalConfig *config = [YLLGlobalConfig sharedInstance];
-	
+
 	// we should let the icon on the deck bounce
 	[NSApp requestUserAttention: ([config shouldRepeatBounce] ? NSCriticalRequest : NSInformationalRequest)];
 	[config setMessageCount:[config messageCount] + value];
@@ -252,7 +252,7 @@
 	// reset '_messageCount' to zero
 	if (_messageCount <= 0)
 		return;
-	
+
 	YLLGlobalConfig *config = [YLLGlobalConfig sharedInstance];
 	[config setMessageCount:[config messageCount] - _messageCount];
 	_messageCount = 0;

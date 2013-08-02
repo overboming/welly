@@ -78,15 +78,15 @@ NSString *const WLMenuTitleAddAsFriend = @"Add %@ as friend";
 	NSString *author = [_manager.activeTrackingAreaUserInfo objectForKey:WLMouseAuthorUserInfoName];
 	if (author == nil)
 		return nil;
-	
+
 	[menu addItemWithTitle:[NSString stringWithFormat:NSLocalizedString(WLMenuTitleAuthorInfo, @"Contextual Menu"), author]
 					action:@selector(authorInfo:)
 			 keyEquivalent:@""];
-	
+
 	[menu addItemWithTitle:[NSString stringWithFormat:NSLocalizedString(WLMenuTitleAddAsFriend, @"Contextual Menu"), author]
 					action:@selector(addAsFriend:)
 			 keyEquivalent:@""];
-	
+
 	for (NSMenuItem *item in [menu itemArray]) {
 		if ([item isSeparatorItem])
 			continue;
@@ -98,9 +98,9 @@ NSString *const WLMenuTitleAddAsFriend = @"Add %@ as friend";
 
 #pragma mark -
 #pragma mark Update State
-- (void)addAuthorArea:(NSString *)author 
-				  row:(int)row 
-			   column:(int)column 
+- (void)addAuthorArea:(NSString *)author
+				  row:(int)row
+			   column:(int)column
 			   length:(int)length {
 	NSRect rect = [_view rectAtRow:row column:column height:1 width:length];
 	// Generate User Info
@@ -115,20 +115,20 @@ NSString *const WLMenuTitleAddAsFriend = @"Add %@ as friend";
 	// TODO: enable this for Maple BBS
 	if ([[_view frontMostTerminal] bbsType] == WLMaple)
 		return;
-	
+
 	YLTerminal *ds = [_view frontMostTerminal];
     cell *currRow = [ds cellsOfRow:r];
-	
+
 	if ([ds bbsState].state == BBSBrowseBoard || [ds bbsState].state == BBSMailList) {
         // browsing a board
 		// header/footer
 		if (r < 3 || r == _maxRow - 1)
 			return;
-		
+
 		int start = -1, end = -1;
 		unichar textBuf[_maxColumn + 1];
 		int bufLength = 0;
-		
+
         // don't check the first two columns ("●" may be used as cursor)
         for (int i = 2; i < _maxColumn - 1; ++i) {
 			int db = currRow[i].attr.f.doubleByte;
@@ -162,10 +162,10 @@ NSString *const WLMenuTitleAddAsFriend = @"Add %@ as friend";
 				}
 			}
 		}
-		
+
 		if (start == -1)
 			return;
-		
+
 		[self addAuthorArea:[NSString stringWithCharacters:textBuf length:bufLength]
 						row:r
 					 column:start
@@ -175,9 +175,9 @@ NSString *const WLMenuTitleAddAsFriend = @"Add %@ as friend";
 
 - (BOOL)shouldUpdate {
 	if (![_view shouldEnableMouse] || ![_view isConnected]) {
-		return YES;	
+		return YES;
 	}
-	
+
 	// In the same page, do NOT update
 	YLTerminal *ds = [_view frontMostTerminal];
 	BBSState bbsState = [ds bbsState];
@@ -190,9 +190,9 @@ NSString *const WLMenuTitleAddAsFriend = @"Add %@ as friend";
 - (void)update {
 	[self clear];
 	if (![_view shouldEnableMouse] || ![_view isConnected]) {
-		return;	
+		return;
 	}
-	
+
 	BBSState bbsState = [[_view frontMostTerminal] bbsState];
 	if (bbsState.state != BBSBrowseBoard && bbsState.state != BBSMailList)
 		return;

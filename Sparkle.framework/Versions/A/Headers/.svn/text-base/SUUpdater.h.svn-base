@@ -16,7 +16,7 @@
 @interface SUUpdater : NSObject {
 	NSTimer *checkTimer;
 	SUUpdateDriver *driver;
-	
+
 	NSBundle *hostBundle;
 	IBOutlet id delegate;
 }

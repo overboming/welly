@@ -22,8 +22,8 @@
 }
 
 // Constructor
-- (id)initWithView:(YLView*)view 
-		 myTabView:(NSView*)tView 
+- (id)initWithView:(YLView*)view
+		 myTabView:(NSView*)tView
 		effectView:(WLEffectView*)eView;
 
 // Overrided functions

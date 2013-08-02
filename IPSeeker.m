@@ -54,7 +54,7 @@ NSString* L(NSString* key) {
 					[m_file release];
 					m_file = nil;
 				}
-			}			
+			}
 		}
 	}
 	return self;
@@ -77,7 +77,7 @@ NSString* L(NSString* key) {
 - (NSString*)getLocation:(const char*)ip locationOnly:(BOOL)locationOnly {
 	if(m_file == nil)
 		return L(@"LQIPBadFile");
-	
+
 	NSString* ipStr = [NSString stringWithFormat:@"%d.%d.%d.%d", ip[0] & 0xFF, ip[1] & 0xFF, ip[2] & 0xFF, ip[3] & 0xFF];
 	NSString* loc = [m_cache objectForKey:ipStr];
 	if(loc == nil) {
@@ -89,7 +89,7 @@ NSString* L(NSString* key) {
 			loc = [NSString stringWithFormat:@"%@ %@", L(@"LQCountryUnknown"), L(@"LQAreaUnknown")];
 	} else
 		loc = [m_cache objectForKey:ipStr];
-	
+
 	if(locationOnly)
 		return loc;
 	else
@@ -99,23 +99,23 @@ NSString* L(NSString* key) {
 - (NSString*)getLocationByOffset:(unsigned long long)offset {
 	if(m_file == nil)
 		return L(@"LQIPBadFile");
-	
+
 	NSString* country;
 	NSString* area;
-	
+
 	// skip 4 bytes ip
 	[m_file seekToFileOffset:(offset + 4)];
-	
+
 	// check whether first byte is a flag byte
 	NSData* data = [m_file readDataOfLength:1];
 	char byte = ((const char*)[data bytes])[0];
 	if(byte == REDIRECT_MODE_1) {
 		// read offset of country
 		UInt32 countryOffset = [self readInt3];
-		
+
 		// skip to country
 		[m_file seekToFileOffset:countryOffset];
-		
+
 		// check first byte again because it could still be flag byte
 		data = [m_file readDataOfLength:1];
 		byte = ((const char*)[data bytes])[0];
@@ -124,7 +124,7 @@ NSString* L(NSString* key) {
 			[m_file seekToFileOffset:(countryOffset + 4)];
 		} else
 			country = [self readString:countryOffset];
-		
+
 		// read area
 		area = [self readArea:[m_file offsetInFile]];
 	} else if(byte == REDIRECT_MODE_2) {
@@ -134,7 +134,7 @@ NSString* L(NSString* key) {
 		country = [self readString:([m_file offsetInFile] - 1)];
 		area = [self readArea:[m_file offsetInFile]];
 	}
-	
+
 	return [NSString stringWithFormat:@"%@ %@", country, area];
 }
 
@@ -155,14 +155,14 @@ NSString* L(NSString* key) {
 		return 1;
 	else if((b1 ^ b2) == 0)
 		return 0;
-	else 
+	else
 		return -1;
 }
 
 - (UInt32)getMiddleOffset:(UInt32)begin end:(UInt32)end {
 	UInt32 records = (end - begin) / IP_RECORD_LENGTH;
 	records >>= 1;
-	if(records == 0) 
+	if(records == 0)
 		records = 1;
 	return begin + records * IP_RECORD_LENGTH;
 }
@@ -170,15 +170,15 @@ NSString* L(NSString* key) {
 - (UInt32)locateIP:(const char*)ip {
 	UInt32 m = 0;
 	int r;
-	
+
 	// compare first entry
 	NSData* ipData = [self readIP:m_indexBegin];
 	r = [self compareIP:ip withIP:(const char*)[ipData bytes]];
-	if(r == 0) 
+	if(r == 0)
 		return m_indexBegin;
-	else if(r < 0) 
+	else if(r < 0)
 		return -1;
-	
+
 	// binary search
 	for(UInt32 i = m_indexBegin, j = m_indexEnd; i < j; ) {
 		m = [self getMiddleOffset:i end:j];
@@ -191,20 +191,20 @@ NSString* L(NSString* key) {
 			if(m == j) {
 				j -= IP_RECORD_LENGTH;
 				m = j;
-			} else 
+			} else
 				j = m;
 		} else
 			return [self readInt3:(m + 4)];
 	}
-	
+
 	// if loop is end, the i equals j and i points most possible record
 	// but not sure, so we need a check
 	m = [self readInt3:(m + 4)];
 	ipData = [self readIP:m];
 	r = [self compareIP:ip withIP:(const char*)[ipData bytes]];
-	if(r <= 0) 
+	if(r <= 0)
 		return m;
-	else 
+	else
 		return -1;
 }
 
@@ -271,8 +271,8 @@ NSString* L(NSString* key) {
 		}
 		else
 			return [self readString:offset];
-	} 
-	
+	}
+
 	return @"";
 }
 

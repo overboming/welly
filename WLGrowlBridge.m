@@ -12,7 +12,7 @@
 
 typedef struct WLClickContext {
     id context, identifier;
-    SEL selector; 
+    SEL selector;
 }WLClickContext;
 
 @implementation WLGrowlBridge

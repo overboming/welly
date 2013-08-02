@@ -14,15 +14,15 @@
 	// Object to resize the target view and its super view
 	// This design follows the strategy pattern...
 	WLFullScreenProcessor * _processor;
-	
+
 	// The views necessary for full screen and reset
 	NSView * _targetView;
 	NSView * _superView;
-	
+
 	// NSWindows needed...
 	NSWindow* _fullScreenWindow;
 	NSWindow* _originalWindow;
-	
+
 	// State variable
 	BOOL _isInFullScreen;
 }
@@ -30,11 +30,11 @@
 @property (readwrite, retain) WLFullScreenProcessor *processor;
 
 // Init functions
-- (id)initWithProcessor:(WLFullScreenProcessor*)pro 
-			 targetView:(NSView*)tview 
+- (id)initWithProcessor:(WLFullScreenProcessor*)pro
+			 targetView:(NSView*)tview
 			  superView:(NSView*)sview
 		 originalWindow:(NSWindow*)owin;
-- (id)initWithTargetView:(NSView*)tview 
+- (id)initWithTargetView:(NSView*)tview
 				 superView:(NSView*)sview
 			originalWindow:(NSWindow*)owin;
 // Handle functions

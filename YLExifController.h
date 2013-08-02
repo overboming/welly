@@ -15,7 +15,7 @@
     IBOutlet NSTextField *model;
     IBOutlet NSTextField *date;
     IBOutlet NSPanel     *exifPanel;
-    
+
     NSDictionary *exifData;
     NSString *isoSpeed;
     NSString *exposureTime;

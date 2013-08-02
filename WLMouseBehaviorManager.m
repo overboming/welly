@@ -47,7 +47,7 @@ const float WLHorizontalScrollReactivateTimeInteval = 1.0;
 - (id)initWithView:(YLView *)view {
 	[self init];
 	_view = view;
-	
+
 	_handlers = [[NSMutableArray alloc] initWithObjects:
 				 [[WLIPAddrHotspotHandler alloc] initWithManager:self],
 				 [[WLClickEntryHotspotHandler alloc] initWithManager:self],
@@ -57,12 +57,12 @@ const float WLHorizontalScrollReactivateTimeInteval = 1.0;
 				 [[WLAuthorAreaHotspotHandler alloc] initWithManager:self],
 				 nil];
 	_horizontalScrollReactivateTimer = [NSTimer scheduledTimerWithTimeInterval:WLHorizontalScrollReactivateTimeInteval
-																		target:self 
+																		target:self
 																	  selector:@selector(reactiveHorizontalScroll:)
 																	  userInfo:nil
 																	   repeats:YES];
 	_lastHorizontalScrollDirection = WLHorizontalScrollNone;
-	
+
 	_lastBBSState.state = BBSUnknown;
 	_lastCursorRow = -1;
 	return self;
@@ -91,7 +91,7 @@ const float WLHorizontalScrollReactivateTimeInteval = 1.0;
 		if (!userInfo)
 			return;
 		WLMouseHotspotHandler *handler = [userInfo valueForKey:WLMouseHandlerUserInfoName];
-		[handler mouseEntered:theEvent];		
+		[handler mouseEntered:theEvent];
 	}
 }
 
@@ -103,7 +103,7 @@ const float WLHorizontalScrollReactivateTimeInteval = 1.0;
 		if (!userInfo)
 			return;
 		WLMouseHotspotHandler *handler = [userInfo valueForKey:WLMouseHandlerUserInfoName];
-		[handler mouseExited:theEvent];	
+		[handler mouseExited:theEvent];
 	}
 }
 
@@ -134,7 +134,7 @@ const float WLHorizontalScrollReactivateTimeInteval = 1.0;
 			[handler mouseUp:theEvent];
 		return;
 	}
-	
+
 	if ([[_view frontMostTerminal] bbsState].state == BBSWaitingEnter) {
 		[_view sendText:termKeyEnter];
 	}
@@ -166,13 +166,13 @@ const float WLHorizontalScrollReactivateTimeInteval = 1.0;
 		WLMouseHotspotHandler *handler = [_activeTrackingAreaUserInfo valueForKey:WLMouseHandlerUserInfoName];
 		if ([handler conformsToProtocol:@protocol(WLContextualMenuHandler)])
 			return [(NSObject <WLContextualMenuHandler> *)handler menuForEvent:theEvent];
-	} 
+	}
 	if (_backgroundTrackingAreaUserInfo) {
 		WLMouseHotspotHandler *handler = [_backgroundTrackingAreaUserInfo valueForKey:WLMouseHandlerUserInfoName];
 		if ([handler conformsToProtocol:@protocol(WLContextualMenuHandler)])
 			return [(NSObject <WLContextualMenuHandler> *)handler menuForEvent:theEvent];
 	}
-	
+
 	return nil;
 }
 
@@ -183,21 +183,21 @@ const float WLHorizontalScrollReactivateTimeInteval = 1.0;
 	return [_view mouse:mousePos inRect:rect];
 }
 
-- (NSTrackingArea *)addTrackingAreaWithRect:(NSRect)rect 
+- (NSTrackingArea *)addTrackingAreaWithRect:(NSRect)rect
 								   userInfo:(NSDictionary *)userInfo {
-	NSTrackingArea *area = [[NSTrackingArea alloc] initWithRect:rect 
+	NSTrackingArea *area = [[NSTrackingArea alloc] initWithRect:rect
 														options:(  NSTrackingMouseEnteredAndExited
 																 | NSTrackingMouseMoved
-																 | NSTrackingActiveInActiveApp) 
+																 | NSTrackingActiveInActiveApp)
 														  owner:self
 													   userInfo:userInfo];
 	[_view addTrackingArea:area];
 	if ([self isMouseInsideRect:rect]) {
-		NSEvent *event = [NSEvent enterExitEventWithType:NSMouseEntered 
-												location:[NSEvent mouseLocation] 
-										   modifierFlags:NSMouseEnteredMask 
+		NSEvent *event = [NSEvent enterExitEventWithType:NSMouseEntered
+												location:[NSEvent mouseLocation]
+										   modifierFlags:NSMouseEnteredMask
 											   timestamp:0
-											windowNumber:[[_view window] windowNumber] 
+											windowNumber:[[_view window] windowNumber]
 												 context:nil
 											 eventNumber:0
 										  trackingNumber:(NSInteger)area
@@ -207,8 +207,8 @@ const float WLHorizontalScrollReactivateTimeInteval = 1.0;
 	return area;
 }
 
-- (NSTrackingArea *)addTrackingAreaWithRect:(NSRect)rect 
-								   userInfo:(NSDictionary *)userInfo 
+- (NSTrackingArea *)addTrackingAreaWithRect:(NSRect)rect
+								   userInfo:(NSDictionary *)userInfo
 									 cursor:(NSCursor *)cursor {
 	[_view addCursorRect:rect cursor:cursor];
 	return [self addTrackingAreaWithRect:rect userInfo:userInfo];
@@ -217,11 +217,11 @@ const float WLHorizontalScrollReactivateTimeInteval = 1.0;
 - (void)removeTrackingArea:(NSTrackingArea *)area {
 	NSRect rect = [area rect];
 	if ([self isMouseInsideRect:rect]) {
-		NSEvent *event = [NSEvent enterExitEventWithType:NSMouseExited 
-												location:[NSEvent mouseLocation] 
-										   modifierFlags:NSMouseExitedMask 
+		NSEvent *event = [NSEvent enterExitEventWithType:NSMouseExited
+												location:[NSEvent mouseLocation]
+										   modifierFlags:NSMouseExitedMask
 											   timestamp:0
-											windowNumber:[[_view window] windowNumber] 
+											windowNumber:[[_view window] windowNumber]
 												 context:nil
 											 eventNumber:0
 										  trackingNumber:(NSInteger)area

@@ -24,7 +24,7 @@
 	NSFileHandle* m_file;
 	UInt32 m_indexBegin;
 	UInt32 m_indexEnd;
-	
+
 	// cache
 	NSMutableDictionary* m_cache;
 }

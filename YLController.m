@@ -63,22 +63,22 @@ const NSTimeInterval DEFAULT_CLICK_TIME_DIFFERENCE = 0.25;	// for remote control
 }
 
 - (void)awakeFromNib {
-	
+
 	_notifyOpen = 0;
-	
+
     // Register URL
     [[NSAppleEventManager sharedAppleEventManager] setEventHandler:self andSelector:@selector(getUrl:withReplyEvent:) forEventClass:kInternetEventClass andEventID:kAEGetURL];
-    
-    NSArray *observeKeys = [NSArray arrayWithObjects:@"shouldSmoothFonts", @"showHiddenText", @"messageCount", @"cellWidth", @"cellHeight", 
+
+    NSArray *observeKeys = [NSArray arrayWithObjects:@"shouldSmoothFonts", @"showHiddenText", @"messageCount", @"cellWidth", @"cellHeight",
                             @"chineseFontName", @"chineseFontSize", @"chineseFontPaddingLeft", @"chineseFontPaddingBottom",
-                            @"englishFontName", @"englishFontSize", @"englishFontPaddingLeft", @"englishFontPaddingBottom", 
+                            @"englishFontName", @"englishFontSize", @"englishFontPaddingLeft", @"englishFontPaddingBottom",
                             @"colorBlack", @"colorBlackHilite", @"colorRed", @"colorRedHilite", @"colorGreen", @"colorGreenHilite",
-                            @"colorYellow", @"colorYellowHilite", @"colorBlue", @"colorBlueHilite", @"colorMagenta", @"colorMagentaHilite", 
+                            @"colorYellow", @"colorYellowHilite", @"colorBlue", @"colorBlueHilite", @"colorMagenta", @"colorMagentaHilite",
                             @"colorCyan", @"colorCyanHilite", @"colorWhite", @"colorWhiteHilite", @"colorBG", @"colorBGHilite", nil];
     for (NSString *key in observeKeys)
         [[YLLGlobalConfig sharedInstance] addObserver:self
                                            forKeyPath:key
-                                              options:(NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew) 
+                                              options:(NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew)
                                               context:nil];
 
     // tab control style
@@ -89,11 +89,11 @@ const NSTimeInterval DEFAULT_CLICK_TIME_DIFFERENCE = 0.25;	// for remote control
     [[_tab addTabButton] setTarget:self];
     [[_tab addTabButton] setAction:@selector(newTab:)];
     _telnetView = (YLView *)[_tab tabView];
-	
+
     // Trigger the KVO to update the information properly.
     [[YLLGlobalConfig sharedInstance] setShowsHiddenText:[[YLLGlobalConfig sharedInstance] showsHiddenText]];
     [[YLLGlobalConfig sharedInstance] setCellWidth:[[YLLGlobalConfig sharedInstance] cellWidth]];
-    
+
     [self loadSites];
     [self updateSitesMenu];
     [self loadEmoticons];
@@ -102,19 +102,19 @@ const NSTimeInterval DEFAULT_CLICK_TIME_DIFFERENCE = 0.25;	// for remote control
     [_mainWindow setOpaque:NO];
 
     [_mainWindow setFrameAutosaveName:@"wellyMainWindowFrame"];
-    
+
     [NSTimer scheduledTimerWithTimeInterval:120 target:self selector:@selector(antiIdle:) userInfo:nil repeats:YES];
     [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateBlinkTicker:) userInfo:nil repeats:YES];
-	NSInteger num = [[NSUserDefaults standardUserDefaults] integerForKey:WLAutoNotifyPeekIntervalKeyName]; 
+	NSInteger num = [[NSUserDefaults standardUserDefaults] integerForKey:WLAutoNotifyPeekIntervalKeyName];
 	[NSTimer scheduledTimerWithTimeInterval:num target:self selector:@selector(watchChange:) userInfo:nil repeats:YES];
 	docktile = [NSApp dockTile];
-	
+
     // post download
     [_postText setFont:[NSFont fontWithName:@"Monaco" size:12]];
 	// set remote control
 	if([[NSUserDefaults standardUserDefaults] boolForKey:@"RemoteSupport"]) {
 		// 1. instantiate the desired behavior for the remote control device
-		remoteControlBehavior = [[MultiClickRemoteBehavior alloc] init];	
+		remoteControlBehavior = [[MultiClickRemoteBehavior alloc] init];
 		// 2. configure the behavior
 		[remoteControlBehavior setDelegate:self];
 		[remoteControlBehavior setClickCountingEnabled:YES];
@@ -124,7 +124,7 @@ const NSTimeInterval DEFAULT_CLICK_TIME_DIFFERENCE = 0.25;	// for remote control
 		//    Therefore you can enable or disable all the devices of the container with a single "startListening:" call.
 		NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
 		RemoteControlContainer *container = [[RemoteControlContainer alloc] initWithDelegate: remoteControlBehavior];
-		[container instantiateAndAddRemoteControlDeviceWithClass:[AppleRemote class]];	
+		[container instantiateAndAddRemoteControlDeviceWithClass:[AppleRemote class]];
 		[container instantiateAndAddRemoteControlDeviceWithClass:[KeyspanFrontRowControl class]];
 		// to give the binding mechanism a chance to see the change of the attribute
 		[self setValue:container forKey:@"remoteControl"];
@@ -133,11 +133,11 @@ const NSTimeInterval DEFAULT_CLICK_TIME_DIFFERENCE = 0.25;	// for remote control
 		[pool release];
 	}
 	// For full screen, initiallize the full screen controller
-	_fullScreenController = [[WLFullScreenController alloc] 
-							 initWithTargetView:_telnetView 
-							 superView:[_telnetView superview] 
+	_fullScreenController = [[WLFullScreenController alloc]
+							 initWithTargetView:_telnetView
+							 superView:[_telnetView superview]
 							 originalWindow:_mainWindow];
-	
+
     // drag & drop in site view
     [_tableView registerForDraggedTypes:[NSArray arrayWithObject:SiteTableViewDataType]];
 
@@ -145,11 +145,11 @@ const NSTimeInterval DEFAULT_CLICK_TIME_DIFFERENCE = 0.25;	// for remote control
     // the switch
     [self tabViewDidChangeNumberOfTabViewItems:_telnetView];
 	[_tab setMainController:[self retain]];
-    
+
     // restore connections
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:WLRestoreConnectionKeyName]) 
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:WLRestoreConnectionKeyName])
         [self loadLastConnections];
-	
+
 	// Ask window to receive mouseMoved
 	[_mainWindow setAcceptsMouseMovedEvents:YES];
 }
@@ -167,7 +167,7 @@ const NSTimeInterval DEFAULT_CLICK_TIME_DIFFERENCE = 0.25;	// for remote control
     for (int j = i; j < total; j++) {
         [[_sitesMenu submenu] removeItemAtIndex:i];
     }
-    
+
     // Now add items of site one by one
     for (YLSite *s in _sites) {
         NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:[s name] ?: @"" action:@selector(openSiteMenu:) keyEquivalent:@""];
@@ -175,7 +175,7 @@ const NSTimeInterval DEFAULT_CLICK_TIME_DIFFERENCE = 0.25;	// for remote control
         [[_sitesMenu submenu] addItem:menuItem];
         [menuItem release];
     }
-    
+
     // Reset portal if necessary
 	if([[NSUserDefaults standardUserDefaults] boolForKey:WLCoverFlowModeEnabledKeyName]) {
 		[_telnetView resetPortal];
@@ -205,7 +205,7 @@ const NSTimeInterval DEFAULT_CLICK_TIME_DIFFERENCE = 0.25;	// for remote control
 }
 
 - (void)antiIdle:(NSTimer *)timer {
-    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"AntiIdle"]) 
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"AntiIdle"])
 		return;
     NSArray *a = [_telnetView tabViewItems];
     for (NSTabViewItem *item in a) {
@@ -226,7 +226,7 @@ const NSTimeInterval DEFAULT_CLICK_TIME_DIFFERENCE = 0.25;	// for remote control
     [[view window] makeKeyAndOrderFront:nil];
     // select the tab
     [view selectTabViewItemWithIdentifier:connection];
-		
+
 }
 - (void)watchChange:(NSTimer *)timer{
 	if (_notifyOpen != 1){
@@ -234,11 +234,11 @@ const NSTimeInterval DEFAULT_CLICK_TIME_DIFFERENCE = 0.25;	// for remote control
 	}
 	unsigned char msg[] = {'f'};
 	[_watchConnection sendBytes:msg length:1];
-	
+
 	YLTerminal *terminal = [_watchConnection terminal];
 	const int linesPerPage = [[YLLGlobalConfig sharedInstance] row] - 1;
 	NSString  *newPage[linesPerPage];
-	
+
 	// read in the whole page, and store in 'newPage' array
 	int j = 0;
 	for (; j < linesPerPage; ++j) {
@@ -246,7 +246,7 @@ const NSTimeInterval DEFAULT_CLICK_TIME_DIFFERENCE = 0.25;	// for remote control
 		NSString *line = [terminal stringFromIndex:j * [[YLLGlobalConfig sharedInstance] column] length:[[YLLGlobalConfig sharedInstance] column]] ?: @"";
 		newPage[j] = line;
 	}
-	
+
 	//no previous screen contents to compare, syncronize
 	if(_screenContent[0] == nil){
 		for(int i = 0; i < linesPerPage; i ++){
@@ -254,9 +254,9 @@ const NSTimeInterval DEFAULT_CLICK_TIME_DIFFERENCE = 0.25;	// for remote control
 		}
 		return;
 	}
-	
+
 	NSString *notifyContent = nil;
-	
+
 	for(j = 3; j < linesPerPage - 1; j ++){
 			//find first line of newPage different from old version
 			if(![_screenContent[j] isEqualToString:newPage[j]]){
@@ -281,7 +281,7 @@ const NSTimeInterval DEFAULT_CLICK_TIME_DIFFERENCE = 0.25;	// for remote control
 		if(stopOnChange){
 			_notifyOpen = 0;
 			_watchConnection = nil;
-			
+
 			//clear and relase _screenContent
 			//release and copy
 			for(int i =0; i < linesPerPage; i ++){
@@ -324,7 +324,7 @@ const NSTimeInterval DEFAULT_CLICK_TIME_DIFFERENCE = 0.25;	// for remote control
         [_telnetView addTabViewItem:tabViewItem];
         [_telnetView selectTabViewItem:tabViewItem];
     }
-    
+
     // set the tab label as the site name.
     [tabViewItem setLabel:[site name]];
 
@@ -367,10 +367,10 @@ const NSTimeInterval DEFAULT_CLICK_TIME_DIFFERENCE = 0.25;	// for remote control
                         change:(NSDictionary *)change
                        context:(void *)context {
     if ([keyPath isEqualToString:@"showHiddenText"]) {
-        if ([[YLLGlobalConfig sharedInstance] showsHiddenText]) 
+        if ([[YLLGlobalConfig sharedInstance] showsHiddenText])
             [_showHiddenTextMenuItem setState:NSOnState];
         else
-            [_showHiddenTextMenuItem setState:NSOffState];        
+            [_showHiddenTextMenuItem setState:NSOffState];
     } else if ([keyPath isEqualToString:@"messageCount"]) {
         NSDockTile *dockTile = [NSApp dockTile];
         if ([[YLLGlobalConfig sharedInstance] messageCount] == 0) {
@@ -419,7 +419,7 @@ const NSTimeInterval DEFAULT_CLICK_TIME_DIFFERENCE = 0.25;	// for remote control
     NSArray *array = [[NSUserDefaults standardUserDefaults] arrayForKey:@"Sites"];
     for (NSDictionary *d in array)
         //[_sites addObject:[YLSite siteWithDictionary:d]];
-        [self insertObject:[YLSite siteWithDictionary:d] inSitesAtIndex:[self countOfSites]];    
+        [self insertObject:[YLSite siteWithDictionary:d] inSitesAtIndex:[self countOfSites]];
 }
 
 - (void)saveSites {
@@ -439,9 +439,9 @@ const NSTimeInterval DEFAULT_CLICK_TIME_DIFFERENCE = 0.25;	// for remote control
 
 - (void)saveEmoticons {
     NSMutableArray *a = [NSMutableArray array];
-    for (YLEmoticon *e in _emoticons) 
+    for (YLEmoticon *e in _emoticons)
         [a addObject: [e dictionaryOfEmoticon]];
-    [[NSUserDefaults standardUserDefaults] setObject: a forKey:@"Emoticons"];    
+    [[NSUserDefaults standardUserDefaults] setObject: a forKey:@"Emoticons"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
@@ -449,7 +449,7 @@ const NSTimeInterval DEFAULT_CLICK_TIME_DIFFERENCE = 0.25;	// for remote control
     NSArray *a = [[NSUserDefaults standardUserDefaults] arrayForKey:@"LastConnections"];
     for (NSDictionary *d in a) {
         [self newConnectionWithSite: [YLSite siteWithDictionary: d]];
-    }    
+    }
 }
 
 - (void)saveLastConnections {
@@ -484,21 +484,21 @@ const NSTimeInterval DEFAULT_CLICK_TIME_DIFFERENCE = 0.25;	// for remote control
 	[_autoReplyButton setState: ar ? NSOnState : NSOffState];
 	[_autoReplyMenuItem setState: ar ? NSOnState : NSOffState];
 	if (!ar && ar != [[[_telnetView frontMostConnection] site] shouldAutoReply]) {
-		// when user is to close auto reply, 
+		// when user is to close auto reply,
 		if ([[[_telnetView frontMostConnection] messageDelegate] unreadCount] > 0) {
 			// we should inform him with the unread messages
 			[[[_telnetView frontMostConnection] messageDelegate] showUnreadMessagesOnTextView:_unreadMessageTextView];
 			[_messageWindow makeKeyAndOrderFront:self];
 		}
 	}
-	
+
 	[[[_telnetView frontMostConnection] site] setShouldAutoReply:ar];
 }
 
-- (IBAction)setAutoNotifyAction:(id)sender {	
+- (IBAction)setAutoNotifyAction:(id)sender {
 	if(_notifyOpen == 0){  //be ready
 		_watchConnection = [[_telnetView frontMostTerminal] connection];
-		//clear all read state, and start monitoring 
+		//clear all read state, and start monitoring
 		unsigned char msg[] = {'f'};
 		[_watchConnection sendBytes:msg length:1];
 	}
@@ -517,7 +517,7 @@ const NSTimeInterval DEFAULT_CLICK_TIME_DIFFERENCE = 0.25;	// for remote control
     if ([sender isKindOfClass:[NSMenuItem class]])
         state = !state;
     [_mouseButton setState:(state ? NSOnState : NSOffState)];
-	
+
 	[[[_telnetView frontMostConnection] site] setShouldEnableMouse:state];
 	[_telnetView refreshMouseHotspot];
 }
@@ -544,7 +544,7 @@ const NSTimeInterval DEFAULT_CLICK_TIME_DIFFERENCE = 0.25;	// for remote control
 
 - (IBAction)newTab:(id)sender {
     [self newConnectionWithSite:[YLSite site]];
-	
+
 	// Draw the portal and entering the portal control mode if needed...
 	if ([[NSUserDefaults standardUserDefaults] boolForKey:WLCoverFlowModeEnabledKeyName]) {
 		[_telnetView checkPortal];
@@ -569,22 +569,22 @@ const NSTimeInterval DEFAULT_CLICK_TIME_DIFFERENCE = 0.25;	// for remote control
 	[sender abortEditing];
 	[[_telnetView window] makeFirstResponder:_telnetView];
     BOOL ssh = NO;
-    
+
     NSString *name = [sender stringValue];
-    if ([[name lowercaseString] hasPrefix:@"ssh://"]) 
+    if ([[name lowercaseString] hasPrefix:@"ssh://"])
         ssh = YES;
 //        name = [name substringFromIndex: 6];
     if ([[name lowercaseString] hasPrefix:@"telnet://"])
         name = [name substringFromIndex: 9];
     if ([[name lowercaseString] hasPrefix:@"bbs://"])
         name = [name substringFromIndex: 6];
-    
+
     NSMutableArray *matchedSites = [NSMutableArray array];
     YLSite *s;
-        
-    if ([name rangeOfString:@"."].location != NSNotFound) { /* Normal address */        
-        for (YLSite *site in _sites) 
-            if ([[site address] rangeOfString:name].location != NSNotFound && !(ssh ^ [[site address] hasPrefix:@"ssh://"])) 
+
+    if ([name rangeOfString:@"."].location != NSNotFound) { /* Normal address */
+        for (YLSite *site in _sites)
+            if ([[site address] rangeOfString:name].location != NSNotFound && !(ssh ^ [[site address] hasPrefix:@"ssh://"]))
                 [matchedSites addObject:site];
         if ([matchedSites count] > 0) {
             [matchedSites sortUsingDescriptors:[NSArray arrayWithObject:[[[NSSortDescriptor alloc] initWithKey:@"address.length" ascending:YES] autorelease]]];
@@ -595,16 +595,16 @@ const NSTimeInterval DEFAULT_CLICK_TIME_DIFFERENCE = 0.25;	// for remote control
             [s setName:name];
         }
     } else { /* Short Address? */
-        for (YLSite *site in _sites) 
-            if ([[site name] rangeOfString:name].location != NSNotFound) 
+        for (YLSite *site in _sites)
+            if ([[site name] rangeOfString:name].location != NSNotFound)
                 [matchedSites addObject:site];
         [matchedSites sortUsingDescriptors: [NSArray arrayWithObject:[[[NSSortDescriptor alloc] initWithKey:@"name.length" ascending:YES] autorelease]]];
         if ([matchedSites count] == 0) {
-            for (YLSite *site in _sites) 
+            for (YLSite *site in _sites)
                 if ([[site address] rangeOfString:name].location != NSNotFound)
                     [matchedSites addObject:site];
             [matchedSites sortUsingDescriptors:[NSArray arrayWithObject:[[[NSSortDescriptor alloc] initWithKey:@"address.length" ascending:YES] autorelease]]];
-        } 
+        }
         if ([matchedSites count] > 0) {
             s = [[[matchedSites objectAtIndex:0] copy] autorelease];
         } else {
@@ -624,20 +624,20 @@ const NSTimeInterval DEFAULT_CLICK_TIME_DIFFERENCE = 0.25;	// for remote control
 - (BOOL)shouldReconnect {
 	if (![[_telnetView frontMostConnection] isConnected]) return YES;
     if (![[NSUserDefaults standardUserDefaults] boolForKey:WLConfirmOnCloseEnabledKeyName]) return YES;
-    NSBeginAlertSheet(NSLocalizedString(@"Are you sure you want to reconnect?", @"Sheet Title"), 
-                      NSLocalizedString(@"Confirm", @"Default Button"), 
-                      NSLocalizedString(@"Cancel", @"Cancel Button"), 
-                      nil, 
-                      _mainWindow, self, 
-                      @selector(confirmSheetDidEnd:returnCode:contextInfo:), 
-                      @selector(confirmSheetDidDismiss:returnCode:contextInfo:), 
-                      nil, 
+    NSBeginAlertSheet(NSLocalizedString(@"Are you sure you want to reconnect?", @"Sheet Title"),
+                      NSLocalizedString(@"Confirm", @"Default Button"),
+                      NSLocalizedString(@"Cancel", @"Cancel Button"),
+                      nil,
+                      _mainWindow, self,
+                      @selector(confirmSheetDidEnd:returnCode:contextInfo:),
+                      @selector(confirmSheetDidDismiss:returnCode:contextInfo:),
+                      nil,
                       NSLocalizedString(@"The connection is still alive. If you reconnect, the current connection will be lost. Do you want to reconnect anyway?", @"Sheet Message"));
     return NO;
 }
 
-- (void)confirmReconnect:(NSWindow *)sheet 
-			  returnCode:(int)returnCode 
+- (void)confirmReconnect:(NSWindow *)sheet
+			  returnCode:(int)returnCode
 			 contextInfo:(void *)contextInfo {
     if (returnCode == NSAlertDefaultReturn) {
 		[[_telnetView frontMostConnection] reconnect];
@@ -647,28 +647,28 @@ const NSTimeInterval DEFAULT_CLICK_TIME_DIFFERENCE = 0.25;	// for remote control
 - (IBAction)reconnect:(id)sender {
     if (![[_telnetView frontMostConnection] isConnected] || ![[NSUserDefaults standardUserDefaults] boolForKey:WLConfirmOnCloseEnabledKeyName]) {
 		// Close the portal
-		if ([_telnetView isInPortalMode] && ![[[_telnetView frontMostConnection] site] empty] 
+		if ([_telnetView isInPortalMode] && ![[[_telnetView frontMostConnection] site] empty]
 			&& [_telnetView numberOfTabViewItems] > 0) {
 			[_telnetView removePortal];
 		}
 		[[_telnetView frontMostConnection] reconnect];
         return;
     }
-    NSBeginAlertSheet(NSLocalizedString(@"Are you sure you want to reconnect?", @"Sheet Title"), 
-                      NSLocalizedString(@"Confirm", @"Default Button"), 
-                      NSLocalizedString(@"Cancel", @"Cancel Button"), 
-                      nil, 
-                      _mainWindow, self, 
-                      @selector(confirmReconnect:returnCode:contextInfo:), 
-                      nil, 
-                      nil, 
+    NSBeginAlertSheet(NSLocalizedString(@"Are you sure you want to reconnect?", @"Sheet Title"),
+                      NSLocalizedString(@"Confirm", @"Default Button"),
+                      NSLocalizedString(@"Cancel", @"Cancel Button"),
+                      nil,
+                      _mainWindow, self,
+                      @selector(confirmReconnect:returnCode:contextInfo:),
+                      nil,
+                      nil,
                       NSLocalizedString(@"The connection is still alive. If you reconnect, the current connection will be lost. Do you want to reconnect anyway?", @"Sheet Message"));
-    return;	
+    return;
 }
 
 - (void) fullScreenPopUp {
 	NSString* currSiteName = [[[_telnetView frontMostConnection] site] name];
-	[WLPopUpMessage showPopUpMessage:currSiteName 
+	[WLPopUpMessage showPopUpMessage:currSiteName
 							duration:1.2
 						  effectView:((WLEffectView*)[_telnetView effectView])];
 }
@@ -722,7 +722,7 @@ const NSTimeInterval DEFAULT_CLICK_TIME_DIFFERENCE = 0.25;	// for remote control
 - (IBAction)openSites:(id)sender {
     NSArray *a = [_sitesController selectedObjects];
     [self closeSites:sender];
-    
+
     if ([a count] == 1) {
         YLSite *s = [a objectAtIndex:0];
         [self newConnectionWithSite:[[s copy] autorelease]];
@@ -744,11 +744,11 @@ const NSTimeInterval DEFAULT_CLICK_TIME_DIFFERENCE = 0.25;	// for remote control
 - (IBAction)addSites:(id)sender {
     if ([_telnetView numberOfTabViewItems] == 0) return;
     NSString *address = [[[_telnetView frontMostConnection] site] address];
-    
-    for (YLSite *s in _sites) 
-        if ([[s address] isEqualToString:address]) 
+
+    for (YLSite *s in _sites)
+        if ([[s address] isEqualToString:address])
             return;
-    
+
     YLSite *site = [[[[_telnetView frontMostConnection] site] copy] autorelease];
     [_sitesController addObject:site];
     [_sitesController setSelectedObjects:[NSArray arrayWithObject:site]];
@@ -788,10 +788,10 @@ const NSTimeInterval DEFAULT_CLICK_TIME_DIFFERENCE = 0.25;	// for remote control
 
 - (IBAction)inputEmoticons:(id)sender {
     [self closeEmoticons:sender];
-    
+
     if ([[_telnetView frontMostConnection] isConnected]) {
         NSArray *a = [_emoticonsController selectedObjects];
-        
+
         if ([a count] == 1) {
             YLEmoticon *e = [a objectAtIndex:0];
             [_telnetView insertText:[e content]];
@@ -816,12 +816,12 @@ const NSTimeInterval DEFAULT_CLICK_TIME_DIFFERENCE = 0.25;	// for remote control
     return [_sites objectAtIndex:index];
 }
 
-- (void)getSites:(id *)objects 
+- (void)getSites:(id *)objects
 		   range:(NSRange)range {
     [_sites getObjects:objects range:range];
 }
 
-- (void)insertObject:(id)anObject 
+- (void)insertObject:(id)anObject
 	  inSitesAtIndex:(unsigned)index {
     [_sites insertObject:anObject atIndex:index];
 }
@@ -830,7 +830,7 @@ const NSTimeInterval DEFAULT_CLICK_TIME_DIFFERENCE = 0.25;	// for remote control
     [_sites removeObjectAtIndex:index];
 }
 
-- (void)replaceObjectInSitesAtIndex:(unsigned)index 
+- (void)replaceObjectInSitesAtIndex:(unsigned)index
 						 withObject:(id)anObject {
     [_sites replaceObjectAtIndex:index withObject:anObject];
 }
@@ -850,12 +850,12 @@ const NSTimeInterval DEFAULT_CLICK_TIME_DIFFERENCE = 0.25;	// for remote control
     return [_emoticons objectAtIndex:theIndex];
 }
 
-- (void)getEmoticons:(id *)objsPtr 
+- (void)getEmoticons:(id *)objsPtr
 			   range:(NSRange)range {
     [_emoticons getObjects:objsPtr range:range];
 }
 
-- (void)insertObject:(id)obj 
+- (void)insertObject:(id)obj
   inEmoticonsAtIndex:(unsigned)theIndex {
     [_emoticons insertObject:obj atIndex:theIndex];
 }
@@ -891,22 +891,22 @@ const NSTimeInterval DEFAULT_CLICK_TIME_DIFFERENCE = 0.25;	// for remote control
     return YES;
 }
 
-- (BOOL)applicationShouldHandleReopen:(id)s 
+- (BOOL)applicationShouldHandleReopen:(id)s
 					hasVisibleWindows:(BOOL)b {
     [_mainWindow makeKeyAndOrderFront:self];
     return NO;
-} 
+}
 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender {
 	// Restore from full screen firstly
 	[_fullScreenController releaseFullScreen];
-    
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:WLRestoreConnectionKeyName]) 
+
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:WLRestoreConnectionKeyName])
         [self saveLastConnections];
-    
-    if (![[NSUserDefaults standardUserDefaults] boolForKey:WLConfirmOnCloseEnabledKeyName]) 
+
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:WLConfirmOnCloseEnabledKeyName])
         return YES;
-    
+
     int tabNumber = [_telnetView numberOfTabViewItems];
 	int connectedConnection = 0;
     for (int i = 0; i < tabNumber; i++) {
@@ -915,28 +915,28 @@ const NSTimeInterval DEFAULT_CLICK_TIME_DIFFERENCE = 0.25;	// for remote control
             ++connectedConnection;
     }
     if (connectedConnection == 0) return YES;
-    NSBeginAlertSheet(NSLocalizedString(@"Are you sure you want to quit Welly?", @"Sheet Title"), 
-                      NSLocalizedString(@"Quit", @"Default Button"), 
-                      NSLocalizedString(@"Cancel", @"Cancel Button"), 
-                      nil, 
+    NSBeginAlertSheet(NSLocalizedString(@"Are you sure you want to quit Welly?", @"Sheet Title"),
+                      NSLocalizedString(@"Quit", @"Default Button"),
+                      NSLocalizedString(@"Cancel", @"Cancel Button"),
+                      nil,
                       _mainWindow,
-					  self, 
-                      @selector(confirmSheetDidEnd:returnCode:contextInfo:), 
-                      @selector(confirmSheetDidDismiss:returnCode:contextInfo:), nil, 
+					  self,
+                      @selector(confirmSheetDidEnd:returnCode:contextInfo:),
+                      @selector(confirmSheetDidDismiss:returnCode:contextInfo:), nil,
                       [NSString stringWithFormat:NSLocalizedString(@"There are %d tabs open in Welly. Do you want to quit anyway?", @"Sheet Message"),
                                 connectedConnection]);
     return NSTerminateLater;
 }
 
-- (void)confirmSheetDidEnd:(NSWindow *)sheet 
-				returnCode:(int)returnCode 
+- (void)confirmSheetDidEnd:(NSWindow *)sheet
+				returnCode:(int)returnCode
 			   contextInfo:(void *)contextInfo {
     [[NSUserDefaults standardUserDefaults] synchronize];
     [NSApp replyToApplicationShouldTerminate:(returnCode == NSAlertDefaultReturn)];
 }
 
 - (void)confirmSheetDidDismiss:(NSWindow *)sheet
-					returnCode:(int)returnCode 
+					returnCode:(int)returnCode
 				   contextInfo:(void *)contextInfo {
     [[NSUserDefaults standardUserDefaults] synchronize];
     [NSApp replyToApplicationShouldTerminate:(returnCode == NSAlertDefaultReturn)];
@@ -965,7 +965,7 @@ const NSTimeInterval DEFAULT_CLICK_TIME_DIFFERENCE = 0.25;	// for remote control
     [_closeTabMenuItem setKeyEquivalent: @""];
 }
 
-- (void)getUrl:(NSAppleEventDescriptor *)event 
+- (void)getUrl:(NSAppleEventDescriptor *)event
 withReplyEvent:(NSAppleEventDescriptor *)replyEvent {
 	NSString *url = [[event paramDescriptorForKeyword:keyDirectObject] stringValue];
 	// now you can create an NSURL and grab the necessary parts
@@ -981,7 +981,7 @@ withReplyEvent:(NSAppleEventDescriptor *)replyEvent {
 - (BOOL)tabView:(NSTabView *)tabView shouldCloseTabViewItem:(NSTabViewItem *)tabViewItem {
 	// Restore from full screen firstly
 	[_fullScreenController releaseFullScreen];
-	
+
     if (![[tabViewItem identifier] isConnected]) return YES;
     if (![[NSUserDefaults standardUserDefaults] boolForKey:WLConfirmOnCloseEnabledKeyName]) return YES;
 
@@ -1062,7 +1062,7 @@ withReplyEvent:(NSAppleEventDescriptor *)replyEvent {
         if ([alert runModal] != NSAlertDefaultReturn)
             return;
     }
-    
+
     [NSApp beginSheet:_composeWindow
        modalForWindow:_mainWindow
         modalDelegate:nil
@@ -1074,7 +1074,7 @@ withReplyEvent:(NSAppleEventDescriptor *)replyEvent {
 #pragma mark Post Download
 - (void)preparePostDownload:(id)param {
     // clear s
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init]; 
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     NSString *s = [WLPostDownloader downloadPostFromConnection:[_telnetView frontMostConnection]];
     [_postText performSelectorOnMainThread:@selector(setString:) withObject:s waitUntilDone:TRUE];
     [pool release];
@@ -1153,8 +1153,8 @@ withReplyEvent:(NSAppleEventDescriptor *)replyEvent {
 #pragma mark -
 #pragma mark Remote Control
 /* Remote Control */
-- (void)remoteButton:(RemoteControlEventIdentifier)buttonIdentifier 
-		 pressedDown:(BOOL)pressedDown 
+- (void)remoteButton:(RemoteControlEventIdentifier)buttonIdentifier
+		 pressedDown:(BOOL)pressedDown
 		  clickCount:(unsigned int)clickCount {
 	NSString *cmd = nil;
 
@@ -1171,30 +1171,30 @@ withReplyEvent:(NSAppleEventDescriptor *)replyEvent {
 					cmd = termKeyDown;
 				else
 					cmd = termKeyPageDown;
-				break;			
+				break;
 			case kRemoteButtonMenu:
 				break;
 			case kRemoteButtonPlay:
 				cmd = termKeyEnter;
-				break;			
+				break;
 			case kRemoteButtonRight:	// right
 				if (clickCount == 1)
 					cmd = termKeyRight;
 				else
 					cmd = termKeyEnd;
-				break;			
+				break;
 			case kRemoteButtonLeft:		// left
 				if (clickCount == 1)
 					cmd = termKeyLeft;
 				else
 					cmd = termKeyHome;
-				break;			
+				break;
 			case kRemoteButtonPlus_Hold:
 				[self disableTimer];
-				break;				
+				break;
 			case kRemoteButtonMinus_Hold:
 				[self disableTimer];
-				break;				
+				break;
 			case kRemoteButtonPlay_Hold:
 				break;
 		}
@@ -1210,8 +1210,8 @@ withReplyEvent:(NSAppleEventDescriptor *)replyEvent {
 			case kRemoteButtonPlus_Hold:
 				// Enable timer!
 				[self disableTimer];
-				_scrollTimer = [NSTimer scheduledTimerWithTimeInterval:scrollTimerInterval 
-																target:self 
+				_scrollTimer = [NSTimer scheduledTimerWithTimeInterval:scrollTimerInterval
+																target:self
 															  selector:@selector(doScrollUp:)
 															  userInfo:nil
 															   repeats:YES];
@@ -1220,7 +1220,7 @@ withReplyEvent:(NSAppleEventDescriptor *)replyEvent {
 				// Enable timer!
 				[self disableTimer];
 				_scrollTimer = [NSTimer scheduledTimerWithTimeInterval:scrollTimerInterval
-																target:self 
+																target:self
 															  selector:@selector(doScrollDown:)
 															  userInfo:nil
 															   repeats:YES];
@@ -1230,7 +1230,7 @@ withReplyEvent:(NSAppleEventDescriptor *)replyEvent {
 				break;
 		}
 	}
-	
+
 	if (cmd != nil) {
 		[[_telnetView frontMostConnection] sendText:cmd];
 	}
@@ -1267,8 +1267,8 @@ withReplyEvent:(NSAppleEventDescriptor *)replyEvent {
 // screen
 - (IBAction)fullScreenMode:(id)sender {
 	if([_fullScreenController processor] == nil) {
-		WLTelnetProcessor* myPro = [[WLTelnetProcessor alloc] initWithView:_telnetView 
-															   myTabView:_tab 
+		WLTelnetProcessor* myPro = [[WLTelnetProcessor alloc] initWithView:_telnetView
+															   myTabView:_tab
 															  effectView:((WLEffectView*)[_telnetView effectView])];
 		[_fullScreenController setProcessor:myPro];
 	}
@@ -1284,7 +1284,7 @@ withReplyEvent:(NSAppleEventDescriptor *)replyEvent {
 // Increase global font size setting by 5%
 - (IBAction)increaseFontSize:(id)sender {
 	// Here we use some small trick to provide better user experimence...
-	
+
 	[self setFontSizeRatio:1.05f];
 	[_telnetView setNeedsDisplay:YES];
 }
@@ -1454,14 +1454,14 @@ withReplyEvent:(NSAppleEventDescriptor *)replyEvent {
                                 [description appendString:@"<br />"];
                             }
                         }
-                        [description replaceOccurrencesOfString:@"<br />" 
-                                                     withString:@"" 
-                                                        options:(NSBackwardsSearch | NSAnchoredSearch) 
+                        [description replaceOccurrencesOfString:@"<br />"
+                                                     withString:@""
+                                                        options:(NSBackwardsSearch | NSAnchoredSearch)
                                                           range:NSMakeRange(0, [description length])];
                         if ([moreModeKeyword isEqualToString:@"下"])
                             [description appendFormat:@"<br />......"];
                         NSString *author = [terminal stringFromIndex:8 length:column - 8];
-                        NSString *boardName = offset ? [terminal stringFromIndex:column length:column] 
+                        NSString *boardName = offset ? [terminal stringFromIndex:column length:column]
                                                      : [author substringFromIndex:[author rangeOfString:@" " options:NSBackwardsSearch].location + 1];
                         author = [author substringToIndex:[author rangeOfString:@" "].location];
                         NSString *thirdLine;
@@ -1530,9 +1530,9 @@ withReplyEvent:(NSAppleEventDescriptor *)replyEvent {
     return YES;
 }
 
-- (NSDragOperation)tableView:(NSTableView*)tv 
+- (NSDragOperation)tableView:(NSTableView*)tv
 				validateDrop:(id <NSDraggingInfo>)info
-				 proposedRow:(int)row 
+				 proposedRow:(int)row
 	   proposedDropOperation:(NSTableViewDropOperation)op {
     // don't hover
     if (op == NSTableViewDropOn)
@@ -1540,9 +1540,9 @@ withReplyEvent:(NSAppleEventDescriptor *)replyEvent {
     return NSDragOperationEvery;
 }
 
-- (BOOL)tableView:(NSTableView *)aTableView 
+- (BOOL)tableView:(NSTableView *)aTableView
 	   acceptDrop:(id <NSDraggingInfo>)info
-			  row:(int)row 
+			  row:(int)row
 	dropOperation:(NSTableViewDropOperation)op {
     NSPasteboard* pboard = [info draggingPasteboard];
     NSData* rowData = [pboard dataForType:SiteTableViewDataType];
@@ -1580,7 +1580,7 @@ withReplyEvent:(NSAppleEventDescriptor *)replyEvent {
 							   stringByAppendingPathComponent:@"Welly"]
 							  stringByAppendingPathComponent:@"Covers"]
 							 stringByAppendingPathComponent:[_siteNameField stringValue]];
-	
+
 	// For all allowed types
 	NSArray *allowedTypes = supportedCoverExtensions;
 	for (NSString *ext in allowedTypes) {

@@ -35,7 +35,7 @@ static YLLGlobalConfig *sSharedInstance;
 @end
 
 @implementation NSUserDefaults(myColorSupport)
-- (void)setMyColor:(NSColor *)aColor 
+- (void)setMyColor:(NSColor *)aColor
 			forKey:(NSString *)aKey {
     NSData *theData=[NSArchiver archivedDataWithRootObject:aColor];
     [self setObject:theData forKey:aKey];
@@ -89,7 +89,7 @@ static YLLGlobalConfig *sSharedInstance;
         [self setDefaultEncoding:(YLEncoding) [defaults integerForKey:@"DefaultEncoding"]];
         [self setDefaultANSIColorKey:(YLANSIColorKey) [defaults integerForKey:@"DefaultANSIColorKey"]];
         [self setShouldRepeatBounce:[defaults boolForKey:@"RepeatBounce"]];
-        
+
 		/* init code */
 		_row = 24;
 		_column = 80;
@@ -100,7 +100,7 @@ static YLLGlobalConfig *sSharedInstance;
         [self setEnglishFontName:[defaults stringForKey:@"EnglishFontName"]];
         [self setChineseFontSize:[defaults floatForKey:@"ChineseFontSize"]];
         [self setEnglishFontSize:[defaults floatForKey:@"EnglishFontSize"]];
-        
+
         if ([defaults objectForKey:@"ChinesePaddingLeft"])
             [self setChineseFontPaddingLeft:[defaults floatForKey:@"ChinesePaddingLeft"]];
         else
@@ -110,37 +110,37 @@ static YLLGlobalConfig *sSharedInstance;
             [self setEnglishFontPaddingLeft:[defaults floatForKey:@"EnglishPaddingLeft"]];
         else
             [self setEnglishFontPaddingLeft:1.0];
-        
+
         if ([defaults objectForKey:@"ChinesePaddingBottom"])
             [self setChineseFontPaddingBottom:[defaults floatForKey:@"ChinesePaddingBottom"]];
         else
             [self setChineseFontPaddingBottom:1.0];
-        
+
         if ([defaults objectForKey:@"EnglishPaddingBottom"])
             [self setEnglishFontPaddingBottom:[defaults floatForKey:@"EnglishPaddingBottom"]];
         else
-            [self setEnglishFontPaddingBottom: 2.0];        
-        
+            [self setEnglishFontPaddingBottom: 2.0];
+
         [self setColorBlack:[defaults myColorForKey:@"ColorBlack"]];
-        [self setColorBlackHilite:[defaults myColorForKey:@"ColorBlackHilite"]]; 
+        [self setColorBlackHilite:[defaults myColorForKey:@"ColorBlackHilite"]];
         [self setColorRed:[defaults myColorForKey:@"ColorRed"]];
-        [self setColorRedHilite:[defaults myColorForKey:@"ColorRedHilite"]]; 
+        [self setColorRedHilite:[defaults myColorForKey:@"ColorRedHilite"]];
         [self setColorBlack:[defaults myColorForKey:@"ColorBlack"]];
-        [self setColorBlackHilite:[defaults myColorForKey:@"ColorBlackHilite"]]; 
+        [self setColorBlackHilite:[defaults myColorForKey:@"ColorBlackHilite"]];
         [self setColorGreen:[defaults myColorForKey:@"ColorGreen"]];
-        [self setColorGreenHilite:[defaults myColorForKey:@"ColorGreenHilite"]]; 
+        [self setColorGreenHilite:[defaults myColorForKey:@"ColorGreenHilite"]];
         [self setColorYellow:[defaults myColorForKey:@"ColorYellow"]];
-        [self setColorYellowHilite:[defaults myColorForKey:@"ColorYellowHilite"]]; 
+        [self setColorYellowHilite:[defaults myColorForKey:@"ColorYellowHilite"]];
         [self setColorBlue:[defaults myColorForKey:@"ColorBlue"]];
-        [self setColorBlueHilite:[defaults myColorForKey:@"ColorBlueHilite"]]; 
+        [self setColorBlueHilite:[defaults myColorForKey:@"ColorBlueHilite"]];
         [self setColorMagenta:[defaults myColorForKey:@"ColorMagenta"]];
-        [self setColorMagentaHilite:[defaults myColorForKey:@"ColorMagentaHilite"]]; 
+        [self setColorMagentaHilite:[defaults myColorForKey:@"ColorMagentaHilite"]];
         [self setColorCyan:[defaults myColorForKey:@"ColorCyan"]];
-        [self setColorCyanHilite:[defaults myColorForKey:@"ColorCyanHilite"]]; 
+        [self setColorCyanHilite:[defaults myColorForKey:@"ColorCyanHilite"]];
         [self setColorWhite:[defaults myColorForKey:@"ColorWhite"]];
         [self setColorWhiteHilite:[defaults myColorForKey:@"ColorWhiteHilite"]]; // Foreground Color
         [self setColorBG:[defaults myColorForKey:@"ColorBG"]];
-        [self setColorBGHilite:[defaults myColorForKey:@"ColorBGHilite"]]; 
+        [self setColorBGHilite:[defaults myColorForKey:@"ColorBGHilite"]];
         _colorTable[0][8] = [[NSColor colorWithDeviceRed:0.75 green:0.75 blue:0.75 alpha:1.0] retain];
         _colorTable[1][8] = [[NSColor colorWithDeviceRed:1.00 green:1.00 blue:1.00 alpha:1.0] retain];
 
@@ -149,7 +149,7 @@ static YLLGlobalConfig *sSharedInstance;
 
         [defaults synchronize];
         [self refreshFont];
-        
+
         // aqua: why not enable these settings by default?
         if ([defaults objectForKey:WLRestoreConnectionKeyName] == nil)
             [defaults setBool:YES forKey:WLRestoreConnectionKeyName];
@@ -169,7 +169,7 @@ static YLLGlobalConfig *sSharedInstance;
 	return sSharedInstance;
 }
 
-- (void)dealloc {	
+- (void)dealloc {
 	[super dealloc];
 }
 
@@ -182,8 +182,8 @@ static YLLGlobalConfig *sSharedInstance;
 
 - (void)refreshFont {
     int i, j;
-    
-    if (_cCTFont) 
+
+    if (_cCTFont)
 		CFRelease(_cCTFont);
     _cCTFont = CTFontCreateWithName((CFStringRef)_chineseFontName, _chineseFontSize, NULL);
     if (_eCTFont)
@@ -195,33 +195,33 @@ static YLLGlobalConfig *sSharedInstance;
     if (_eCGFont)
 		CFRelease(_eCGFont);
     _eCGFont = CTFontCopyGraphicsFont(_eCTFont, NULL);
-    
-    for (i = 0; i < NUM_COLOR; i++) 
+
+    for (i = 0; i < NUM_COLOR; i++)
         for (j = 0; j < 2; j++) {
             int zero = 0;
             CFNumberRef number = CFNumberCreate(kCFAllocatorDefault, kCFNumberIntType, &zero);
             CFStringRef cfKeys[] = {kCTFontAttributeName, kCTForegroundColorAttributeName, kCTLigatureAttributeName};
-            
+
             CFTypeRef cfValues[] = {_cCTFont, _colorTable[j][i], number};
             if (_cCTAttribute[j][i])CFRelease(_cCTAttribute[j][i]);
-            _cCTAttribute[j][i] = CFDictionaryCreate(kCFAllocatorDefault, 
-                                                     (const void **)cfKeys, 
-                                                     (const void **)cfValues, 
-                                                     3, 
-                                                     &kCFTypeDictionaryKeyCallBacks, 
+            _cCTAttribute[j][i] = CFDictionaryCreate(kCFAllocatorDefault,
+                                                     (const void **)cfKeys,
+                                                     (const void **)cfValues,
+                                                     3,
+                                                     &kCFTypeDictionaryKeyCallBacks,
                                                      &kCFTypeDictionaryValueCallBacks);
 
             cfValues[0] = _eCTFont;
             if (_eCTAttribute[j][i])CFRelease(_eCTAttribute[j][i]);
-            _eCTAttribute[j][i] = CFDictionaryCreate(kCFAllocatorDefault, 
-                                                     (const void **)cfKeys, 
-                                                     (const void **)cfValues, 
-                                                     3, 
-                                                     &kCFTypeDictionaryKeyCallBacks, 
+            _eCTAttribute[j][i] = CFDictionaryCreate(kCFAllocatorDefault,
+                                                     (const void **)cfKeys,
+                                                     (const void **)cfValues,
+                                                     3,
+                                                     &kCFTypeDictionaryKeyCallBacks,
                                                      &kCFTypeDictionaryValueCallBacks);
             CFRelease(number);
         }
-    
+
 }
 
 #pragma mark -
@@ -231,7 +231,7 @@ static YLLGlobalConfig *sSharedInstance;
 }
 
 - (void)setCellWidth:(CGFloat)value {
-    if (value == 0) 
+    if (value == 0)
 		value = WLDefaultCellWidth;
     _cellWidth = value;
     [[NSUserDefaults standardUserDefaults] setFloat:value forKey:@"CellWidth"];
@@ -243,21 +243,21 @@ static YLLGlobalConfig *sSharedInstance;
 
 
 - (void)setCellHeight:(CGFloat)value {
-    if (value == 0) 
+    if (value == 0)
 		value = WLDefaultCellHeight;
     _cellHeight = value;
     [[NSUserDefaults standardUserDefaults] setFloat:value forKey:@"CellHeight"];
 }
 
-- (NSColor *)colorAtIndex:(int)i 
+- (NSColor *)colorAtIndex:(int)i
 				   hilite:(BOOL)h {
-	if (i >= 0 && i < NUM_COLOR) 
+	if (i >= 0 && i < NUM_COLOR)
 		return _colorTable[h][i];
 	return _colorTable[0][NUM_COLOR - 1];
 }
 
-- (void)setColor:(NSColor *)c 
-		  hilite:(BOOL)h 
+- (void)setColor:(NSColor *)c
+		  hilite:(BOOL)h
 		 atIndex:(int)i {
 	if (i >= 0 && i < NUM_COLOR) {
 		[_colorTable[h][i] autorelease];
@@ -309,7 +309,7 @@ static YLLGlobalConfig *sSharedInstance;
 }
 
 - (void)setChineseFontSize:(CGFloat)value {
-    if (value == 0) 
+    if (value == 0)
 		value = WLDefaultChineseFontSize;
     _chineseFontSize = value;
     [[NSUserDefaults standardUserDefaults] setFloat:value forKey:@"ChineseFontSize"];
@@ -320,7 +320,7 @@ static YLLGlobalConfig *sSharedInstance;
 }
 
 - (void)setEnglishFontSize:(CGFloat)value {
-    if (value == 0) 
+    if (value == 0)
 		value = WLDefaultEnglishFontSize;
     _englishFontSize = value;
     [[NSUserDefaults standardUserDefaults] setFloat:value forKey:@"EnglishFontSize"];

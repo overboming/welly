@@ -15,10 +15,10 @@ enum showTips { kShowTipsNone, kShowTipsWhite, kShowTipsGray };
 @interface YLImageView : NSImageView {
     NSRect tipsRect;
     enum showTips tipsState;
-    
+
     YLImagePreviewer *previewer;
     YLFloatingView *indicator;
-    
+
     NSDictionary *tiffData;
 }
 

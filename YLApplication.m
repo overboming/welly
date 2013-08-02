@@ -18,32 +18,32 @@
 
 - (void)sendEvent:(NSEvent *)event {
     NSAutoreleasePool *pool = [NSAutoreleasePool new];
-	
+
     if ([event type] == NSKeyDown) {
         if (NO) {
 			// do nothing, just for alignment
-		} else if (([event modifierFlags] & NSCommandKeyMask) == NSCommandKeyMask && 
-				   ([event modifierFlags] & NSAlternateKeyMask) == 0 && 
-				   ([event modifierFlags] & NSControlKeyMask) == 0 && 
-				   ([event modifierFlags] & NSShiftKeyMask) == 0 && 
+		} else if (([event modifierFlags] & NSCommandKeyMask) == NSCommandKeyMask &&
+				   ([event modifierFlags] & NSAlternateKeyMask) == 0 &&
+				   ([event modifierFlags] & NSControlKeyMask) == 0 &&
+				   ([event modifierFlags] & NSShiftKeyMask) == 0 &&
 				   [[event characters] isEqualToString:@"r"] &&
 				   [[NSUserDefaults standardUserDefaults] boolForKey:WLCommandRHotkeyEnabledKeyName]) {
 			[_controller reconnect:self];
 			event = nil;
-		} else if (([event modifierFlags] & NSCommandKeyMask) == NSCommandKeyMask && 
-				   ([event modifierFlags] & NSAlternateKeyMask) == 0 && 
-				   ([event modifierFlags] & NSControlKeyMask) == 0 && 
-				   ([event modifierFlags] & NSShiftKeyMask) == 0 && 
+		} else if (([event modifierFlags] & NSCommandKeyMask) == NSCommandKeyMask &&
+				   ([event modifierFlags] & NSAlternateKeyMask) == 0 &&
+				   ([event modifierFlags] & NSControlKeyMask) == 0 &&
+				   ([event modifierFlags] & NSShiftKeyMask) == 0 &&
 				   [[event characters] isEqualToString:@"n"]) {
 			[_controller editSites:self];
 			event = nil;
-		} else if (([event modifierFlags] & NSCommandKeyMask) == NSCommandKeyMask && 
-				   ([event modifierFlags] & NSAlternateKeyMask) == 0 && 
-				   ([event modifierFlags] & NSControlKeyMask) == 0 && 
-				   ([event modifierFlags] & NSShiftKeyMask) == 0 && 
+		} else if (([event modifierFlags] & NSCommandKeyMask) == NSCommandKeyMask &&
+				   ([event modifierFlags] & NSAlternateKeyMask) == 0 &&
+				   ([event modifierFlags] & NSControlKeyMask) == 0 &&
+				   ([event modifierFlags] & NSShiftKeyMask) == 0 &&
 				   [[event characters] isEqualToString:@"i"]) {
 			NSLog(@"you summoned me? didn't u?");
-		}	
+		}
     }
 
     if (event)

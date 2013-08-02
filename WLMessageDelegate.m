@@ -55,15 +55,15 @@ NSString *const WLAutoReplyGrowlTipFormat = @"AutoReplyGrowlTipFormat";
 	if ([[_connection site] shouldAutoReply]) {
 		// enclose the autoReplyString with two '\r'
 		NSString *aString = [NSString stringWithFormat:@"\r%@\r", [[_connection site] autoReplyString]];
-		
+
 		// send to the connection
 		[_connection sendText:aString];
-		
+
 		// now record this message
 		[_unreadMessage appendFormat:@"%@\r%@\r\r", callerName, message];
 		_unreadCount++;
 	}
-	
+
 	YLView *view = [[((YLApplication *)NSApp) controller] telnetView];
 	if (_connection != [view frontMostConnection] || ![NSApp isActive] || [[_connection site] shouldAutoReply]) {
 		// not in focus
@@ -77,7 +77,7 @@ NSString *const WLAutoReplyGrowlTipFormat = @"AutoReplyGrowlTipFormat";
 		}
 		// should invoke growl notification
 		[WLGrowlBridge notifyWithTitle:callerName
-						   description:description 
+						   description:description
 					  notificationName:@"New Message Received"
 							  iconData:[NSData data]
 							  priority:0
@@ -99,7 +99,7 @@ NSString *const WLAutoReplyGrowlTipFormat = @"AutoReplyGrowlTipFormat";
 - (void)didClickGrowlNewMessage:(id)connection {
     // bring the window to front
     [NSApp activateIgnoringOtherApps:YES];
-	
+
 	YLView *view = [[((YLApplication *)NSApp) controller] telnetView];
     [[view window] makeKeyAndOrderFront:nil];
     // select the tab

@@ -40,36 +40,36 @@ enum {
 };
 
 @interface PSMTabBarControl : NSControl {
-    
+
     // control basics
     NSMutableArray              *_cells;                    // the cells that draw the tabs
     IBOutlet NSTabView          *tabView;                   // the tab view being navigated
     PSMOverflowPopUpButton      *_overflowPopUpButton;      // for too many tabs
     PSMRolloverButton           *_addTabButton;
-    
+
     // drawing style
     id<PSMTabStyle>             style;
     BOOL                        _canCloseOnlyTab;
     BOOL                        _hideForSingleTab;
     BOOL                        _showAddTabButton;
     BOOL                        _sizeCellsToFit;
-    
+
     // cell width
     int                         _cellMinWidth;
     int                         _cellMaxWidth;
     int                         _cellOptimumWidth;
-    
+
     // animation for hide/show
     int                         _currentStep;
     BOOL                        _isHidden;
     BOOL                        _hideIndicators;
     IBOutlet id                 partnerView;                // gets resized when hide/show
     BOOL                        _awakenedFromNib;
-    
+
     // drag and drop
-    NSEvent                     *_lastMouseDownEvent;      // keep this for dragging reference   
+    NSEvent                     *_lastMouseDownEvent;      // keep this for dragging reference
     BOOL			_allowsDragBetweenWindows;
-    
+
     // MVC help
     IBOutlet id                 delegate;
 }

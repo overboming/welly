@@ -159,7 +159,7 @@ static NSString * stringFromFileSize(long long size) {
     // init
     _window = [[NSPanel alloc] initWithContentRect:NSMakeRect(0, 0, 400, 30)
                                          styleMask:style
-                                           backing:NSBackingStoreBuffered 
+                                           backing:NSBackingStoreBuffered
                                              defer:NO];
     [_window setFloatingPanel:YES];
     [_window setDelegate:self];
@@ -176,7 +176,7 @@ static NSString * stringFromFileSize(long long size) {
     [_indicator startAnimation:self];
 }
 
-// Window delegate for _window, finallize the download 
+// Window delegate for _window, finallize the download
 - (BOOL)windowShouldClose:(id)window {
     NSURL *URL = [[_download request] URL];
     // Show the canceled message
@@ -202,7 +202,7 @@ static NSString * stringFromFileSize(long long size) {
                         identifier:download];
 }
 
-- (void)download:(NSURLDownload *)download didReceiveResponse:(NSURLResponse *)response { 
+- (void)download:(NSURLDownload *)download didReceiveResponse:(NSURLResponse *)response {
     _contentLength = [response expectedContentLength];
     _transferredLength = 0;
 
@@ -245,7 +245,7 @@ static NSString * stringFromFileSize(long long size) {
 	if (!canView) {
 		// Close the progress bar window
 		[_window close];
-		
+
         [self retain]; // "didFailWithError" may release the delegate
         [download cancel];
         [self download:download didFailWithError:nil];
@@ -260,7 +260,7 @@ static NSString * stringFromFileSize(long long size) {
     [_indicator setDoubleValue:0];
 }
 
-- (void)download:(NSURLDownload *)download didReceiveDataOfLength:(NSUInteger)length { 
+- (void)download:(NSURLDownload *)download didReceiveDataOfLength:(NSUInteger)length {
     _transferredLength += length;
     [WLGrowlBridge notifyWithTitle:_filename
                        description:[self stringFromTransfer]
@@ -335,7 +335,7 @@ static void formatProps(NSMutableString *s, id *fmt, id *val) {
                 [props appendFormat:NSLocalizedString(@"tiffStringFormat", "\nManufacturer and Model: \n%@ %@"), makeName, modelName];
         }
 
-        if([props length]) 
+        if([props length])
             [WLGrowlBridge notifyWithTitle:_filename
                                description:props
                           notificationName:@"File Transfer"

@@ -74,7 +74,7 @@
     }
     NSString *r = [NSString stringWithFormat:fmt, addr, port];
     return r;
-} 
+}
 
 - (id)init {
     if (self == [super init]) {
@@ -105,12 +105,12 @@
     char slaveName[PATH_MAX];
     struct termios term;
     struct winsize size;
-    
+
     term.c_iflag = ICRNL | IXON | IXANY | IMAXBEL | BRKINT;
     term.c_oflag = OPOST | ONLCR;
     term.c_cflag = CREAD | CS8 | HUPCL;
     term.c_lflag = ICANON | ISIG | IEXTEN | ECHO | ECHOE | ECHOK | ECHOKE | ECHOCTL;
-	
+
     term.c_cc[VEOF]      = CTRLKEY('D');
     term.c_cc[VEOL]      = -1;
     term.c_cc[VEOL2]     = -1;
@@ -129,7 +129,7 @@
     term.c_cc[VMIN]      = 1;
     term.c_cc[VTIME]     = 0;
     term.c_cc[VSTATUS]   = -1;
-	
+
     term.c_ispeed = B38400;
     term.c_ospeed = B38400;
     size.ws_col = [[YLLGlobalConfig sharedInstance] column];
@@ -177,7 +177,7 @@
     // disable input while disconnected
     if (_fd < 0 || _connecting)
         return;
-    
+
     [_delegate protocolWillSend:self data:data];
 
     const char *msg = [data bytes];
@@ -206,15 +206,15 @@
             if (read(pty->_fd, buf, 1) <= 0)
                 break;
             continue;
-        } 
+        }
 
-        // assert(FD_ISSET(pty->_fd, &readfds));       
+        // assert(FD_ISSET(pty->_fd, &readfds));
         ssize_t size = read(pty->_fd, buf, sizeof(buf));
         if (size <= 0)
             break;
         NSData *data = [[[NSData alloc] initWithBytes:buf+1 length:size-1] autorelease];
         BOOL cleanup = (count >= 5000);
-        [pty performSelectorOnMainThread:@selector(recv:) 
+        [pty performSelectorOnMainThread:@selector(recv:)
                               withObject:data
                            waitUntilDone:cleanup];
         if (cleanup) {

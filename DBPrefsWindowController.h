@@ -46,19 +46,19 @@
 	NSMutableArray *toolbarIdentifiers;
 	NSMutableDictionary *toolbarViews;
 	NSMutableDictionary *toolbarItems;
-	
+
 	BOOL _crossFade;
 	BOOL _shiftSlowsAnimation;
-	
+
     IBOutlet NSPopUpButton *_telnetPopUpButton;
     IBOutlet NSPopUpButton *_sshPopUpButton;
-    
+
     IBOutlet NSView *_generalPrefView;
     IBOutlet NSView *_connectionPrefView;
     IBOutlet NSView *_fontsPrefView;
     IBOutlet NSView *_colorsPrefView;
 	IBOutlet NSView *_autoReplyPrefView;
-    
+
 	NSView *contentSubview;
 	NSViewAnimation *viewAnimation;
 }

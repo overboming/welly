@@ -20,13 +20,13 @@
 }
 
 /*!
-    @method     
+    @method
     @abstract   Returns a singleton instance of the user defaults class.
 */
 + (SUUserDefaults *)standardUserDefaults;
 
 /*!
-    @method     
+    @method
     @abstract   Sets which bundle identifier to use when setting and retrieving defaults.
     @discussion It is imperative that you set the identifier through this method before trying to set or retrieve defaults.
 */

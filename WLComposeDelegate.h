@@ -11,15 +11,15 @@
 @class YLView;
 @interface WLComposeDelegate : NSObject {
     IBOutlet YLView *_telnetView;
-	
+
     IBOutlet NSColorWell *_bgColorWell;
-	
+
     /* composeWindow */
     IBOutlet NSTextView *_composeText;
     IBOutlet NSPanel *_composeWindow;
-	
+
     IBOutlet NSWindow *_mainWindow;
-	
+
 	NSShadow *_shadowForBlink;
 }
 

@@ -64,7 +64,7 @@
                         break;
                 }
                 NSAssert(j == 0 || [newPage[j] isEqualToString:lastPage[k]], @"bbs post layout tradition");
-                
+
                 // now check if it is really duplicated
                 for (int jj = j - 1; jj >= 0; --jj) {
                     --k;
@@ -81,7 +81,7 @@
         } else {
             j = (i == 0) ? -1 : 0; // except the first page, every time page down would lead to the first line duplicated
         }
-        
+
         // Now copy the content into the buffer
         //[buf setString:@""];    // clear out
         for (j = j + 1; j < lastline; ++j) {
@@ -89,10 +89,10 @@
             [buf appendFormat:@"%@\r", newPage[j]];
             lastPage[j] = newPage[j];
         }
-        
+
         if (isFinished)
             break;
-        
+
         // invoke a "page down" command
         [connection sendBytes:" " length:1];
         while ([newBottomLine isEqualToString:bottomLine] && i < maxAttempt) {

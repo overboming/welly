@@ -47,7 +47,7 @@
 {
 	NSRect contentFrame = [_mainView frame];
 	[self setFrame: contentFrame];
-	
+
     // mainLayer is the layer that gets scaled. All of its sublayers
     // are automatically scaled with it.
     _mainLayer = [CALayer layer];
@@ -79,13 +79,13 @@
 
 - (void)setIPAddrBox {
 	_ipAddrLayer = [CALayer layer];
-    
+
 	// Set up the box
 	[_ipAddrLayer setBackgroundColor:CGColorCreateGenericRGB(0.0, 0.95, 0.95, 0.1f)];
 	[_ipAddrLayer setBorderColor:CGColorCreateGenericRGB(1.0, 1.0, 1.0, 1.0f)];
 	[_ipAddrLayer setBorderWidth:1.4];
 	[_ipAddrLayer setCornerRadius:6.0];
-	
+
     // Insert the layer into the root layer
 	[_mainLayer addSublayer:[_ipAddrLayer retain]];
 }
@@ -93,15 +93,15 @@
 - (void)drawIPAddrBox:(NSRect)rect {
 	if (!_ipAddrLayer)
 		[self setIPAddrBox];
-	
+
 	rect.origin.x -= 1.0;
 	rect.origin.y -= 0.0;
 	rect.size.width += 2.0;
 	rect.size.height += 0.0;
-	
+
     // Set the layer frame to the rect
     _ipAddrLayer.frame = NSRectToCGRect(rect);
-    
+
     // Set the opacity to make the layer appear
 	[_ipAddrLayer setOpacity:1.0f];
 }
@@ -113,11 +113,11 @@
 #pragma mark Click Entry
 - (void)setClickEntry {
 	_clickEntryLayer = [CALayer layer];
-    
+
 	[_clickEntryLayer setBackgroundColor:CGColorCreateGenericRGB(0.0, 0.95, 0.95, 0.17f)];
 	[_clickEntryLayer setBorderWidth:0];
 	[_clickEntryLayer setCornerRadius:6.0];
-	
+
     // Insert the layer into the root layer
 	[_mainLayer addSublayer:[_clickEntryLayer retain]];
 }
@@ -125,15 +125,15 @@
 - (void)drawClickEntry:(NSRect)rect {
 	if (!_clickEntryLayer)
 		[self setClickEntry];
-	
+
 	rect.origin.x -= 1.0;
 	rect.origin.y -= 0.0;
 	rect.size.width += 2.0;
 	rect.size.height += 0.0;
-	
+
     // Set the layer frame to the rect
     [_clickEntryLayer setFrame:NSRectToCGRect(rect)];
-    
+
     // Set the opacity to make the layer appear
 	[_clickEntryLayer setOpacity:1.0f];
 }
@@ -143,7 +143,7 @@
 }
 
 #pragma mark Welly Buttons
-- (void)drawButton:(NSRect)rect 
+- (void)drawButton:(NSRect)rect
 	   withMessage:(NSString *)message {
 	//Initiallize a new CALayer
 	[self clearButton];
@@ -159,7 +159,7 @@
 	CGColorRelease(myColor);
 	_buttonLayer.borderWidth = 2.0;
 	_buttonLayer.cornerRadius = 10.0;
-	
+
     // Create a text layer to add so we can see the message.
     CATextLayer *textLayer = [CATextLayer layer];
 	[textLayer autorelease];
@@ -167,7 +167,7 @@
 	myColor = CGColorCreateGenericRGB(1, 1, 1, 1.0f);
     [textLayer setForegroundColor:myColor];
 	CGColorRelease(myColor);
-	
+
 	// Set the message to the text layer
 	[textLayer setString:[message retain]];
 	// Modify its styles
@@ -177,21 +177,21 @@
 	[textLayer setFontSize:[[YLLGlobalConfig sharedInstance] englishFontSize] - 2];
 	// Here, calculate the size of the text layer
 	NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
-								[NSFont fontWithName:[[YLLGlobalConfig sharedInstance] englishFontName] 
-												size:[textLayer fontSize]], 
-								NSFontAttributeName, 
+								[NSFont fontWithName:[[YLLGlobalConfig sharedInstance] englishFontName]
+												size:[textLayer fontSize]],
+								NSFontAttributeName,
 								nil];
 	NSSize messageSize = [message sizeWithAttributes:attributes];
-	
+
 	// Change the size of text layer automatically
 	NSRect textRect = NSZeroRect;
 	textRect.size.width = messageSize.width;
 	textRect.size.height = messageSize.height;
     CGFontRelease(font);
-	
+
     // Create a new rectangle with a suitable size for the inner texts.
 	// Set it to an appropriate position of the whole view
-	
+
 	/* Comment out by K.O.ed: 2009.02.03
 	NSRect finalRect = textRect;
 	finalRect.origin.x = rect.origin.x;// - textRect.size.width / 2;
@@ -203,20 +203,20 @@
 	if (finalRect.size.width < textRect.size.width + 8)
 		finalRect.size.width = textRect.size.width + 8;
 	finalRect.size.height = textRect.size.height + 4;
-	
-	// Move the origin point of the message layer, so the message can be 
+
+	// Move the origin point of the message layer, so the message can be
 	// displayed in the center of the background rect
 	textRect.origin.x += (finalRect.size.width - textRect.size.width) / 2.0;
 	textRect.origin.y += (finalRect.size.height - textRect.size.height) / 2.0;
 	[textLayer setFrame:NSRectToCGRect(textRect)];
-	
+
     // Set the layer frame to our rectangle.
     _buttonLayer.frame = NSRectToCGRect(finalRect);
 	//buttonLayer.cornerRadius = finalRect.size.height/5;
 	[_buttonLayer addSublayer:[textLayer retain]];
 
 	[textLayer setFilters:[NSArray array]];
-	
+
 	CATransition * buttonTrans = [CATransition new];
 	[buttonTrans setType:kCATransitionReveal];
 	[_buttonLayer addAnimation:buttonTrans forKey:kCATransition];
@@ -247,33 +247,33 @@ const CGFloat menuMarginWidth = 20.0;
 
 -(void)setupMenuLayer {
     //[[self window] makeFirstResponder:self];
-    
+
 	// create menu layer
     _menuLayer = [CALayer layer];
     _menuLayer.frame = _mainLayer.bounds;
     _menuLayer.layoutManager =[CAConstraintLayoutManager layoutManager];
-	
+
 	// set border style
 	_menuLayer.borderWidth = 2.0;
     _menuLayer.borderColor = CGColorCreateGenericRGB(1.0f, 1.0f, 1.0f, 1.0f);
 	_menuLayer.cornerRadius = 5.0;
-	
+
     [_mainLayer addSublayer: _menuLayer];
-    
+
 	// set selection layer
     _selectionLayer = [CALayer layer];
     [_selectionLayer setBounds:CGRectMake(0.0, 0.0, menuWidth, menuHeight)];
     [_selectionLayer setBorderWidth:2.0];
     [_selectionLayer setBorderColor:CGColorCreateGenericRGB(1.0f, 1.0f, 1.0f, 1.0f)];
     [_selectionLayer setCornerRadius:menuHeight / 2];
-    
+
     CIFilter *filter = [CIFilter filterWithName:@"CIBloom"];
     [filter setDefaults];
     [filter setValue:[NSNumber numberWithFloat:5.0] forKey:@"inputRadius"];
     [filter setName:@"pulseFilter"];
-    
+
     [_selectionLayer setFilters:[NSArray arrayWithObject:filter]];
-    
+
     CABasicAnimation* pulseAnimation = [CABasicAnimation animation];
     pulseAnimation.keyPath = @"filters.pulseFilter.inputIntensity";
     pulseAnimation.fromValue = [NSNumber numberWithFloat: 0.0];
@@ -282,11 +282,11 @@ const CGFloat menuMarginWidth = 20.0;
     pulseAnimation.repeatCount = 1e100f;
     pulseAnimation.autoreverses = YES;
     pulseAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-	
+
     [_selectionLayer addAnimation:pulseAnimation forKey:@"pulseAnimation"];
-	
+
     //[mainLayer addSublayer:selectionLayer];
-    
+
     //[self changeSelectedIndex:0];
 }
 
@@ -298,19 +298,19 @@ const CGFloat menuMarginWidth = 20.0;
 		[menuItemLayer setFilters: nil];
 		[menuItemLayer removeAllAnimations];
 	}
-	
+
 	selectedItemIndex = index;
 	if (selectedItemIndex >= 0 && selectedItemIndex < [layers count]) {
 		CALayer *menuItemLayer = [layers objectAtIndex:selectedItemIndex];
-		
+
 		// Add bloom
 		CIFilter *filter = [CIFilter filterWithName:@"CIBloom"];
 		[filter setDefaults];
 		[filter setValue:[NSNumber numberWithFloat:5.0] forKey:@"inputRadius"];
 		[filter setName:@"pulseFilter"];
-		
+
 		[menuItemLayer setFilters: [NSArray arrayWithObject:filter]];
-		
+
 		// Add pulse animation
 		CABasicAnimation* pulseAnimation = [CABasicAnimation animation];
 		pulseAnimation.keyPath = @"filters.pulseFilter.inputIntensity";
@@ -320,7 +320,7 @@ const CGFloat menuMarginWidth = 20.0;
 		pulseAnimation.repeatCount = 1e100f;
 		pulseAnimation.autoreverses = YES;
 		pulseAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-		
+
 		[menuItemLayer addAnimation:pulseAnimation forKey:@"pulseAnimation"];
 	}
 }
@@ -345,18 +345,18 @@ const CGFloat menuMarginWidth = 20.0;
 		[menuItemLayer.string release];
 		[menuItemLayer removeFromSuperlayer];
 	}
-	
+
 	selectedItemIndex = -1;
 	[_menuLayer layoutIfNeeded];
 }
 
-- (void)showMenuAtPoint:(NSPoint)pt 
+- (void)showMenuAtPoint:(NSPoint)pt
 			  withItems:(NSArray *)items {
 	if (!_menuLayer)
 		[self setupMenuLayer];
-	
+
 	[self removeAllMenuItems];
-	
+
 	CGFloat width = 0.0;
 	CGFloat height = menuMarginHeight;
 	CGFloat itemHeight = 0.0;
@@ -364,11 +364,11 @@ const CGFloat menuMarginWidth = 20.0;
     for (int i = 0; i < [items count]; i++) {
 		WLMenuItem *item = (WLMenuItem *)[items objectAtIndex:i];
 		NSString *name = [item name];
-		
+
 		CATextLayer *menuItemLayer = [CATextLayer layer];
 		[menuItemLayer autorelease];
 		menuItemLayer.string = name;
-		
+
 		// Modify its styles
 		CGFontRef font = CGFontCreateWithFontName((CFStringRef)DEFAULT_POPUP_MENU_FONT);
 		menuItemLayer.font = font;
@@ -376,21 +376,21 @@ const CGFloat menuMarginWidth = 20.0;
 		menuItemLayer.fontSize = menuFontSize;
 		menuItemLayer.foregroundColor = CGColorCreateGenericRGB(1.0f, 1.0f, 1.0f, 1.0f);
 		menuItemLayer.truncationMode = kCATruncationEnd;
-		
+
 		// Here, calculate the size of the text layer
 		NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
-									[NSFont fontWithName:DEFAULT_POPUP_MENU_FONT 
-													size:menuItemLayer.fontSize], 
+									[NSFont fontWithName:DEFAULT_POPUP_MENU_FONT
+													size:menuItemLayer.fontSize],
 									NSFontAttributeName,
 									nil];
 		NSSize messageSize = [name sizeWithAttributes:attributes];
-		
+
 		// Modify the layer's size
 		if (messageSize.width > width)
 			width = messageSize.width;
 		height += messageSize.height + ((i == 0) ? 0 : menuItemPadding);
 		itemHeight = messageSize.height;
-		
+
 		// Set the layer's constraint
 		[menuItemLayer addConstraint:[CAConstraint constraintWithAttribute:kCAConstraintMaxY
 																relativeTo:@"superlayer"
@@ -399,23 +399,23 @@ const CGFloat menuMarginWidth = 20.0;
 		[menuItemLayer addConstraint:[CAConstraint constraintWithAttribute:kCAConstraintMidX
 																relativeTo:@"superlayer"
 																 attribute:kCAConstraintMidX]];
-		
+
 		// insert this menu item
 		[_menuLayer addSublayer: [menuItemLayer retain]];
     }
 	CGFloat totalHeight = height + menuMarginHeight;
 	CGFloat totalWidth = width + menuMarginWidth * 2;
 	_menuLayer.cornerRadius = totalHeight / 5;
-	
+
 	CGRect rect = CGRectZero;
 	rect.size.width = totalWidth;
 	rect.size.height = totalHeight;
 	rect.origin = NSPointToCGPoint(pt);
 	rect.origin.y -= totalHeight;
-	
+
 	_menuLayer.frame = rect;
 	_menuLayer.opacity = 1.0f;
-	
+
     [_menuLayer layoutIfNeeded];
 
 	[self selectMenuItemAtIndex:0];
@@ -428,28 +428,28 @@ const CGFloat menuMarginWidth = 20.0;
 #pragma mark -
 #pragma mark URL drawing
 - (void)setURLLineLayer {
-	
+
 }
 
 - (void)drawURLUnderlineAtRow:(int)r
-				   fromColumn:(int)start 
+				   fromColumn:(int)start
 					 toColumn:(int)end {
-	
+
 }
 
-- (CGImageRef)indicatorImage { 
-	if (_urlIndicatorImage == NULL) { 
-		NSString *path = [[NSBundle mainBundle] pathForResource:@"indicator" 
-														 ofType:@"png"]; 
-		NSURL *imageURL = [NSURL fileURLWithPath:path]; 
-		CGImageSourceRef src = CGImageSourceCreateWithURL((CFURLRef)imageURL, NULL); 
-		if (NULL != src) { 
-			_urlIndicatorImage = CGImageSourceCreateImageAtIndex(src, 0, NULL); 
+- (CGImageRef)indicatorImage {
+	if (_urlIndicatorImage == NULL) {
+		NSString *path = [[NSBundle mainBundle] pathForResource:@"indicator"
+														 ofType:@"png"];
+		NSURL *imageURL = [NSURL fileURLWithPath:path];
+		CGImageSourceRef src = CGImageSourceCreateWithURL((CFURLRef)imageURL, NULL);
+		if (NULL != src) {
+			_urlIndicatorImage = CGImageSourceCreateImageAtIndex(src, 0, NULL);
 			CFRelease(src);
-		} 
-	} 
-	return _urlIndicatorImage; 
-} 
+		}
+	}
+	return _urlIndicatorImage;
+}
 
 - (void)setURLIndicatorLayer {
 	_urlIndicatorLayer = [CALayer layer];
@@ -487,13 +487,13 @@ const CGFloat menuMarginWidth = 20.0;
 		[_popUpLayer setBackgroundColor:CGColorCreateGenericRGB(0.1, 0.1, 0.1, 0.5f)];
 		[_popUpLayer setBorderColor:CGColorCreateGenericRGB(1.0, 1.0, 1.0, 0.75f)];
 		[_popUpLayer setBorderWidth:2.0];
-    }	
+    }
     // Create a text layer to add so we can see the message.
     CATextLayer *textLayer = [CATextLayer layer];
 	[textLayer autorelease];
 	// Set its foreground color
     [textLayer setForegroundColor:CGColorCreateGenericRGB(1.0, 1.0, 1.0, 1.0f)];
-	
+
 	// Set the message to the text layer
 	[textLayer setString:message];
 	// Modify its styles
@@ -502,18 +502,18 @@ const CGFloat menuMarginWidth = 20.0;
     [textLayer setFont:font];
 	// Here, calculate the size of the text layer
 	NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
-								[NSFont fontWithName:DEFAULT_POPUP_BOX_FONT 
-												size:textLayer.fontSize], 
-								NSFontAttributeName, 
+								[NSFont fontWithName:DEFAULT_POPUP_BOX_FONT
+												size:textLayer.fontSize],
+								NSFontAttributeName,
 								nil];
 	NSSize messageSize = [message sizeWithAttributes:attributes];
-	
+
 	// Change the size of text layer automatically
 	NSRect textRect = NSZeroRect;
 	textRect.size.width = messageSize.width;
 	textRect.size.height = messageSize.height;
     CGFontRelease(font);
-	
+
     // Create a new rectangle with a suitable size for the inner texts.
 	// Set it to an appropriate position of the whole view
     NSRect rect = textRect;
@@ -522,17 +522,17 @@ const CGFloat menuMarginWidth = 20.0;
 	rect.size.width += 50;
 	rect.origin.x = screenRect.size.width / 2 - rect.size.width / 2;
 	rect.origin.y = screenRect.size.height / 5;
-	
-	// Move the origin point of the message layer, so the message can be 
+
+	// Move the origin point of the message layer, so the message can be
 	// displayed in the center of the background layer
 	textRect.origin.x += (rect.size.width - textRect.size.width) / 2.0;
 	[textLayer setFrame:NSRectToCGRect(textRect)];
-	
+
     // Set the layer frame to our rectangle.
     [_popUpLayer setFrame:NSRectToCGRect(rect)];
 	[_popUpLayer setCornerRadius:rect.size.height/5];
 	[_popUpLayer addSublayer:[textLayer retain]];
-    
+
     // Insert the layer into the root layer
 	[_mainLayer addSublayer:[_popUpLayer retain]];
 	// NSLog(@"Pop message @ (%f, %f)", rect.origin.x, rect.origin.y);

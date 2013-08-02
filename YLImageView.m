@@ -25,19 +25,19 @@ enum {
     {
         tipsState = kShowTipsGray;
         tipsRect = NSMakeRect((frame.size.width - kFloatRectWidth) / 2, 10, kFloatRectWidth, kFloatRectHeight);
-        
+
         previewer = thePreviewer;
         [self addTrackingRect: frame
-                        owner: self 
+                        owner: self
                      userData: nil
                  assumeInside: NO];
-        
+
         indicator = [[YLFloatingView alloc] initWithFrame: tipsRect];
         [indicator setWantsLayer: YES];
         [indicator setAlphaValue: 0.0];
         [self addSubview: indicator];
     }
-    
+
     return self;
 }
 
@@ -55,10 +55,10 @@ enum {
         NSDictionary *exif = [rep valueForProperty: NSImageEXIFData];
 
         // NSLog(@"exif = %@", exif);
-        
+
         YLController *controller = [NSApp delegate];
         YLExifController *exifController = [controller exifController];
-        
+
         NSString *makeName = [tiffData objectForKey:(NSString *) kCGImagePropertyTIFFMake];
         NSString *modelName = [tiffData objectForKey: (NSString *) kCGImagePropertyTIFFModel];
         // NSLog(@"tiff = %@, modelName = %@", tiff, modelName);
